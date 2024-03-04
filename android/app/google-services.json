@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "510089801067",
+    "project_id": "uptimefleet-383db",
+    "storage_bucket": "uptimefleet-383db.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:510089801067:android:799bb8f841aecf4732702e",
+        "android_client_info": {
+          "package_name": "com.mycompany.uptimefleet"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBK0daD8ZQn3CKBVQk5NxecDJy8OLaD5Pk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
