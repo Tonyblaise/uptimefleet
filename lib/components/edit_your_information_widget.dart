@@ -6,7 +6,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/upload_data.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'edit_your_information_model.dart';
 export 'edit_your_information_model.dart';
 
@@ -44,8 +43,6 @@ class _EditYourInformationWidgetState extends State<EditYourInformationWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Container(
       decoration: const BoxDecoration(
         shape: BoxShape.rectangle,

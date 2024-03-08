@@ -3,7 +3,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/service_provider/bottom_bar/bottom_bar_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'settings_sp_model.dart';
 export 'settings_sp_model.dart';
 
@@ -36,8 +35,6 @@ class _SettingsSpWidgetState extends State<SettingsSpWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)

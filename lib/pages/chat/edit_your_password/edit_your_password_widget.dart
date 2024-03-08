@@ -1,7 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'edit_your_password_model.dart';
 export 'edit_your_password_model.dart';
 
@@ -44,8 +43,6 @@ class _EditYourPasswordWidgetState extends State<EditYourPasswordWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Container(
       decoration: const BoxDecoration(
         shape: BoxShape.rectangle,

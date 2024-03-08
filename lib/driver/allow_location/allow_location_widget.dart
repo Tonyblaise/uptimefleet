@@ -4,7 +4,6 @@ import '/flutter_flow/permissions_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'allow_location_model.dart';
 export 'allow_location_model.dart';
 
@@ -43,8 +42,6 @@ class _AllowLocationWidgetState extends State<AllowLocationWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Align(
       alignment: const AlignmentDirectional(0.0, 0.0),
       child: Padding(
@@ -108,7 +105,7 @@ class _AllowLocationWidgetState extends State<AllowLocationWidget> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       RichText(
-                        textScaleFactor: MediaQuery.of(context).textScaleFactor,
+                        textScaler: MediaQuery.of(context).textScaler,
                         text: TextSpan(
                           children: [
                             TextSpan(
@@ -123,7 +120,7 @@ class _AllowLocationWidgetState extends State<AllowLocationWidget> {
                                   ),
                             ),
                             const TextSpan(
-                              text: '"UpTime"',
+                              text: '\"UpTime\"',
                               style: TextStyle(
                                 color: Color(0xFF64748B),
                                 fontWeight: FontWeight.bold,

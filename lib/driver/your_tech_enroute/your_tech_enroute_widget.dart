@@ -2,7 +2,6 @@ import '/flutter_flow/flutter_flow_google_map.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'your_tech_enroute_model.dart';
 export 'your_tech_enroute_model.dart';
 
@@ -39,8 +38,6 @@ class _YourTechEnrouteWidgetState extends State<YourTechEnrouteWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Container(
       height: 600.0,
       decoration: BoxDecoration(

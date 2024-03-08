@@ -6,7 +6,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'select_vehicle_model.dart';
 export 'select_vehicle_model.dart';
 
@@ -43,8 +42,6 @@ class _SelectVehicleWidgetState extends State<SelectVehicleWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Container(
       decoration: const BoxDecoration(
         shape: BoxShape.rectangle,

@@ -8,7 +8,6 @@ import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'vehicle_confirmation_model.dart';
 export 'vehicle_confirmation_model.dart';
 
@@ -60,8 +59,6 @@ class _VehicleConfirmationWidgetState extends State<VehicleConfirmationWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -132,8 +129,7 @@ class _VehicleConfirmationWidgetState extends State<VehicleConfirmationWidget> {
                         child: Align(
                           alignment: const AlignmentDirectional(0.0, 0.0),
                           child: RichText(
-                            textScaleFactor:
-                                MediaQuery.of(context).textScaleFactor,
+                            textScaler: MediaQuery.of(context).textScaler,
                             text: TextSpan(
                               children: [
                                 TextSpan(

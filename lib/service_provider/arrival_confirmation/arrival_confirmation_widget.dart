@@ -2,7 +2,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:provider/provider.dart';
 import 'arrival_confirmation_model.dart';
 export 'arrival_confirmation_model.dart';
 
@@ -40,8 +39,6 @@ class _ArrivalConfirmationWidgetState extends State<ArrivalConfirmationWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Container(
       decoration: const BoxDecoration(
         shape: BoxShape.rectangle,
@@ -110,8 +107,7 @@ class _ArrivalConfirmationWidgetState extends State<ArrivalConfirmationWidget> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         RichText(
-                          textScaleFactor:
-                              MediaQuery.of(context).textScaleFactor,
+                          textScaler: MediaQuery.of(context).textScaler,
                           text: TextSpan(
                             children: [
                               TextSpan(

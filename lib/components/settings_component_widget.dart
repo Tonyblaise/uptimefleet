@@ -3,7 +3,6 @@ import '/driver/log_out_confirmation/log_out_confirmation_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'settings_component_model.dart';
 export 'settings_component_model.dart';
 
@@ -41,8 +40,6 @@ class _SettingsComponentWidgetState extends State<SettingsComponentWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Container(
       decoration: const BoxDecoration(),
       child: Column(

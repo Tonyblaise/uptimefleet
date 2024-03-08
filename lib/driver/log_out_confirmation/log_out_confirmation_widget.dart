@@ -3,7 +3,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:provider/provider.dart';
 import 'log_out_confirmation_model.dart';
 export 'log_out_confirmation_model.dart';
 
@@ -41,8 +40,6 @@ class _LogOutConfirmationWidgetState extends State<LogOutConfirmationWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Align(
       alignment: const AlignmentDirectional(0.0, 0.0),
       child: Padding(
@@ -119,8 +116,7 @@ class _LogOutConfirmationWidgetState extends State<LogOutConfirmationWidget> {
                           children: [
                             Flexible(
                               child: RichText(
-                                textScaleFactor:
-                                    MediaQuery.of(context).textScaleFactor,
+                                textScaler: MediaQuery.of(context).textScaler,
                                 text: TextSpan(
                                   children: [
                                     TextSpan(

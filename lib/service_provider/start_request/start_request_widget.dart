@@ -5,7 +5,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/service_provider/service_summary_widget/service_summary_widget_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'start_request_model.dart';
 export 'start_request_model.dart';
 
@@ -43,8 +42,6 @@ class _StartRequestWidgetState extends State<StartRequestWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -154,8 +151,8 @@ class _StartRequestWidgetState extends State<StartRequestWidget> {
                                 child: Align(
                                   alignment: const AlignmentDirectional(0.0, 0.0),
                                   child: RichText(
-                                    textScaleFactor:
-                                        MediaQuery.of(context).textScaleFactor,
+                                    textScaler:
+                                        MediaQuery.of(context).textScaler,
                                     text: TextSpan(
                                       children: [
                                         TextSpan(

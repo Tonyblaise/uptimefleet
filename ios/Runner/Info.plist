@@ -46,8 +46,6 @@
     </array>
     <key>FlutterDeepLinkingEnabled</key>
     <true/>
-	<key>io.flutter.embedded_views_preview</key>
-    <true/>
 
 
 	<key>CFBundleVersion</key>

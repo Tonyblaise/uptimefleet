@@ -1,7 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'check_your_email_model.dart';
 export 'check_your_email_model.dart';
 
@@ -34,8 +33,6 @@ class _CheckYourEmailWidgetState extends State<CheckYourEmailWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -116,7 +113,7 @@ class _CheckYourEmailWidgetState extends State<CheckYourEmailWidget> {
                   width: MediaQuery.sizeOf(context).width * 0.9,
                   decoration: const BoxDecoration(),
                   child: RichText(
-                    textScaleFactor: MediaQuery.of(context).textScaleFactor,
+                    textScaler: MediaQuery.of(context).textScaler,
                     text: TextSpan(
                       children: [
                         TextSpan(
