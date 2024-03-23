@@ -28,7 +28,7 @@
             <string>Editor</string>
             <key>CFBundleURLSchemes</key>
             <array>
-                <!--FF_REVERSED_CLIENT_ID-->
+                <string>com.googleusercontent.apps.510089801067-bhde15ok23pd9alj16pfbp427tob35ab</string>
                 
             </array>
         </dict>
@@ -37,10 +37,10 @@
         <key>CFBundleTypeRole</key>
         <string>Editor</string>
         <key>CFBundleURLName</key>
-        <string>uptimefleet.com</string>
+        <string>uptimefleet</string>
         <key>CFBundleURLSchemes</key>
         <array>
-        <string>uptimefleet</string>
+        <string>com.mycompany.uptimefleet</string>
         </array>
         </dict>
     </array>
