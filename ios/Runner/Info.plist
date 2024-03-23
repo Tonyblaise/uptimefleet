@@ -58,12 +58,15 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
     <string>In order to view your current location, this app needs permission to access your location</string>
 	<key>NSCameraUsageDescription</key>
-    <string>In order to take a picture or video, this app requires permission to access the camera.</string>
+    <string>In order to take a photo, this app needs access to your camera</string>
 	<key>NSMicrophoneUsageDescription</key>
-    <string>In order to record audio for video, this app requires permission to access the microphone.</string>
+    <string>In order to record an audio, this app needs permission to access your microphone</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-    <string>In order to upload data, this app requires permission to access the photo library.</string>
-
+    <string>In order to upload a photo, this app needs permission to access your photo library</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <string>In order to view your current location, this app needs permission to access your location</string>
+	<key>PermissionGroupNotification</key>
+    <string>Allow application to send you notifications</string>
     <key>UIBackgroundModes</key>
     <array>
         <string>fetch</string>

@@ -13,6 +13,7 @@ const cameraPermission = Permission.camera;
 const photoLibraryPermission = Permission.photos;
 const locationPermission = Permission.location;
 const microphonePermission = Permission.microphone;
+const notificationsPermission = Permission.notification;
 
 Future<bool> getPermissionStatus(Permission setting) async {
   if (kIsWeb) {

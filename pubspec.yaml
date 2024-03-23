@@ -15,7 +15,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.0.0+8
+version: 1.0.0+25
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
@@ -62,7 +62,6 @@ dependencies:
     git:
       url: https://github.com/ShehanYjoz/flutter_google_places.git
   flutter_local_notifications: any
-  flutter_mapbox: any
   flutter_plugin_android_lifecycle: 2.0.17
   flutter_secure_storage: 8.0.0
   flutter_svg: 2.0.9
@@ -119,10 +118,10 @@ dependencies:
   stream_transform: 2.1.0
   synchronized: 3.1.0
   timeago: 3.2.2
-  url_launcher: 6.1.10
-  url_launcher_android: 6.0.27
-  url_launcher_ios: 6.1.4
-  url_launcher_platform_interface: 2.1.2
+  url_launcher: 6.2.5
+  url_launcher_android: 6.3.0
+  url_launcher_ios: 6.2.5
+  url_launcher_platform_interface: 2.3.2
   video_player: 2.8.1
   video_player_android: 2.4.10
   video_player_avfoundation: 2.5.1

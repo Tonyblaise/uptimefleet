@@ -10,8 +10,7 @@ const _kPrivateApiFunctionName = 'ffPrivateApiCall';
 /// Start UptimeFleet App Group Code
 
 class UptimeFleetAppGroup {
-  static String baseUrl =
-      'https://uptimefleetapp.bubbleapps.io/version-test/api/1.1/wf';
+  static String baseUrl = 'https://uptimefleetapp.bubbleapps.io/api/1.1/wf';
   static Map<String, String> headers = {
     'Authorization': 'Bearer [accessToken]',
   };

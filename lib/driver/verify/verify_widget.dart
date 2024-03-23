@@ -158,167 +158,176 @@ class _VerifyWidgetState extends State<VerifyWidget> {
               ),
               Align(
                 alignment: const AlignmentDirectional(0.0, 0.0),
-                child: InkWell(
-                  splashColor: Colors.transparent,
-                  focusColor: Colors.transparent,
-                  hoverColor: Colors.transparent,
-                  highlightColor: Colors.transparent,
-                  onTap: () async {
-                    GoRouter.of(context).prepareAuthEvent();
-                    final smsCodeVal = _model.pinCodeController!.text;
-                    if (smsCodeVal.isEmpty) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Enter SMS verification code.'),
-                        ),
-                      );
-                      return;
-                    }
-                    final phoneVerifiedUser = await authManager.verifySmsCode(
-                      context: context,
-                      smsCode: smsCodeVal,
-                    );
-                    if (phoneVerifiedUser == null) {
-                      return;
-                    }
-
-                    if (widget.signUp) {
-                      if (widget.signUpType == 'fleet') {
-                        _model.driver =
-                            await UptimeFleetAppGroup.createDriverCall.call(
-                          fleetManagerId: widget.fleetManagerId,
-                          fullName: widget.fullName,
-                          phoneNumber: widget.phoneNumber,
-                          token: currentJwtToken,
-                        );
-
-                        await currentUserReference!
-                            .update(createUsersRecordData(
-                          companyId:
-                              UptimeFleetAppGroup.createDriverCall.companyId(
-                            (_model.driver?.jsonBody ?? ''),
-                          ),
-                          companyName:
-                              UptimeFleetAppGroup.createDriverCall.companyName(
-                            (_model.driver?.jsonBody ?? ''),
-                          ),
-                          driverId: UptimeFleetAppGroup.createDriverCall.id(
-                            (_model.driver?.jsonBody ?? ''),
-                          ),
-                          fullName: widget.fullName,
-                          driverFleetManagerMessageThreadId: UptimeFleetAppGroup
-                              .createDriverCall
-                              .driverFleetManagerMessageThreadId(
-                            (_model.driver?.jsonBody ?? ''),
-                          ),
-                          driverSupportMessageThreadId: UptimeFleetAppGroup
-                              .createDriverCall
-                              .driverSupportMessageThreadId(
-                            (_model.driver?.jsonBody ?? ''),
-                          ),
-                          profilePicture: '',
-                          phoneNumber: widget.phoneNumber,
-                        ));
-
-                        context.goNamedAuth('dashboardDriver', context.mounted);
-                      } else if (widget.signUpType == 'technician') {
-                        _model.technician =
-                            await UptimeFleetAppGroup.createTechnicianCall.call(
-                          serviceProviderId: widget.serviceProviderId,
-                          fullName: widget.fullName,
-                          phoneNumber: widget.phoneNumber,
-                          token: currentJwtToken,
-                        );
-
-                        await currentUserReference!
-                            .update(createUsersRecordData(
-                          companyId: UptimeFleetAppGroup.createTechnicianCall
-                              .companyId(
-                            (_model.technician?.jsonBody ?? ''),
-                          ),
-                          companyName: UptimeFleetAppGroup.createTechnicianCall
-                              .companyName(
-                            (_model.technician?.jsonBody ?? ''),
-                          ),
-                          technicianId: UptimeFleetAppGroup.createTechnicianCall
-                              .technicianId(
-                            (_model.technician?.jsonBody ?? ''),
-                          ),
-                          fullName: widget.fullName,
-                          technicianServiceProviderMessageThreadId:
-                              UptimeFleetAppGroup.createTechnicianCall
-                                  .technicianServiceProviderMessageThreadId(
-                            (_model.technician?.jsonBody ?? ''),
-                          ),
-                          technicianSupportMessageThreadId: UptimeFleetAppGroup
-                              .createTechnicianCall
-                              .technicianSupportMessageThreadId(
-                            (_model.technician?.jsonBody ?? ''),
-                          ),
-                          phoneNumber: widget.phoneNumber,
-                          onDuty: false,
-                        ));
-
-                        context.goNamedAuth(
-                            'dashboardTechnician', context.mounted);
-                      } else {
+                child: Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                  child: InkWell(
+                    splashColor: Colors.transparent,
+                    focusColor: Colors.transparent,
+                    hoverColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                    onTap: () async {
+                      GoRouter.of(context).prepareAuthEvent();
+                      final smsCodeVal = _model.pinCodeController!.text;
+                      if (smsCodeVal.isEmpty) {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(
-                              'Something went wrong. Please try again later.',
-                              style: TextStyle(
-                                color: FlutterFlowTheme.of(context).primaryText,
-                              ),
-                            ),
-                            duration: const Duration(milliseconds: 4000),
-                            backgroundColor:
-                                FlutterFlowTheme.of(context).secondary,
+                          const SnackBar(
+                            content: Text('Enter SMS verification code.'),
                           ),
                         );
+                        return;
                       }
-                    } else {
-                      if (widget.signUpType == 'fleet') {
-                        await UptimeFleetAppGroup.updateDriverTokenCall.call(
-                          driverId:
-                              valueOrDefault(currentUserDocument?.driverId, ''),
-                          token: currentJwtToken,
-                        );
-
-                        context.goNamedAuth('dashboardDriver', context.mounted);
-                      } else if (widget.signUpType == 'technician') {
-                        await UptimeFleetAppGroup.updateTechnicianCall.call(
-                          technicianId: valueOrDefault(
-                              currentUserDocument?.technicianId, ''),
-                          token: currentJwtToken,
-                        );
-
-                        context.goNamedAuth(
-                            'dashboardTechnician', context.mounted);
+                      final phoneVerifiedUser = await authManager.verifySmsCode(
+                        context: context,
+                        smsCode: smsCodeVal,
+                      );
+                      if (phoneVerifiedUser == null) {
+                        return;
                       }
-                    }
 
-                    setState(() {});
-                  },
-                  child: Container(
-                    width: MediaQuery.sizeOf(context).width * 0.9,
-                    height: 56.0,
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [
-                          FlutterFlowTheme.of(context).secondary,
-                          FlutterFlowTheme.of(context).tertiary
-                        ],
-                        stops: const [0.0, 1.0],
-                        begin: const AlignmentDirectional(0.0, -1.0),
-                        end: const AlignmentDirectional(0, 1.0),
+                      if (widget.signUp) {
+                        if (widget.signUpType == 'fleet') {
+                          _model.driver =
+                              await UptimeFleetAppGroup.createDriverCall.call(
+                            fleetManagerId: widget.fleetManagerId,
+                            fullName: widget.fullName,
+                            phoneNumber: widget.phoneNumber,
+                            token: currentJwtToken,
+                          );
+
+                          await currentUserReference!
+                              .update(createUsersRecordData(
+                            companyId:
+                                UptimeFleetAppGroup.createDriverCall.companyId(
+                              (_model.driver?.jsonBody ?? ''),
+                            ),
+                            companyName: UptimeFleetAppGroup.createDriverCall
+                                .companyName(
+                              (_model.driver?.jsonBody ?? ''),
+                            ),
+                            driverId: UptimeFleetAppGroup.createDriverCall.id(
+                              (_model.driver?.jsonBody ?? ''),
+                            ),
+                            fullName: widget.fullName,
+                            driverFleetManagerMessageThreadId:
+                                UptimeFleetAppGroup.createDriverCall
+                                    .driverFleetManagerMessageThreadId(
+                              (_model.driver?.jsonBody ?? ''),
+                            ),
+                            driverSupportMessageThreadId: UptimeFleetAppGroup
+                                .createDriverCall
+                                .driverSupportMessageThreadId(
+                              (_model.driver?.jsonBody ?? ''),
+                            ),
+                            profilePicture: '',
+                            phoneNumber: widget.phoneNumber,
+                          ));
+
+                          context.goNamedAuth(
+                              'dashboardDriver', context.mounted);
+                        } else if (widget.signUpType == 'technician') {
+                          _model.technician = await UptimeFleetAppGroup
+                              .createTechnicianCall
+                              .call(
+                            serviceProviderId: widget.serviceProviderId,
+                            fullName: widget.fullName,
+                            phoneNumber: widget.phoneNumber,
+                            token: currentJwtToken,
+                          );
+
+                          await currentUserReference!
+                              .update(createUsersRecordData(
+                            companyId: UptimeFleetAppGroup.createTechnicianCall
+                                .companyId(
+                              (_model.technician?.jsonBody ?? ''),
+                            ),
+                            companyName: UptimeFleetAppGroup
+                                .createTechnicianCall
+                                .companyName(
+                              (_model.technician?.jsonBody ?? ''),
+                            ),
+                            technicianId: UptimeFleetAppGroup
+                                .createTechnicianCall
+                                .technicianId(
+                              (_model.technician?.jsonBody ?? ''),
+                            ),
+                            fullName: widget.fullName,
+                            technicianServiceProviderMessageThreadId:
+                                UptimeFleetAppGroup.createTechnicianCall
+                                    .technicianServiceProviderMessageThreadId(
+                              (_model.technician?.jsonBody ?? ''),
+                            ),
+                            technicianSupportMessageThreadId:
+                                UptimeFleetAppGroup.createTechnicianCall
+                                    .technicianSupportMessageThreadId(
+                              (_model.technician?.jsonBody ?? ''),
+                            ),
+                            phoneNumber: widget.phoneNumber,
+                            onDuty: false,
+                          ));
+
+                          context.goNamedAuth(
+                              'dashboardTechnician', context.mounted);
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                'Something went wrong. Please try again later.',
+                                style: TextStyle(
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                ),
+                              ),
+                              duration: const Duration(milliseconds: 4000),
+                              backgroundColor:
+                                  FlutterFlowTheme.of(context).secondary,
+                            ),
+                          );
+                        }
+                      } else {
+                        if (widget.signUpType == 'fleet') {
+                          await UptimeFleetAppGroup.updateDriverTokenCall.call(
+                            driverId: valueOrDefault(
+                                currentUserDocument?.driverId, ''),
+                            token: currentJwtToken,
+                          );
+
+                          context.goNamedAuth(
+                              'dashboardDriver', context.mounted);
+                        } else if (widget.signUpType == 'technician') {
+                          await UptimeFleetAppGroup.updateTechnicianCall.call(
+                            technicianId: valueOrDefault(
+                                currentUserDocument?.technicianId, ''),
+                            token: currentJwtToken,
+                          );
+
+                          context.goNamedAuth(
+                              'dashboardTechnician', context.mounted);
+                        }
+                      }
+
+                      setState(() {});
+                    },
+                    child: Container(
+                      width: MediaQuery.sizeOf(context).width * 0.9,
+                      height: 56.0,
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [
+                            FlutterFlowTheme.of(context).secondary,
+                            FlutterFlowTheme.of(context).tertiary
+                          ],
+                          stops: const [0.0, 1.0],
+                          begin: const AlignmentDirectional(0.0, -1.0),
+                          end: const AlignmentDirectional(0, 1.0),
+                        ),
+                        borderRadius: BorderRadius.circular(18.0),
                       ),
-                      borderRadius: BorderRadius.circular(18.0),
-                    ),
-                    child: Align(
-                      alignment: const AlignmentDirectional(0.0, 0.0),
-                      child: Text(
-                        'Confirm',
-                        style: FlutterFlowTheme.of(context).titleSmall,
+                      child: Align(
+                        alignment: const AlignmentDirectional(0.0, 0.0),
+                        child: Text(
+                          'Confirm',
+                          style: FlutterFlowTheme.of(context).titleSmall,
+                        ),
                       ),
                     ),
                   ),

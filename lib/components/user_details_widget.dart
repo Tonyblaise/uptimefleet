@@ -1,9 +1,7 @@
 import '/auth/firebase_auth/auth_util.dart';
-import '/components/edit_your_information_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'user_details_model.dart';
 export 'user_details_model.dart';
 
@@ -27,22 +25,6 @@ class _UserDetailsWidgetState extends State<UserDetailsWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => UserDetailsModel());
-
-    // On component load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      await showModalBottomSheet(
-        isScrollControlled: true,
-        backgroundColor: Colors.transparent,
-        enableDrag: false,
-        context: context,
-        builder: (context) {
-          return Padding(
-            padding: MediaQuery.viewInsetsOf(context),
-            child: const EditYourInformationWidget(),
-          );
-        },
-      ).then((value) => safeSetState(() {}));
-    });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }

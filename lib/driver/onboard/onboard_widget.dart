@@ -339,7 +339,7 @@ class _OnboardWidgetState extends State<OnboardWidget> {
                                     ParamType.String,
                                   ),
                                   'fullName': serializeParam(
-                                    _model.textController2.text,
+                                    _model.fullnameController.text,
                                     ParamType.String,
                                   ),
                                   'signUp': serializeParam(

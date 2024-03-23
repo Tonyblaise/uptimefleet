@@ -133,7 +133,6 @@ class _NavBarPageState extends State<NavBarPage> {
       'dashboardDriver': const DashboardDriverWidget(),
       'driverChat': const DriverChatWidget(),
       'settings': const SettingsWidget(),
-      'technicianChat': const TechnicianChatWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
@@ -174,14 +173,6 @@ class _NavBarPageState extends State<NavBarPage> {
               size: 24.0,
             ),
             label: 'Settings',
-            tooltip: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.chat_outlined,
-              size: 24.0,
-            ),
-            label: 'messages',
             tooltip: '',
           )
         ],

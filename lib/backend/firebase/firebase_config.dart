@@ -10,8 +10,8 @@ Future initFirebase() async {
             projectId: "uptimefleet-383db",
             storageBucket: "uptimefleet-383db.appspot.com",
             messagingSenderId: "510089801067",
-            appId: "1:510089801067:web:dbdd5c2896e6594632702e",
-            measurementId: "G-8HMZNFZ7CJ"));
+            appId: "1:510089801067:web:a5a58d2d8bb8617632702e",
+            measurementId: "G-00VZJDVQW1"));
   } else {
     await Firebase.initializeApp();
   }
