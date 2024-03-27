@@ -9,6 +9,8 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+import 'package:firebase_messaging/firebase_messaging.dart';
+
 import 'package:provider/provider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:geolocator/geolocator.dart';
@@ -123,7 +125,7 @@ Future mainAction(
       while (true) {
         await streamLocation();
 
-        await Future.delayed(Duration(minutes: 1));
+        await Future.delayed(Duration(minutes: 2));
       }
     }
 

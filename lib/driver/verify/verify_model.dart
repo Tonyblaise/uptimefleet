@@ -10,6 +10,8 @@ class VerifyModel extends FlutterFlowModel<VerifyWidget> {
   // State field(s) for PinCode widget.
   TextEditingController? pinCodeController;
   String? Function(BuildContext, String?)? pinCodeControllerValidator;
+  // Stores action output result for [Custom Action - getFcmToken] action in Container widget.
+  String? token;
   // Stores action output result for [Backend Call - API (Create driver)] action in Container widget.
   ApiCallResponse? driver;
   // Stores action output result for [Backend Call - API (Create technician)] action in Container widget.

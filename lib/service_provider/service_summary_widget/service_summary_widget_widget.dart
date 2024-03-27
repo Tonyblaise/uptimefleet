@@ -1,6 +1,7 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'service_summary_widget_model.dart';
 export 'service_summary_widget_model.dart';
@@ -547,26 +548,10 @@ class _ServiceSummaryWidgetWidgetState
               ),
               FFButtonWidget(
                 onPressed: () async {
-                  context.pushNamed(
-                    'navigation',
-                    queryParameters: {
-                      'locationLat': serializeParam(
-                        widget.locationLat,
-                        ParamType.double,
-                      ),
-                      'loocationLng': serializeParam(
-                        0.0,
-                        ParamType.double,
-                      ),
-                      'destLat': serializeParam(
-                        widget.locationLat,
-                        ParamType.double,
-                      ),
-                      'destLng': serializeParam(
-                        widget.locationLng,
-                        ParamType.double,
-                      ),
-                    }.withoutNulls,
+                  await launchMap(
+                    location: functions.converLatLngStringToLatLng(
+                        widget.locationLat!, widget.locationLng!),
+                    title: '${widget.driverName}\'s location',
                   );
                 },
                 text: 'Start Ride',

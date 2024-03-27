@@ -58,3 +58,11 @@ double? convertStringToDouble(String? stringToConvert) {
   double? myDouble = num.tryParse(myString!)?.toDouble();
   return myDouble;
 }
+
+LatLng converLatLngStringToLatLng(
+  double lat,
+  double lng,
+) {
+  // convert lat and lng string to LatLng
+  return LatLng(lat, lng);
+}

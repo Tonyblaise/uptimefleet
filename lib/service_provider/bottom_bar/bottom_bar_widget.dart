@@ -1,3 +1,4 @@
+import '/components/tech_status_component_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
@@ -151,7 +152,21 @@ class _BottomBarWidgetState extends State<BottomBarWidget> {
                     hoverColor: Colors.transparent,
                     highlightColor: Colors.transparent,
                     onTap: () async {
-                      context.pushNamed('tech_status');
+                      await showModalBottomSheet(
+                        isScrollControlled: true,
+                        backgroundColor: Colors.transparent,
+                        enableDrag: false,
+                        context: context,
+                        builder: (context) {
+                          return Padding(
+                            padding: MediaQuery.viewInsetsOf(context),
+                            child: const SizedBox(
+                              height: 300.0,
+                              child: TechStatusComponentWidget(),
+                            ),
+                          );
+                        },
+                      ).then((value) => safeSetState(() {}));
                     },
                     child: Container(
                       height: 100.0,

@@ -192,7 +192,7 @@ class _ServiceUpdatesComponentWidgetState
                                                     CrossAxisAlignment.start,
                                                 children: [
                                                   Text(
-                                                    'Pending Approval',
+                                                    'Request In Process',
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .bodyMedium
@@ -214,7 +214,7 @@ class _ServiceUpdatesComponentWidgetState
                                                         ),
                                                   ),
                                                   Text(
-                                                    'Short description of the state',
+                                                    'Standby For ETA',
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .bodyMedium

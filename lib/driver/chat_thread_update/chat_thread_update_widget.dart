@@ -151,7 +151,10 @@ class _ChatThreadUpdateWidgetState extends State<ChatThreadUpdateWidget> {
                                         padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 12.0, 0.0, 4.0),
                                         child: FlutterFlowMediaDisplay(
-                                          path: widget.messageImage!,
+                                          path: widget.messageImage != null &&
+                                                  widget.messageImage != ''
+                                              ? widget.messageImage!
+                                              : ' ',
                                           imageBuilder: (path) => ClipRRect(
                                             borderRadius:
                                                 BorderRadius.circular(8.0),
@@ -264,7 +267,10 @@ class _ChatThreadUpdateWidgetState extends State<ChatThreadUpdateWidget> {
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 12.0, 0.0, 4.0),
                                   child: FlutterFlowMediaDisplay(
-                                    path: widget.messageImage!,
+                                    path: widget.messageImage != null &&
+                                            widget.messageImage != ''
+                                        ? widget.messageImage!
+                                        : ' ',
                                     imageBuilder: (path) => ClipRRect(
                                       borderRadius: BorderRadius.circular(8.0),
                                       child: CachedNetworkImage(

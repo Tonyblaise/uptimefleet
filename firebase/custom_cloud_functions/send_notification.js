@@ -28,6 +28,6 @@ exports.sendNotification = functions.https.onRequest(async (req, res) => {
     return res.status(200).send("Notification sent successfully");
   } catch (error) {
     console.error("Error sending notification:", error);
-    return res.status(500).send("Error sending notification");
+    return res.status(500).send(`Error sending notification ${error} `);
   }
 });

@@ -1,3 +1,5 @@
+import '/auth/firebase_auth/auth_util.dart';
+import '/backend/push_notifications/push_notifications_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
@@ -57,11 +59,28 @@ class _TestyWidgetState extends State<TestyWidget> {
         ),
         body: SafeArea(
           top: true,
-          child: Container(
-            width: double.infinity,
-            height: double.infinity,
-            decoration: BoxDecoration(
-              color: FlutterFlowTheme.of(context).secondaryBackground,
+          child: InkWell(
+            splashColor: Colors.transparent,
+            focusColor: Colors.transparent,
+            hoverColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+            onTap: () async {
+              triggerPushNotification(
+                notificationTitle: 'test',
+                notificationText: 'test',
+                notificationImageUrl: currentUserPhoto,
+                notificationSound: 'default',
+                userRefs: [currentUserReference!],
+                initialPageName: 'login',
+                parameterData: {},
+              );
+            },
+            child: Container(
+              width: 100.0,
+              height: 100.0,
+              decoration: BoxDecoration(
+                color: FlutterFlowTheme.of(context).secondaryBackground,
+              ),
             ),
           ),
         ),

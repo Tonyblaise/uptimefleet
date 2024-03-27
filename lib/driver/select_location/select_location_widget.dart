@@ -15,10 +15,12 @@ class SelectLocationWidget extends StatefulWidget {
     super.key,
     required this.service,
     this.additionalInfo,
+    required this.address,
   });
 
   final String? service;
   final String? additionalInfo;
+  final String? address;
 
   @override
   State<SelectLocationWidget> createState() => _SelectLocationWidgetState();
@@ -156,44 +158,38 @@ class _SelectLocationWidgetState extends State<SelectLocationWidget> {
                     child: Container(
                       width: MediaQuery.sizeOf(context).width * 0.9,
                       decoration: const BoxDecoration(),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Container(
-                            width: double.infinity,
-                            decoration: const BoxDecoration(),
-                            child: Visibility(
-                              visible: _model.addressView,
-                              child: FutureBuilder<ApiCallResponse>(
-                                future: GetPlaceInfoCall.call(
-                                  latitude: functions
-                                      .getLat(_model.latLng!)
-                                      .toString(),
-                                  longitude: functions
-                                      .getLng(_model.latLng!)
-                                      .toString(),
+                      child: FutureBuilder<ApiCallResponse>(
+                        future: GetAddressFromLatLngCall.call(
+                          lat: functions.getLat(_model.latLng!),
+                          lng: functions.getLng(_model.latLng!),
+                        ),
+                        builder: (context, snapshot) {
+                          // Customize what your widget looks like when it's loading.
+                          if (!snapshot.hasData) {
+                            return Center(
+                              child: SizedBox(
+                                width: 50.0,
+                                height: 50.0,
+                                child: CircularProgressIndicator(
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                    FlutterFlowTheme.of(context).primary,
+                                  ),
                                 ),
-                                builder: (context, snapshot) {
-                                  // Customize what your widget looks like when it's loading.
-                                  if (!snapshot.hasData) {
-                                    return Center(
-                                      child: SizedBox(
-                                        width: 40.0,
-                                        height: 40.0,
-                                        child: CircularProgressIndicator(
-                                          valueColor:
-                                              AlwaysStoppedAnimation<Color>(
-                                            FlutterFlowTheme.of(context)
-                                                .primary,
-                                          ),
-                                        ),
-                                      ),
-                                    );
-                                  }
-                                  final richTextGetPlaceInfoResponse =
-                                      snapshot.data!;
-                                  return RichText(
+                              ),
+                            );
+                          }
+                          final columnGetAddressFromLatLngResponse =
+                              snapshot.data!;
+                          return Column(
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Container(
+                                width: double.infinity,
+                                decoration: const BoxDecoration(),
+                                child: Visibility(
+                                  visible: _model.addressView,
+                                  child: RichText(
                                     textScaler:
                                         MediaQuery.of(context).textScaler,
                                     text: TextSpan(
@@ -218,22 +214,13 @@ class _SelectLocationWidgetState extends State<SelectLocationWidget> {
                                           ),
                                         ),
                                         TextSpan(
-                                          text: '${GetPlaceInfoCall.postCode(
-                                            richTextGetPlaceInfoResponse
-                                                .jsonBody,
-                                          )} ${GetPlaceInfoCall.locality(
-                                            richTextGetPlaceInfoResponse
-                                                .jsonBody,
-                                          )} ${GetPlaceInfoCall.city(
-                                            richTextGetPlaceInfoResponse
-                                                .jsonBody,
-                                          )} ${GetPlaceInfoCall.pricipalSubdivision(
-                                            richTextGetPlaceInfoResponse
-                                                .jsonBody,
-                                          )} ${GetPlaceInfoCall.country(
-                                            richTextGetPlaceInfoResponse
-                                                .jsonBody,
-                                          )}',
+                                          text: valueOrDefault<String>(
+                                            GetAddressFromLatLngCall.placeName(
+                                              columnGetAddressFromLatLngResponse
+                                                  .jsonBody,
+                                            )?.first,
+                                            '.',
+                                          ),
                                           style: const TextStyle(),
                                         )
                                       ],
@@ -244,137 +231,140 @@ class _SelectLocationWidgetState extends State<SelectLocationWidget> {
                                             fontSize: 20.0,
                                           ),
                                     ),
-                                  );
+                                  ),
+                                ),
+                              ),
+                              if (!_model.addressView)
+                                FlutterFlowPlacePicker(
+                                  iOSGoogleMapsApiKey:
+                                      'AIzaSyCQCtKBOInrdAHzTTfpXIeTqKe4-9Q1iB8',
+                                  androidGoogleMapsApiKey:
+                                      'AIzaSyCQCtKBOInrdAHzTTfpXIeTqKe4-9Q1iB8',
+                                  webGoogleMapsApiKey:
+                                      'AIzaSyCQCtKBOInrdAHzTTfpXIeTqKe4-9Q1iB8',
+                                  onSelect: (place) async {
+                                    setState(
+                                        () => _model.placePickerValue = place);
+                                  },
+                                  defaultText: 'Type in your location',
+                                  icon: const Icon(
+                                    Icons.place,
+                                    color: Color(0xFF0F172A),
+                                    size: 16.0,
+                                  ),
+                                  buttonOptions: FFButtonOptions(
+                                    width: double.infinity,
+                                    height: 50.0,
+                                    color: const Color(0xFFF1F5F9),
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .override(
+                                          fontFamily: 'Yantramanav',
+                                          color: const Color(0xFF0F172A),
+                                        ),
+                                    elevation: 2.0,
+                                    borderSide: const BorderSide(
+                                      color: Colors.transparent,
+                                      width: 1.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                ),
+                              InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  setState(() {
+                                    _model.addressView = !_model.addressView;
+                                  });
                                 },
-                              ),
-                            ),
-                          ),
-                          if (!_model.addressView)
-                            FlutterFlowPlacePicker(
-                              iOSGoogleMapsApiKey:
-                                  'AIzaSyCQCtKBOInrdAHzTTfpXIeTqKe4-9Q1iB8',
-                              androidGoogleMapsApiKey:
-                                  'AIzaSyCQCtKBOInrdAHzTTfpXIeTqKe4-9Q1iB8',
-                              webGoogleMapsApiKey:
-                                  'AIzaSyCQCtKBOInrdAHzTTfpXIeTqKe4-9Q1iB8',
-                              onSelect: (place) async {
-                                setState(() => _model.placePickerValue = place);
-                              },
-                              defaultText: 'Type in your location',
-                              icon: const Icon(
-                                Icons.place,
-                                color: Color(0xFF0F172A),
-                                size: 16.0,
-                              ),
-                              buttonOptions: FFButtonOptions(
-                                width: double.infinity,
-                                height: 50.0,
-                                color: const Color(0xFFF1F5F9),
-                                textStyle: FlutterFlowTheme.of(context)
-                                    .titleSmall
-                                    .override(
-                                      fontFamily: 'Yantramanav',
-                                      color: const Color(0xFF0F172A),
-                                    ),
-                                elevation: 2.0,
-                                borderSide: const BorderSide(
-                                  color: Colors.transparent,
-                                  width: 1.0,
-                                ),
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                            ),
-                          InkWell(
-                            splashColor: Colors.transparent,
-                            focusColor: Colors.transparent,
-                            hoverColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                            onTap: () async {
-                              setState(() {
-                                _model.addressView = !_model.addressView;
-                              });
-                            },
-                            child: Container(
-                              width: double.infinity,
-                              decoration: const BoxDecoration(),
-                              child: Text(
-                                _model.addressView ? 'Change location' : 'Back',
-                                textAlign: TextAlign.end,
-                                style: FlutterFlowTheme.of(context)
-                                    .labelLarge
-                                    .override(
-                                      fontFamily: 'Yantramanav',
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                              ),
-                            ),
-                          ),
-                          InkWell(
-                            splashColor: Colors.transparent,
-                            focusColor: Colors.transparent,
-                            hoverColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                            onTap: () async {
-                              if (_model.addressView == true) {
-                                context.pushNamed(
-                                  'vehicle_confirmation',
-                                  queryParameters: {
-                                    'service': serializeParam(
-                                      widget.service,
-                                      ParamType.String,
-                                    ),
-                                    'latLng': serializeParam(
-                                      _model.latLng,
-                                      ParamType.LatLng,
-                                    ),
-                                    'additionalInfo': serializeParam(
-                                      widget.additionalInfo,
-                                      ParamType.String,
-                                    ),
-                                  }.withoutNulls,
-                                );
-                              } else {
-                                setState(() {
-                                  _model.addressView = true;
-                                  _model.latLng =
-                                      _model.placePickerValue.latLng;
-                                });
-                              }
-                            },
-                            child: Container(
-                              width: MediaQuery.sizeOf(context).width * 0.9,
-                              height: 56.0,
-                              constraints: BoxConstraints(
-                                maxWidth:
-                                    MediaQuery.sizeOf(context).width * 0.9,
-                              ),
-                              decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                  colors: [
-                                    FlutterFlowTheme.of(context).secondary,
-                                    FlutterFlowTheme.of(context).tertiary
-                                  ],
-                                  stops: const [0.0, 1.0],
-                                  begin: const AlignmentDirectional(0.0, -1.0),
-                                  end: const AlignmentDirectional(0, 1.0),
-                                ),
-                                borderRadius: BorderRadius.circular(18.0),
-                              ),
-                              child: Align(
-                                alignment: const AlignmentDirectional(0.0, 0.0),
-                                child: Text(
-                                  _model.addressView
-                                      ? 'Confirm Location'
-                                      : 'Confirm Address',
-                                  style:
-                                      FlutterFlowTheme.of(context).titleSmall,
+                                child: Container(
+                                  width: double.infinity,
+                                  decoration: const BoxDecoration(),
+                                  child: Text(
+                                    _model.addressView
+                                        ? 'Change location'
+                                        : 'Back',
+                                    textAlign: TextAlign.end,
+                                    style: FlutterFlowTheme.of(context)
+                                        .labelLarge
+                                        .override(
+                                          fontFamily: 'Yantramanav',
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                          fontWeight: FontWeight.normal,
+                                        ),
+                                  ),
                                 ),
                               ),
-                            ),
-                          ),
-                        ].divide(const SizedBox(height: 10.0)),
+                              InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  if (_model.addressView == true) {
+                                    context.pushNamed(
+                                      'vehicle_confirmation',
+                                      queryParameters: {
+                                        'service': serializeParam(
+                                          widget.service,
+                                          ParamType.String,
+                                        ),
+                                        'latLng': serializeParam(
+                                          _model.latLng,
+                                          ParamType.LatLng,
+                                        ),
+                                        'additionalInfo': serializeParam(
+                                          widget.additionalInfo,
+                                          ParamType.String,
+                                        ),
+                                      }.withoutNulls,
+                                    );
+                                  } else {
+                                    setState(() {
+                                      _model.addressView = true;
+                                      _model.latLng =
+                                          _model.placePickerValue.latLng;
+                                    });
+                                  }
+                                },
+                                child: Container(
+                                  width: MediaQuery.sizeOf(context).width * 0.9,
+                                  height: 56.0,
+                                  constraints: BoxConstraints(
+                                    maxWidth:
+                                        MediaQuery.sizeOf(context).width * 0.9,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    gradient: LinearGradient(
+                                      colors: [
+                                        FlutterFlowTheme.of(context).secondary,
+                                        FlutterFlowTheme.of(context).tertiary
+                                      ],
+                                      stops: const [0.0, 1.0],
+                                      begin: const AlignmentDirectional(0.0, -1.0),
+                                      end: const AlignmentDirectional(0, 1.0),
+                                    ),
+                                    borderRadius: BorderRadius.circular(18.0),
+                                  ),
+                                  child: Align(
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
+                                    child: Text(
+                                      _model.addressView
+                                          ? 'Confirm Location'
+                                          : 'Confirm Address',
+                                      style: FlutterFlowTheme.of(context)
+                                          .titleSmall,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ].divide(const SizedBox(height: 10.0)),
+                          );
+                        },
                       ),
                     ),
                   ),

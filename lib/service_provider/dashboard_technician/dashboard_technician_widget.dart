@@ -101,8 +101,9 @@ class _DashboardTechnicianWidgetState extends State<DashboardTechnicianWidget> {
                                 Container(
                                   width: double.infinity,
                                   height: 100.0,
-                                  decoration: const BoxDecoration(
-                                    color: Color(0xFFE2E8F0),
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
                                   ),
                                   child: Align(
                                     alignment: const AlignmentDirectional(0.0, 0.0),
@@ -120,7 +121,7 @@ class _DashboardTechnicianWidgetState extends State<DashboardTechnicianWidget> {
                                 ),
                                 Builder(
                                   builder: (context) {
-                                    if (FFAppState().requestId != '') {
+                                    if (FFAppState().requestId == '') {
                                       return Container(
                                         decoration: const BoxDecoration(),
                                         child: Column(
@@ -155,9 +156,10 @@ class _DashboardTechnicianWidgetState extends State<DashboardTechnicianWidget> {
                                                         padding: MediaQuery
                                                             .viewInsetsOf(
                                                                 context),
-                                                        child:
-                                                            const TechStatusComponentWidget(
-                                                          hideHeader: false,
+                                                        child: const SizedBox(
+                                                          height: 300.0,
+                                                          child:
+                                                              TechStatusComponentWidget(),
                                                         ),
                                                       ),
                                                     );
@@ -224,10 +226,8 @@ class _DashboardTechnicianWidgetState extends State<DashboardTechnicianWidget> {
                                                                 : FlutterFlowTheme.of(
                                                                         context)
                                                                     .accent4,
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        100.0),
+                                                            shape:
+                                                                BoxShape.circle,
                                                           ),
                                                         ),
                                                       ),
@@ -443,8 +443,10 @@ class _DashboardTechnicianWidgetState extends State<DashboardTechnicianWidget> {
                                                                   0xFFCBD5E1),
                                                             ),
                                                           ),
-                                                          child: SizedBox(
+                                                          child: Container(
                                                             height: 200.0,
+                                                            decoration:
+                                                                const BoxDecoration(),
                                                             child:
                                                                 wrapWithModel(
                                                               model: _model

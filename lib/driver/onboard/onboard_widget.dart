@@ -13,11 +13,11 @@ class OnboardWidget extends StatefulWidget {
   const OnboardWidget({
     super.key,
     this.fleetManagerId,
-    this.servviceProviderId,
+    this.serviceProviderId,
   });
 
   final String? fleetManagerId;
-  final String? servviceProviderId;
+  final String? serviceProviderId;
 
   @override
   State<OnboardWidget> createState() => _OnboardWidgetState();
@@ -39,15 +39,15 @@ class _OnboardWidgetState extends State<OnboardWidget> {
         setState(() {
           _model.signUpType = 'fleet';
         });
-      } else if (widget.servviceProviderId != null &&
-          widget.servviceProviderId != '') {
+      } else if (widget.serviceProviderId != null &&
+          widget.serviceProviderId != '') {
         setState(() {
           _model.signUpType = 'technician';
         });
       } else if ((widget.fleetManagerId == null ||
               widget.fleetManagerId == '') &&
-          (widget.servviceProviderId == null ||
-              widget.servviceProviderId == '')) {
+          (widget.serviceProviderId == null ||
+              widget.serviceProviderId == '')) {
         context.pushNamed('login');
       }
     });
@@ -335,7 +335,7 @@ class _OnboardWidgetState extends State<OnboardWidget> {
                                     ParamType.String,
                                   ),
                                   'serviceProviderId': serializeParam(
-                                    widget.servviceProviderId,
+                                    widget.serviceProviderId,
                                     ParamType.String,
                                   ),
                                   'fullName': serializeParam(

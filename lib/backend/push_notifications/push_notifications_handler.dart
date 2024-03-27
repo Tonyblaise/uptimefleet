@@ -149,13 +149,13 @@ final parametersBuilderMap =
         allParams: {
           'service': getParameter<String>(data, 'service'),
           'additionalInfo': getParameter<String>(data, 'additionalInfo'),
+          'address': getParameter<String>(data, 'address'),
         },
       ),
   'onboard': (data) async => ParameterData(
         allParams: {
           'fleetManagerId': getParameter<String>(data, 'fleetManagerId'),
-          'servviceProviderId':
-              getParameter<String>(data, 'servviceProviderId'),
+          'serviceProviderId': getParameter<String>(data, 'serviceProviderId'),
         },
       ),
   'start_request': (data) async => ParameterData(

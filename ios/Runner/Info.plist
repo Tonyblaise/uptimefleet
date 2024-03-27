@@ -37,10 +37,10 @@
         <key>CFBundleTypeRole</key>
         <string>Editor</string>
         <key>CFBundleURLName</key>
-        <string>uptimefleet</string>
+        <string>uptimefleet.com</string>
         <key>CFBundleURLSchemes</key>
         <array>
-        <string>com.mycompany.uptimefleet</string>
+        <string>uptimefleet</string>
         </array>
         </dict>
     </array>
@@ -73,6 +73,22 @@
         <string>remote-notification</string>
     </array>
 
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+      <string>comgooglemaps</string>
+      <string>baidumap</string>
+      <string>iosamap</string>
+      <string>waze</string>
+      <string>yandexmaps</string>
+      <string>yandexnavi</string>
+      <string>citymapper</string>
+      <string>mapswithme</string>
+      <string>osmandmaps</string>
+      <string>dgis</string>
+      <string>qqmap</string>
+      <string>here-location</string>
+
+    </array>
 
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

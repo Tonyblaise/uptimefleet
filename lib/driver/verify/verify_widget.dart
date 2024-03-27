@@ -3,6 +3,7 @@ import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/custom_code/actions/index.dart' as actions;
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:flutter/material.dart';
 import 'verify_model.dart';
@@ -184,6 +185,7 @@ class _VerifyWidgetState extends State<VerifyWidget> {
                         return;
                       }
 
+                      _model.token = await actions.getFcmToken();
                       if (widget.signUp) {
                         if (widget.signUpType == 'fleet') {
                           _model.driver =
@@ -191,7 +193,7 @@ class _VerifyWidgetState extends State<VerifyWidget> {
                             fleetManagerId: widget.fleetManagerId,
                             fullName: widget.fullName,
                             phoneNumber: widget.phoneNumber,
-                            token: currentJwtToken,
+                            token: _model.token,
                           );
 
                           await currentUserReference!
@@ -231,7 +233,7 @@ class _VerifyWidgetState extends State<VerifyWidget> {
                             serviceProviderId: widget.serviceProviderId,
                             fullName: widget.fullName,
                             phoneNumber: widget.phoneNumber,
-                            token: currentJwtToken,
+                            token: _model.token,
                           );
 
                           await currentUserReference!
@@ -288,7 +290,7 @@ class _VerifyWidgetState extends State<VerifyWidget> {
                           await UptimeFleetAppGroup.updateDriverTokenCall.call(
                             driverId: valueOrDefault(
                                 currentUserDocument?.driverId, ''),
-                            token: currentJwtToken,
+                            token: _model.token,
                           );
 
                           context.goNamedAuth(
@@ -297,7 +299,7 @@ class _VerifyWidgetState extends State<VerifyWidget> {
                           await UptimeFleetAppGroup.updateTechnicianCall.call(
                             technicianId: valueOrDefault(
                                 currentUserDocument?.technicianId, ''),
-                            token: currentJwtToken,
+                            token: _model.token,
                           );
 
                           context.goNamedAuth(

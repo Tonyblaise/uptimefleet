@@ -33,9 +33,15 @@ class _TechnicianChatWidgetState extends State<TechnicianChatWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      setState(() {
-        _model.pageState = widget.state;
-      });
+      if (FFAppState().requestId != '') {
+        setState(() {
+          _model.pageState = 1;
+        });
+      } else {
+        setState(() {
+          _model.pageState = 3;
+        });
+      }
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
@@ -61,20 +67,41 @@ class _TechnicianChatWidgetState extends State<TechnicianChatWidget> {
         backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Colors.white,
+          iconTheme:
+              IconThemeData(color: FlutterFlowTheme.of(context).primaryText),
           automaticallyImplyLeading: false,
           title: Container(
             decoration: const BoxDecoration(),
-            child: Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
-              child: Text(
-                'Messages',
-                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                      fontFamily: 'Yantramanav',
-                      color: const Color(0xFF1E293B),
-                      fontSize: 30.0,
-                      fontWeight: FontWeight.bold,
-                    ),
-              ),
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                InkWell(
+                  splashColor: Colors.transparent,
+                  focusColor: Colors.transparent,
+                  hoverColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  onTap: () async {
+                    context.pushNamed('dashboardTechnician');
+                  },
+                  child: Icon(
+                    Icons.arrow_back_rounded,
+                    color: FlutterFlowTheme.of(context).secondaryText,
+                    size: 24.0,
+                  ),
+                ),
+                Container(
+                  decoration: const BoxDecoration(),
+                  child: Text(
+                    'Messages',
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Yantramanav',
+                          color: const Color(0xFF1E293B),
+                          fontSize: 30.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                  ),
+                ),
+              ].divide(const SizedBox(width: 15.0)),
             ),
           ),
           actions: const [],
@@ -95,31 +122,72 @@ class _TechnicianChatWidgetState extends State<TechnicianChatWidget> {
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      Container(
-                        width: double.infinity,
-                        height: 48.0,
-                        decoration: const BoxDecoration(
-                          color: Color(0xFFE2E8F0),
-                        ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            if (FFAppState().requestId != '')
-                              Expanded(
-                                child: InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    setState(() {});
-                                  },
+                      if (FFAppState().requestId != '')
+                        Container(
+                          width: double.infinity,
+                          height: 48.0,
+                          decoration: const BoxDecoration(
+                            color: Color(0xFFE2E8F0),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              if (FFAppState().requestId != '')
+                                Expanded(
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      setState(() {});
+                                    },
+                                    child: Container(
+                                      width: 100.0,
+                                      height: 100.0,
+                                      decoration: BoxDecoration(
+                                        color: valueOrDefault<Color>(
+                                          _model.pageState == 1
+                                              ? const Color(0xFFE2E8F0)
+                                              : FlutterFlowTheme.of(context)
+                                                  .secondaryBackground,
+                                          FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                        ),
+                                      ),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
+                                      child: Text(
+                                        'Technician',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Yantramanav',
+                                              color: valueOrDefault<Color>(
+                                                _model.pageState == 1
+                                                    ? Colors.black
+                                                    : FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryText,
+                                                FlutterFlowTheme.of(context)
+                                                    .primaryText,
+                                              ),
+                                              fontSize: _model.pageState == 1
+                                                  ? 16.0
+                                                  : 14.0,
+                                              fontWeight: FontWeight.normal,
+                                            ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              if (FFAppState().requestId != '')
+                                Expanded(
                                   child: Container(
-                                    width: 100.0,
+                                    width: double.infinity,
                                     height: 100.0,
                                     decoration: BoxDecoration(
                                       color: valueOrDefault<Color>(
-                                        _model.pageState == 1
+                                        _model.pageState == 2
                                             ? const Color(0xFFE2E8F0)
                                             : FlutterFlowTheme.of(context)
                                                 .secondaryBackground,
@@ -129,20 +197,20 @@ class _TechnicianChatWidgetState extends State<TechnicianChatWidget> {
                                     ),
                                     alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: Text(
-                                      'Technician',
+                                      'Manager',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
                                             fontFamily: 'Yantramanav',
                                             color: valueOrDefault<Color>(
-                                              _model.pageState == 1
+                                              _model.pageState == 2
                                                   ? Colors.black
                                                   : FlutterFlowTheme.of(context)
                                                       .primaryText,
                                               FlutterFlowTheme.of(context)
                                                   .primaryText,
                                             ),
-                                            fontSize: _model.pageState == 1
+                                            fontSize: _model.pageState == 2
                                                 ? 16.0
                                                 : 14.0,
                                             fontWeight: FontWeight.normal,
@@ -150,92 +218,55 @@ class _TechnicianChatWidgetState extends State<TechnicianChatWidget> {
                                     ),
                                   ),
                                 ),
-                              ),
-                            if (FFAppState().requestId != '')
-                              Expanded(
-                                child: Container(
-                                  width: double.infinity,
-                                  height: 100.0,
-                                  decoration: BoxDecoration(
-                                    color: valueOrDefault<Color>(
-                                      _model.pageState == 2
-                                          ? const Color(0xFFE2E8F0)
-                                          : FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                      FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
+                              if (FFAppState().requestId != '')
+                                Expanded(
+                                  child: Container(
+                                    width: 100.0,
+                                    height: 100.0,
+                                    decoration: BoxDecoration(
+                                      color: valueOrDefault<Color>(
+                                        _model.pageState == 3
+                                            ? const Color(0xFFE2E8F0)
+                                            : FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                        FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                      ),
+                                      boxShadow: const [
+                                        BoxShadow(
+                                          blurRadius: 1.0,
+                                          color: Color(0x28000000),
+                                          offset: Offset(0.0, 0.0),
+                                          spreadRadius: 0.0,
+                                        )
+                                      ],
+                                    ),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
+                                    child: Text(
+                                      'Support',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Yantramanav',
+                                            color: valueOrDefault<Color>(
+                                              _model.pageState == 3
+                                                  ? Colors.black
+                                                  : FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                              FlutterFlowTheme.of(context)
+                                                  .primaryText,
+                                            ),
+                                            fontSize: _model.pageState == 3
+                                                ? 16.0
+                                                : 14.0,
+                                            fontWeight: FontWeight.normal,
+                                          ),
                                     ),
                                   ),
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
-                                  child: Text(
-                                    'Manager',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Yantramanav',
-                                          color: valueOrDefault<Color>(
-                                            _model.pageState == 2
-                                                ? Colors.black
-                                                : FlutterFlowTheme.of(context)
-                                                    .primaryText,
-                                            FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                          ),
-                                          fontSize: _model.pageState == 2
-                                              ? 16.0
-                                              : 14.0,
-                                          fontWeight: FontWeight.normal,
-                                        ),
-                                  ),
                                 ),
-                              ),
-                            Expanded(
-                              child: Container(
-                                width: 100.0,
-                                height: 100.0,
-                                decoration: BoxDecoration(
-                                  color: valueOrDefault<Color>(
-                                    _model.pageState == 3
-                                        ? const Color(0xFFE2E8F0)
-                                        : FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                    FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                  ),
-                                  boxShadow: const [
-                                    BoxShadow(
-                                      blurRadius: 1.0,
-                                      color: Color(0x28000000),
-                                      offset: Offset(0.0, 0.0),
-                                      spreadRadius: 0.0,
-                                    )
-                                  ],
-                                ),
-                                alignment: const AlignmentDirectional(0.0, 0.0),
-                                child: Text(
-                                  'Support',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Yantramanav',
-                                        color: valueOrDefault<Color>(
-                                          _model.pageState == 3
-                                              ? Colors.black
-                                              : FlutterFlowTheme.of(context)
-                                                  .primaryText,
-                                          FlutterFlowTheme.of(context)
-                                              .primaryText,
-                                        ),
-                                        fontSize:
-                                            _model.pageState == 3 ? 16.0 : 14.0,
-                                        fontWeight: FontWeight.normal,
-                                      ),
-                                ),
-                              ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
                       Container(
                         width: double.infinity,
                         height: 100.0,

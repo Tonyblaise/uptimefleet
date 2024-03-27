@@ -87,8 +87,8 @@ class _TechStatusWidgetState extends State<TechStatusWidget> {
                       Container(
                         width: double.infinity,
                         height: 100.0,
-                        decoration: const BoxDecoration(
-                          color: Color(0xFFE2E8F0),
+                        decoration: BoxDecoration(
+                          color: FlutterFlowTheme.of(context).primaryBackground,
                         ),
                         child: Align(
                           alignment: const AlignmentDirectional(0.0, 0.0),
@@ -114,11 +114,12 @@ class _TechStatusWidgetState extends State<TechStatusWidget> {
                     ],
                   ),
                 ),
-                wrapWithModel(
-                  model: _model.techStatusComponentModel,
-                  updateCallback: () => setState(() {}),
-                  child: const TechStatusComponentWidget(
-                    hideHeader: true,
+                Container(
+                  decoration: const BoxDecoration(),
+                  child: wrapWithModel(
+                    model: _model.techStatusComponentModel,
+                    updateCallback: () => setState(() {}),
+                    child: const TechStatusComponentWidget(),
                   ),
                 ),
                 wrapWithModel(

@@ -113,6 +113,11 @@ class UsersRecord extends FirestoreRecord {
   String get activeVehicle => _activeVehicle ?? '';
   bool hasActiveVehicle() => _activeVehicle != null;
 
+  // "fcmToken" field.
+  String? _fcmToken;
+  String get fcmToken => _fcmToken ?? '';
+  bool hasFcmToken() => _fcmToken != null;
+
   void _initializeFields() {
     _companyId = snapshotData['companyId'] as String?;
     _companyName = snapshotData['companyName'] as String?;
@@ -136,6 +141,7 @@ class UsersRecord extends FirestoreRecord {
     _phoneNumber = snapshotData['phone_number'] as String?;
     _onDuty = snapshotData['onDuty'] as bool?;
     _activeVehicle = snapshotData['activeVehicle'] as String?;
+    _fcmToken = snapshotData['fcmToken'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -190,6 +196,7 @@ Map<String, dynamic> createUsersRecordData({
   String? phoneNumber,
   bool? onDuty,
   String? activeVehicle,
+  String? fcmToken,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -212,6 +219,7 @@ Map<String, dynamic> createUsersRecordData({
       'phone_number': phoneNumber,
       'onDuty': onDuty,
       'activeVehicle': activeVehicle,
+      'fcmToken': fcmToken,
     }.withoutNulls,
   );
 
@@ -243,7 +251,8 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e1?.displayName == e2?.displayName &&
         e1?.phoneNumber == e2?.phoneNumber &&
         e1?.onDuty == e2?.onDuty &&
-        e1?.activeVehicle == e2?.activeVehicle;
+        e1?.activeVehicle == e2?.activeVehicle &&
+        e1?.fcmToken == e2?.fcmToken;
   }
 
   @override
@@ -265,7 +274,8 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.displayName,
         e?.phoneNumber,
         e?.onDuty,
-        e?.activeVehicle
+        e?.activeVehicle,
+        e?.fcmToken
       ]);
 
   @override

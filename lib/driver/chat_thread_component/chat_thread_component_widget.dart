@@ -70,11 +70,12 @@ class _ChatThreadComponentWidgetState extends State<ChatThreadComponentWidget> {
         children: [
           Expanded(
             child: FutureBuilder<ApiCallResponse>(
-              future:
-                  (_model.apiRequestCompleter ??= Completer<ApiCallResponse>()
-                        ..complete(
-                            UptimeFleetAppGroup.getThreadMessagesCall.call()))
-                      .future,
+              future: (_model
+                      .apiRequestCompleter ??= Completer<ApiCallResponse>()
+                    ..complete(UptimeFleetAppGroup.getThreadMessagesCall.call(
+                      messageThreadId: widget.chatRef,
+                    )))
+                  .future,
               builder: (context, snapshot) {
                 // Customize what your widget looks like when it's loading.
                 if (!snapshot.hasData) {
@@ -508,7 +509,7 @@ class _ChatThreadComponentWidgetState extends State<ChatThreadComponentWidget> {
                                       );
                                       if ((_model.apiResult559?.succeeded ??
                                           true)) {
-                                        setState(() {
+                                        _model.updatePage(() {
                                           _model.imagesUploaded = null;
                                           _model.sent = !_model.sent;
                                         });
@@ -531,6 +532,10 @@ class _ChatThreadComponentWidgetState extends State<ChatThreadComponentWidget> {
                                           ),
                                         );
                                       }
+
+                                      setState(() {
+                                        _model.textController?.clear();
+                                      });
 
                                       setState(() {});
                                     },

@@ -111,8 +111,9 @@ class _StartRequestWidgetState extends State<StartRequestWidget> {
                               Container(
                                 width: double.infinity,
                                 height: 100.0,
-                                decoration: const BoxDecoration(
-                                  color: Color(0xFFE2E8F0),
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context)
+                                      .primaryBackground,
                                 ),
                                 child: Align(
                                   alignment: const AlignmentDirectional(0.0, 0.0),
