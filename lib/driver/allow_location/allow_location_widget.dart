@@ -81,6 +81,7 @@ class _AllowLocationWidgetState extends State<AllowLocationWidget> {
                             fontFamily: 'Yantramanav',
                             color: Colors.black,
                             fontSize: 24.0,
+                            letterSpacing: 0.0,
                           ),
                     ),
                   ),
@@ -116,6 +117,7 @@ class _AllowLocationWidgetState extends State<AllowLocationWidget> {
                                     fontFamily: 'Yantramanav',
                                     color: const Color(0xFF64748B),
                                     fontSize: 16.0,
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.w300,
                                   ),
                             ),
@@ -138,7 +140,11 @@ class _AllowLocationWidgetState extends State<AllowLocationWidget> {
                               ),
                             )
                           ],
-                          style: FlutterFlowTheme.of(context).bodyMedium,
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Yantramanav',
+                                    letterSpacing: 0.0,
+                                  ),
                         ),
                       ),
                       Text(
@@ -148,6 +154,7 @@ class _AllowLocationWidgetState extends State<AllowLocationWidget> {
                               fontFamily: 'Yantramanav',
                               color: const Color(0xFF64748B),
                               fontSize: 16.0,
+                              letterSpacing: 0.0,
                               fontWeight: FontWeight.w300,
                             ),
                       ),
@@ -209,6 +216,7 @@ class _AllowLocationWidgetState extends State<AllowLocationWidget> {
                                           .override(
                                             fontFamily: 'Yantramanav',
                                             color: const Color(0xFF0CCA4A),
+                                            letterSpacing: 0.0,
                                             fontWeight: FontWeight.w500,
                                           ),
                                     ),
@@ -256,8 +264,12 @@ class _AllowLocationWidgetState extends State<AllowLocationWidget> {
                                   alignment: const AlignmentDirectional(0.0, 0.0),
                                   child: Text(
                                     'Always allow',
-                                    style:
-                                        FlutterFlowTheme.of(context).titleSmall,
+                                    style: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .override(
+                                          fontFamily: 'Yantramanav',
+                                          letterSpacing: 0.0,
+                                        ),
                                   ),
                                 ),
                               ),

@@ -92,6 +92,7 @@ class _TechStatusComponentWidgetState extends State<TechStatusComponentWidget> {
                               fontFamily: 'Yantramanav',
                               color: Colors.black,
                               fontSize: 24.0,
+                              letterSpacing: 0.0,
                             ),
                       ),
                     ),
@@ -126,6 +127,7 @@ class _TechStatusComponentWidgetState extends State<TechStatusComponentWidget> {
                                       fontFamily: 'Yantramanav',
                                       color: const Color(0xFF64748B),
                                       fontSize: 18.0,
+                                      letterSpacing: 0.0,
                                       fontWeight: FontWeight.normal,
                                     ),
                               ),
@@ -159,6 +161,7 @@ class _TechStatusComponentWidgetState extends State<TechStatusComponentWidget> {
                                               .override(
                                                 fontFamily: 'Yantramanav',
                                                 fontSize: 18.0,
+                                                letterSpacing: 0.0,
                                               ),
                                         ),
                                       ),
@@ -248,6 +251,7 @@ class _TechStatusComponentWidgetState extends State<TechStatusComponentWidget> {
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .tertiary,
+                                              letterSpacing: 0.0,
                                             ),
                                       ),
                                     ),
@@ -365,6 +369,7 @@ class _TechStatusComponentWidgetState extends State<TechStatusComponentWidget> {
                                             .override(
                                               fontFamily: 'Yantramanav',
                                               color: Colors.white,
+                                              letterSpacing: 0.0,
                                             ),
                                       ),
                                     ),

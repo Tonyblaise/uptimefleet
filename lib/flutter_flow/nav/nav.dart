@@ -102,7 +102,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: 'changePassword',
               path: 'change_password',
               builder: (context, params) => ChangePasswordWidget(
-                dfdfg: params.getParam('dfdfg', ParamType.double),
+                dfdfg: params.getParam(
+                  'dfdfg',
+                  ParamType.double,
+                ),
               ),
             ),
             FFRoute(
@@ -121,10 +124,18 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: 'vehicle_confirmation',
               path: 'vehicle_confirmation',
               builder: (context, params) => VehicleConfirmationWidget(
-                service: params.getParam('service', ParamType.String),
-                latLng: params.getParam('latLng', ParamType.LatLng),
-                additionalInfo:
-                    params.getParam('additionalInfo', ParamType.String),
+                service: params.getParam(
+                  'service',
+                  ParamType.String,
+                ),
+                latLng: params.getParam(
+                  'latLng',
+                  ParamType.LatLng,
+                ),
+                additionalInfo: params.getParam(
+                  'additionalInfo',
+                  ParamType.String,
+                ),
               ),
             ),
             FFRoute(
@@ -139,21 +150,30 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => params.isEmpty
                   ? const NavBarPage(initialPage: 'driverChat')
                   : DriverChatWidget(
-                      state: params.getParam('state', ParamType.int),
+                      state: params.getParam(
+                        'state',
+                        ParamType.int,
+                      ),
                     ),
             ),
             FFRoute(
               name: 'chat_2_Details',
               path: 'chat2Details',
               builder: (context, params) => Chat2DetailsWidget(
-                chatRef: params.getParam('chatRef', ParamType.String),
+                chatRef: params.getParam(
+                  'chatRef',
+                  ParamType.String,
+                ),
               ),
             ),
             FFRoute(
               name: 'image_Details',
               path: 'imageDetails',
               builder: (context, params) => ImageDetailsWidget(
-                chatRef: params.getParam('chatRef', ParamType.String),
+                chatRef: params.getParam(
+                  'chatRef',
+                  ParamType.String,
+                ),
               ),
             ),
             FFRoute(
@@ -187,41 +207,72 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: 'selectLocation',
               path: 'select_location',
               builder: (context, params) => SelectLocationWidget(
-                service: params.getParam('service', ParamType.String),
-                additionalInfo:
-                    params.getParam('additionalInfo', ParamType.String),
-                address: params.getParam('address', ParamType.String),
+                service: params.getParam(
+                  'service',
+                  ParamType.String,
+                ),
+                additionalInfo: params.getParam(
+                  'additionalInfo',
+                  ParamType.String,
+                ),
+                address: params.getParam(
+                  'address',
+                  ParamType.String,
+                ),
               ),
             ),
             FFRoute(
               name: 'onboard',
               path: 'onboard',
               builder: (context, params) => OnboardWidget(
-                fleetManagerId:
-                    params.getParam('fleetManagerId', ParamType.String),
-                serviceProviderId:
-                    params.getParam('serviceProviderId', ParamType.String),
+                fleetManagerId: params.getParam(
+                  'fleetManagerId',
+                  ParamType.String,
+                ),
+                serviceProviderId: params.getParam(
+                  'serviceProviderId',
+                  ParamType.String,
+                ),
               ),
             ),
             FFRoute(
               name: 'start_request',
               path: 'start_request',
               builder: (context, params) => StartRequestWidget(
-                request: params.getParam('request', ParamType.String),
+                request: params.getParam(
+                  'request',
+                  ParamType.String,
+                ),
               ),
             ),
             FFRoute(
               name: 'verify',
               path: 'verify',
               builder: (context, params) => VerifyWidget(
-                phoneNumber: params.getParam('phoneNumber', ParamType.String),
-                serviceProviderId:
-                    params.getParam('serviceProviderId', ParamType.String),
-                fleetManagerId:
-                    params.getParam('fleetManagerId', ParamType.String),
-                signUpType: params.getParam('signUpType', ParamType.String),
-                fullName: params.getParam('fullName', ParamType.String),
-                signUp: params.getParam('signUp', ParamType.bool),
+                phoneNumber: params.getParam(
+                  'phoneNumber',
+                  ParamType.String,
+                ),
+                serviceProviderId: params.getParam(
+                  'serviceProviderId',
+                  ParamType.String,
+                ),
+                fleetManagerId: params.getParam(
+                  'fleetManagerId',
+                  ParamType.String,
+                ),
+                signUpType: params.getParam(
+                  'signUpType',
+                  ParamType.String,
+                ),
+                fullName: params.getParam(
+                  'fullName',
+                  ParamType.String,
+                ),
+                signUp: params.getParam(
+                  'signUp',
+                  ParamType.bool,
+                ),
               ),
             ),
             FFRoute(
@@ -239,17 +290,32 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               path: 'technician_chat',
               requireAuth: true,
               builder: (context, params) => TechnicianChatWidget(
-                state: params.getParam('state', ParamType.int),
+                state: params.getParam(
+                  'state',
+                  ParamType.int,
+                ),
               ),
             ),
             FFRoute(
               name: 'navigation',
               path: 'navigation',
               builder: (context, params) => NavigationWidget(
-                locationLat: params.getParam('locationLat', ParamType.double),
-                loocationLng: params.getParam('loocationLng', ParamType.double),
-                destLat: params.getParam('destLat', ParamType.double),
-                destLng: params.getParam('destLng', ParamType.double),
+                locationLat: params.getParam(
+                  'locationLat',
+                  ParamType.double,
+                ),
+                loocationLng: params.getParam(
+                  'loocationLng',
+                  ParamType.double,
+                ),
+                destLat: params.getParam(
+                  'destLat',
+                  ParamType.double,
+                ),
+                destLng: params.getParam(
+                  'destLng',
+                  ParamType.double,
+                ),
               ),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
@@ -386,8 +452,12 @@ class FFParameters {
       return param;
     }
     // Return serialized value.
-    return deserializeParam<T>(param, type, isList,
-        collectionNamePath: collectionNamePath);
+    return deserializeParam<T>(
+      param,
+      type,
+      isList,
+      collectionNamePath: collectionNamePath,
+    );
   }
 }
 

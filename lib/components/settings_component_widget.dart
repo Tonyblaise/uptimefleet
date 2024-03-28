@@ -95,7 +95,11 @@ class _SettingsComponentWidgetState extends State<SettingsComponentWidget> {
                         ),
                         Text(
                           'Terms and conditions',
-                          style: FlutterFlowTheme.of(context).bodyMedium,
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Yantramanav',
+                                    letterSpacing: 0.0,
+                                  ),
                         ),
                       ].divide(const SizedBox(width: 10.0)),
                     ),
@@ -153,7 +157,12 @@ class _SettingsComponentWidgetState extends State<SettingsComponentWidget> {
                           ),
                           Text(
                             'Log out',
-                            style: FlutterFlowTheme.of(context).bodyMedium,
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Yantramanav',
+                                  letterSpacing: 0.0,
+                                ),
                           ),
                         ].divide(const SizedBox(width: 10.0)),
                       ),

@@ -23,8 +23,6 @@ class StartRequestModel extends FlutterFlowModel<StartRequestWidget> {
   // Model for serviceSummaryWidget component.
   late ServiceSummaryWidgetModel serviceSummaryWidgetModel;
 
-  /// Initialization and disposal methods.
-
   @override
   void initState(BuildContext context) {
     userDetailsModel = createModel(context, () => UserDetailsModel());
@@ -38,8 +36,4 @@ class StartRequestModel extends FlutterFlowModel<StartRequestWidget> {
     userDetailsModel.dispose();
     serviceSummaryWidgetModel.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

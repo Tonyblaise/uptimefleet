@@ -15,15 +15,9 @@ class SelectVehicleModel extends FlutterFlowModel<SelectVehicleWidget> {
   // Stores action output result for [Backend Call - API (Update technician)] action in Container widget.
   ApiCallResponse? apiResultpgx;
 
-  /// Initialization and disposal methods.
-
   @override
   void initState(BuildContext context) {}
 
   @override
   void dispose() {}
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

@@ -9,15 +9,9 @@ class CancelRequestModel extends FlutterFlowModel<CancelRequestWidget> {
   // Stores action output result for [Backend Call - API (Cancel request driver)] action in Container widget.
   ApiCallResponse? apiResultj42;
 
-  /// Initialization and disposal methods.
-
   @override
   void initState(BuildContext context) {}
 
   @override
   void dispose() {}
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

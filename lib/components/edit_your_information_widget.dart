@@ -85,6 +85,7 @@ class _EditYourInformationWidgetState extends State<EditYourInformationWidget> {
                             fontFamily: 'Yantramanav',
                             color: Colors.black,
                             fontSize: 24.0,
+                            letterSpacing: 0.0,
                           ),
                     ),
                   ),
@@ -188,6 +189,7 @@ class _EditYourInformationWidgetState extends State<EditYourInformationWidget> {
                         style: FlutterFlowTheme.of(context).labelLarge.override(
                               fontFamily: 'Yantramanav',
                               color: const Color(0xFF64748B),
+                              letterSpacing: 0.0,
                               fontWeight: FontWeight.bold,
                             ),
                       ),
@@ -197,6 +199,7 @@ class _EditYourInformationWidgetState extends State<EditYourInformationWidget> {
                               fontFamily: 'Yantramanav',
                               color: const Color(0xFFCBD5E1),
                               fontSize: 12.0,
+                              letterSpacing: 0.0,
                               fontWeight: FontWeight.normal,
                             ),
                       ),
@@ -247,6 +250,7 @@ class _EditYourInformationWidgetState extends State<EditYourInformationWidget> {
                                         .override(
                                           fontFamily: 'Yantramanav',
                                           color: Colors.white,
+                                          letterSpacing: 0.0,
                                         ),
                                   ),
                                 ),
@@ -282,6 +286,7 @@ class _EditYourInformationWidgetState extends State<EditYourInformationWidget> {
                                       .override(
                                         fontFamily: 'Yantramanav',
                                         color: const Color(0xFF0CCA4A),
+                                        letterSpacing: 0.0,
                                       ),
                                 ),
                               ),

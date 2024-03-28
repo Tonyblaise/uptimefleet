@@ -17,8 +17,6 @@ class VerifyModel extends FlutterFlowModel<VerifyWidget> {
   // Stores action output result for [Backend Call - API (Create technician)] action in Container widget.
   ApiCallResponse? technician;
 
-  /// Initialization and disposal methods.
-
   @override
   void initState(BuildContext context) {
     pinCodeController = TextEditingController();
@@ -29,8 +27,4 @@ class VerifyModel extends FlutterFlowModel<VerifyWidget> {
     unfocusNode.dispose();
     pinCodeController?.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

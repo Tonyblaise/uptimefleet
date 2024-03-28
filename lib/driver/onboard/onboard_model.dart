@@ -28,8 +28,6 @@ class OnboardModel extends FlutterFlowModel<OnboardWidget> {
   // Stores action output result for [Backend Call - API (Check user)] action in Container widget.
   ApiCallResponse? check;
 
-  /// Initialization and disposal methods.
-
   @override
   void initState(BuildContext context) {}
 
@@ -42,8 +40,4 @@ class OnboardModel extends FlutterFlowModel<OnboardWidget> {
     textFieldFocusNode?.dispose();
     textController2?.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

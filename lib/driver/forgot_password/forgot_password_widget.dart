@@ -78,6 +78,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                               fontFamily: 'Yantramanav',
                               color: const Color(0xFF0F172A),
                               fontSize: 18.0,
+                              letterSpacing: 0.0,
                               fontWeight: FontWeight.bold,
                             ),
                       ),
@@ -86,6 +87,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                         style: FlutterFlowTheme.of(context).labelLarge.override(
                               fontFamily: 'Yantramanav',
                               color: FlutterFlowTheme.of(context).primaryText,
+                              letterSpacing: 0.0,
                             ),
                       ),
                     ].divide(const SizedBox(height: 8.0)),
@@ -108,6 +110,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                               .override(
                                 fontFamily: 'Yantramanav',
                                 color: FlutterFlowTheme.of(context).primaryText,
+                                letterSpacing: 0.0,
                               ),
                         ),
                         Container(
@@ -127,6 +130,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                                     .labelLarge
                                     .override(
                                       fontFamily: 'Yantramanav',
+                                      letterSpacing: 0.0,
                                       fontWeight: FontWeight.normal,
                                     ),
                                 enabledBorder: OutlineInputBorder(
@@ -166,8 +170,10 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                                   .labelLarge
                                   .override(
                                     fontFamily: 'Yantramanav',
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.normal,
                                   ),
+                              minLines: null,
                               validator: _model.textControllerValidator
                                   .asValidator(context),
                             ),
@@ -243,7 +249,11 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                         alignment: const AlignmentDirectional(0.0, 0.0),
                         child: Text(
                           'Send a recovery link',
-                          style: FlutterFlowTheme.of(context).titleSmall,
+                          style:
+                              FlutterFlowTheme.of(context).titleSmall.override(
+                                    fontFamily: 'Yantramanav',
+                                    letterSpacing: 0.0,
+                                  ),
                         ),
                       ),
                     ),
@@ -276,6 +286,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                                   .override(
                                     fontFamily: 'Yantramanav',
                                     color: const Color(0xFF0F172A),
+                                    letterSpacing: 0.0,
                                   ),
                             ),
                           ),
@@ -292,6 +303,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                                   .override(
                                     fontFamily: 'Yantramanav',
                                     color: const Color(0xFF0CCA4A),
+                                    letterSpacing: 0.0,
                                   ),
                             ),
                           ),

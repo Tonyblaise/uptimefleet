@@ -85,6 +85,7 @@ class _EditYourPasswordWidgetState extends State<EditYourPasswordWidget> {
                             fontFamily: 'Yantramanav',
                             color: Colors.black,
                             fontSize: 24.0,
+                            letterSpacing: 0.0,
                           ),
                     ),
                   ),
@@ -103,6 +104,7 @@ class _EditYourPasswordWidgetState extends State<EditYourPasswordWidget> {
                         style: FlutterFlowTheme.of(context).labelLarge.override(
                               fontFamily: 'Yantramanav',
                               color: FlutterFlowTheme.of(context).primaryText,
+                              letterSpacing: 0.0,
                               fontWeight: FontWeight.bold,
                             ),
                       ),
@@ -123,6 +125,7 @@ class _EditYourPasswordWidgetState extends State<EditYourPasswordWidget> {
                                   .labelLarge
                                   .override(
                                     fontFamily: 'Yantramanav',
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.normal,
                                   ),
                               enabledBorder: OutlineInputBorder(
@@ -176,8 +179,10 @@ class _EditYourPasswordWidgetState extends State<EditYourPasswordWidget> {
                                 .labelLarge
                                 .override(
                                   fontFamily: 'Yantramanav',
+                                  letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,
                                 ),
+                            minLines: null,
                             validator: _model.textController1Validator
                                 .asValidator(context),
                           ),
@@ -200,6 +205,7 @@ class _EditYourPasswordWidgetState extends State<EditYourPasswordWidget> {
                         style: FlutterFlowTheme.of(context).labelLarge.override(
                               fontFamily: 'Yantramanav',
                               color: FlutterFlowTheme.of(context).primaryText,
+                              letterSpacing: 0.0,
                               fontWeight: FontWeight.bold,
                             ),
                       ),
@@ -220,6 +226,7 @@ class _EditYourPasswordWidgetState extends State<EditYourPasswordWidget> {
                                   .labelLarge
                                   .override(
                                     fontFamily: 'Yantramanav',
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.normal,
                                   ),
                               enabledBorder: OutlineInputBorder(
@@ -273,8 +280,10 @@ class _EditYourPasswordWidgetState extends State<EditYourPasswordWidget> {
                                 .labelLarge
                                 .override(
                                   fontFamily: 'Yantramanav',
+                                  letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,
                                 ),
+                            minLines: null,
                             validator: _model.textController2Validator
                                 .asValidator(context),
                           ),
@@ -319,6 +328,7 @@ class _EditYourPasswordWidgetState extends State<EditYourPasswordWidget> {
                                       .override(
                                         fontFamily: 'Yantramanav',
                                         color: Colors.white,
+                                        letterSpacing: 0.0,
                                       ),
                                 ),
                               ),
@@ -345,6 +355,7 @@ class _EditYourPasswordWidgetState extends State<EditYourPasswordWidget> {
                                     .override(
                                       fontFamily: 'Yantramanav',
                                       color: const Color(0xFF0CCA4A),
+                                      letterSpacing: 0.0,
                                     ),
                               ),
                             ),

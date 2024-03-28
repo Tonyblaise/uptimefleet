@@ -53,6 +53,7 @@ class _ServiceSummaryWidgetState extends State<ServiceSummaryWidget> {
                       fontFamily: 'Yantramanav',
                       color: const Color(0xFF1E293B),
                       fontSize: 30.0,
+                      letterSpacing: 0.0,
                       fontWeight: FontWeight.bold,
                     ),
               ),

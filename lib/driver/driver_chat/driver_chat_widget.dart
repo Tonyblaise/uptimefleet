@@ -78,6 +78,7 @@ class _DriverChatWidgetState extends State<DriverChatWidget> {
                       fontFamily: 'Yantramanav',
                       color: const Color(0xFF1E293B),
                       fontSize: 30.0,
+                      letterSpacing: 0.0,
                       fontWeight: FontWeight.bold,
                     ),
               ),
@@ -153,6 +154,7 @@ class _DriverChatWidgetState extends State<DriverChatWidget> {
                                               fontSize: _model.pageState == 1
                                                   ? 16.0
                                                   : 14.0,
+                                              letterSpacing: 0.0,
                                               fontWeight: FontWeight.normal,
                                             ),
                                       ),
@@ -192,6 +194,7 @@ class _DriverChatWidgetState extends State<DriverChatWidget> {
                                             fontSize: _model.pageState == 2
                                                 ? 16.0
                                                 : 14.0,
+                                            letterSpacing: 0.0,
                                             fontWeight: FontWeight.normal,
                                           ),
                                     ),
@@ -215,7 +218,10 @@ class _DriverChatWidgetState extends State<DriverChatWidget> {
                                         BoxShadow(
                                           blurRadius: 1.0,
                                           color: Color(0x28000000),
-                                          offset: Offset(0.0, 0.0),
+                                          offset: Offset(
+                                            0.0,
+                                            0.0,
+                                          ),
                                           spreadRadius: 0.0,
                                         )
                                       ],
@@ -238,6 +244,7 @@ class _DriverChatWidgetState extends State<DriverChatWidget> {
                                             fontSize: _model.pageState == 3
                                                 ? 16.0
                                                 : 14.0,
+                                            letterSpacing: 0.0,
                                             fontWeight: FontWeight.normal,
                                           ),
                                     ),
@@ -280,6 +287,7 @@ class _DriverChatWidgetState extends State<DriverChatWidget> {
                                         fontFamily: 'Yantramanav',
                                         color: Colors.black,
                                         fontSize: 24.0,
+                                        letterSpacing: 0.0,
                                         fontWeight: FontWeight.w300,
                                       ),
                                 ),
@@ -292,7 +300,12 @@ class _DriverChatWidgetState extends State<DriverChatWidget> {
                                   ),
                                 )
                               ],
-                              style: FlutterFlowTheme.of(context).bodyMedium,
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Yantramanav',
+                                    letterSpacing: 0.0,
+                                  ),
                             ),
                             textAlign: TextAlign.center,
                           ),

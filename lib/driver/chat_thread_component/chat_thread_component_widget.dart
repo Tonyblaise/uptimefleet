@@ -193,7 +193,10 @@ class _ChatThreadComponentWidgetState extends State<ChatThreadComponentWidget> {
                 BoxShadow(
                   blurRadius: 3.0,
                   color: Color(0x33000000),
-                  offset: Offset(0.0, -2.0),
+                  offset: Offset(
+                    0.0,
+                    -2.0,
+                  ),
                 )
               ],
             ),
@@ -398,10 +401,18 @@ class _ChatThreadComponentWidgetState extends State<ChatThreadComponentWidget> {
                                     obscureText: false,
                                     decoration: InputDecoration(
                                       labelStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium,
+                                          .labelMedium
+                                          .override(
+                                            fontFamily: 'Yantramanav',
+                                            letterSpacing: 0.0,
+                                          ),
                                       hintText: 'Start typing here...',
                                       hintStyle: FlutterFlowTheme.of(context)
-                                          .labelSmall,
+                                          .labelSmall
+                                          .override(
+                                            fontFamily: 'Yantramanav',
+                                            letterSpacing: 0.0,
+                                          ),
                                       errorStyle: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
@@ -409,6 +420,7 @@ class _ChatThreadComponentWidgetState extends State<ChatThreadComponentWidget> {
                                             color: FlutterFlowTheme.of(context)
                                                 .error,
                                             fontSize: 12.0,
+                                            letterSpacing: 0.0,
                                           ),
                                       enabledBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
@@ -450,10 +462,13 @@ class _ChatThreadComponentWidgetState extends State<ChatThreadComponentWidget> {
                                           const EdgeInsetsDirectional.fromSTEB(
                                               16.0, 16.0, 56.0, 16.0),
                                     ),
-                                    style:
-                                        FlutterFlowTheme.of(context).bodyMedium,
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Yantramanav',
+                                          letterSpacing: 0.0,
+                                        ),
                                     maxLines: 12,
-                                    minLines: 1,
                                     cursorColor:
                                         FlutterFlowTheme.of(context).primary,
                                     validator: _model.textControllerValidator

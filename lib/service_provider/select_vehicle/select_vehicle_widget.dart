@@ -47,73 +47,74 @@ class _SelectVehicleWidgetState extends State<SelectVehicleWidget> {
         shape: BoxShape.rectangle,
       ),
       alignment: const AlignmentDirectional(0.0, 0.0),
-      child: AuthUserStreamWidget(
-        builder: (context) => FutureBuilder<ApiCallResponse>(
-          future: UptimeFleetAppGroup.getTechnicianVehiclesCall.call(
-            technicianId: valueOrDefault(currentUserDocument?.technicianId, ''),
-          ),
-          builder: (context, snapshot) {
-            // Customize what your widget looks like when it's loading.
-            if (!snapshot.hasData) {
-              return Center(
-                child: SizedBox(
-                  width: 50.0,
-                  height: 50.0,
-                  child: CircularProgressIndicator(
-                    valueColor: AlwaysStoppedAnimation<Color>(
-                      FlutterFlowTheme.of(context).primary,
-                    ),
+      child: Container(
+        width: MediaQuery.sizeOf(context).width * 0.9,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(24.0),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Align(
+              alignment: const AlignmentDirectional(0.0, 0.0),
+              child: Container(
+                width: MediaQuery.sizeOf(context).width * 0.9,
+                height: 80.0,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      FlutterFlowTheme.of(context).secondary,
+                      FlutterFlowTheme.of(context).tertiary
+                    ],
+                    stops: const [0.0, 1.0],
+                    begin: const AlignmentDirectional(0.0, -1.0),
+                    end: const AlignmentDirectional(0, 1.0),
+                  ),
+                  borderRadius: BorderRadius.circular(24.0),
+                ),
+                child: Align(
+                  alignment: const AlignmentDirectional(0.0, 0.0),
+                  child: Text(
+                    'Please select vehicle',
+                    textAlign: TextAlign.center,
+                    style: FlutterFlowTheme.of(context).titleSmall.override(
+                          fontFamily: 'Yantramanav',
+                          color: Colors.black,
+                          fontSize: 24.0,
+                          letterSpacing: 0.0,
+                        ),
                   ),
                 ),
-              );
-            }
-            final containerGetTechnicianVehiclesResponse = snapshot.data!;
-            return Container(
-              width: MediaQuery.sizeOf(context).width * 0.9,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(24.0),
               ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Align(
-                    alignment: const AlignmentDirectional(0.0, 0.0),
-                    child: Container(
-                      width: MediaQuery.sizeOf(context).width * 0.9,
-                      height: 80.0,
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [
-                            FlutterFlowTheme.of(context).secondary,
-                            FlutterFlowTheme.of(context).tertiary
-                          ],
-                          stops: const [0.0, 1.0],
-                          begin: const AlignmentDirectional(0.0, -1.0),
-                          end: const AlignmentDirectional(0, 1.0),
-                        ),
-                        borderRadius: BorderRadius.circular(24.0),
-                      ),
-                      child: Align(
-                        alignment: const AlignmentDirectional(0.0, 0.0),
-                        child: Text(
-                          'Please select vehicle',
-                          textAlign: TextAlign.center,
-                          style:
-                              FlutterFlowTheme.of(context).titleSmall.override(
-                                    fontFamily: 'Yantramanav',
-                                    color: Colors.black,
-                                    fontSize: 24.0,
-                                  ),
-                        ),
-                      ),
-                    ),
+            ),
+            Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+              child: AuthUserStreamWidget(
+                builder: (context) => FutureBuilder<ApiCallResponse>(
+                  future: UptimeFleetAppGroup.getTechnicianVehiclesCall.call(
+                    technicianId:
+                        valueOrDefault(currentUserDocument?.technicianId, ''),
                   ),
-                  Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
-                    child: Container(
+                  builder: (context, snapshot) {
+                    // Customize what your widget looks like when it's loading.
+                    if (!snapshot.hasData) {
+                      return Center(
+                        child: SizedBox(
+                          width: 40.0,
+                          height: 40.0,
+                          child: CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                              FlutterFlowTheme.of(context).tertiary,
+                            ),
+                          ),
+                        ),
+                      );
+                    }
+                    final containerGetTechnicianVehiclesResponse =
+                        snapshot.data!;
+                    return Container(
                       width: MediaQuery.sizeOf(context).width * 0.9,
                       height: 84.0,
                       decoration: const BoxDecoration(),
@@ -129,6 +130,7 @@ class _SelectVehicleWidgetState extends State<SelectVehicleWidget> {
                                   fontFamily: 'Yantramanav',
                                   color:
                                       FlutterFlowTheme.of(context).primaryText,
+                                  letterSpacing: 0.0,
                                 ),
                           ),
                           FlutterFlowDropDown<String>(
@@ -143,11 +145,24 @@ class _SelectVehicleWidgetState extends State<SelectVehicleWidget> {
                                 setState(() => _model.dropDownValue = val),
                             width: double.infinity,
                             height: 50.0,
-                            searchHintTextStyle:
-                                FlutterFlowTheme.of(context).labelMedium,
-                            searchTextStyle:
-                                FlutterFlowTheme.of(context).bodyMedium,
-                            textStyle: FlutterFlowTheme.of(context).bodyMedium,
+                            searchHintTextStyle: FlutterFlowTheme.of(context)
+                                .labelMedium
+                                .override(
+                                  fontFamily: 'Yantramanav',
+                                  letterSpacing: 0.0,
+                                ),
+                            searchTextStyle: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Yantramanav',
+                                  letterSpacing: 0.0,
+                                ),
+                            textStyle: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Yantramanav',
+                                  letterSpacing: 0.0,
+                                ),
                             hintText: 'Please select...',
                             searchHintText: 'Search for a vehicle',
                             icon: Icon(
@@ -170,201 +185,184 @@ class _SelectVehicleWidgetState extends State<SelectVehicleWidget> {
                           ),
                         ],
                       ),
-                    ),
-                  ),
-                  Align(
-                    alignment: const AlignmentDirectional(0.0, 0.0),
-                    child: Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 20.0),
-                      child: Container(
-                        decoration: const BoxDecoration(),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Flexible(
+                    );
+                  },
+                ),
+              ),
+            ),
+            Align(
+              alignment: const AlignmentDirectional(0.0, 0.0),
+              child: Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 20.0),
+                child: Container(
+                  decoration: const BoxDecoration(),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Flexible(
+                        child: Align(
+                          alignment: const AlignmentDirectional(0.0, 0.0),
+                          child: InkWell(
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () async {
+                              Navigator.pop(context);
+                            },
+                            child: Container(
+                              height: 56.0,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(18.0),
+                                border: Border.all(
+                                  color: const Color(0xFF0CCA4A),
+                                ),
+                              ),
                               child: Align(
                                 alignment: const AlignmentDirectional(0.0, 0.0),
-                                child: InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    Navigator.pop(context);
-                                  },
-                                  child: Container(
-                                    height: 56.0,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(18.0),
-                                      border: Border.all(
-                                        color: const Color(0xFF0CCA4A),
+                                child: Text(
+                                  'Cancel',
+                                  style: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .override(
+                                        fontFamily: 'Yantramanav',
+                                        color: FlutterFlowTheme.of(context)
+                                            .tertiary,
+                                        letterSpacing: 0.0,
                                       ),
-                                    ),
-                                    child: Align(
-                                      alignment: const AlignmentDirectional(0.0, 0.0),
-                                      child: Text(
-                                        'Cancel',
-                                        style: FlutterFlowTheme.of(context)
-                                            .titleSmall
-                                            .override(
-                                              fontFamily: 'Yantramanav',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .tertiary,
-                                            ),
-                                      ),
-                                    ),
-                                  ),
                                 ),
                               ),
                             ),
-                            Expanded(
-                              child: InkWell(
-                                splashColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () async {
-                                  _model.vehicles = await UptimeFleetAppGroup
-                                      .getTechnicianVehiclesCall
-                                      .call(
-                                    technicianId: valueOrDefault(
-                                        currentUserDocument?.technicianId, ''),
-                                  );
-                                  if ((_model.vehicles?.succeeded ?? true)) {
-                                    _model.apiResultpgx =
-                                        await UptimeFleetAppGroup
-                                            .updateTechnicianCall
-                                            .call(
-                                      activeVehiceId: UptimeFleetAppGroup
-                                          .getTechnicianVehiclesCall
-                                          .id(
-                                            (_model.vehicles?.jsonBody ?? ''),
-                                          )
-                                          ?.where(
-                                              (e) => e == _model.dropDownValue)
-                                          .toList()
-                                          .first,
-                                      technicianId: valueOrDefault(
-                                          currentUserDocument?.technicianId,
-                                          ''),
-                                    );
-                                    if ((_model.apiResultpgx?.succeeded ??
-                                        true)) {
-                                      await currentUserReference!
-                                          .update(createUsersRecordData(
-                                        activeVehicle: UptimeFleetAppGroup
-                                            .getTechnicianVehiclesCall
-                                            .id(
-                                              (_model.vehicles?.jsonBody ?? ''),
-                                            )
-                                            ?.where((e) =>
-                                                e == _model.dropDownValue)
-                                            .toList()
-                                            .first,
-                                      ));
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(
-                                        SnackBar(
-                                          content: Text(
-                                            'Entry updated successfully!',
-                                            style: TextStyle(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryText,
-                                            ),
-                                          ),
-                                          duration:
-                                              const Duration(milliseconds: 4000),
-                                          backgroundColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .secondary,
-                                        ),
-                                      );
-                                      Navigator.pop(context);
-                                    } else {
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(
-                                        SnackBar(
-                                          content: Text(
-                                            'Something went wrong. Please try again later',
-                                            style: TextStyle(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryText,
-                                            ),
-                                          ),
-                                          duration:
-                                              const Duration(milliseconds: 4000),
-                                          backgroundColor: const Color(0xFFF50833),
-                                        ),
-                                      );
-                                    }
-                                  } else {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                        content: Text(
-                                          'Something went wrong. Please try again later',
-                                          style: TextStyle(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                          ),
-                                        ),
-                                        duration: const Duration(milliseconds: 4000),
-                                        backgroundColor: const Color(0xFFF50833),
-                                      ),
-                                    );
-                                  }
-
-                                  setState(() {});
-                                },
-                                child: Container(
-                                  height: 56.0,
-                                  constraints: BoxConstraints(
-                                    maxWidth:
-                                        MediaQuery.sizeOf(context).width * 0.9,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    gradient: const LinearGradient(
-                                      colors: [
-                                        Color(0xFF7DEFA2),
-                                        Color(0xFF0CCA4A)
-                                      ],
-                                      stops: [0.0, 1.0],
-                                      begin: AlignmentDirectional(0.0, -1.0),
-                                      end: AlignmentDirectional(0, 1.0),
-                                    ),
-                                    borderRadius: BorderRadius.circular(18.0),
-                                    border: Border.all(
-                                      color:
-                                          FlutterFlowTheme.of(context).tertiary,
-                                    ),
-                                  ),
-                                  child: Align(
-                                    alignment: const AlignmentDirectional(0.0, 0.0),
-                                    child: Text(
-                                      'Confirm',
-                                      style: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .override(
-                                            fontFamily: 'Yantramanav',
-                                            color: Colors.white,
-                                          ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ].divide(const SizedBox(width: 15.0)),
+                          ),
                         ),
                       ),
-                    ),
+                      Expanded(
+                        child: InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            _model.vehicles = await UptimeFleetAppGroup
+                                .getTechnicianVehiclesCall
+                                .call(
+                              technicianId: valueOrDefault(
+                                  currentUserDocument?.technicianId, ''),
+                            );
+                            if ((_model.vehicles?.succeeded ?? true)) {
+                              _model.apiResultpgx = await UptimeFleetAppGroup
+                                  .updateTechnicianCall
+                                  .call(
+                                activeVehiceId: UptimeFleetAppGroup
+                                    .getTechnicianVehiclesCall
+                                    .id(
+                                      (_model.vehicles?.jsonBody ?? ''),
+                                    )
+                                    ?.where((e) => e == _model.dropDownValue)
+                                    .toList()
+                                    .first,
+                                technicianId: valueOrDefault(
+                                    currentUserDocument?.technicianId, ''),
+                              );
+                              if ((_model.apiResultpgx?.succeeded ?? true)) {
+                                await currentUserReference!
+                                    .update(createUsersRecordData(
+                                  activeVehicle: UptimeFleetAppGroup
+                                      .getTechnicianVehiclesCall
+                                      .id(
+                                        (_model.vehicles?.jsonBody ?? ''),
+                                      )
+                                      ?.where((e) => e == _model.dropDownValue)
+                                      .toList()
+                                      .first,
+                                ));
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      'Entry updated successfully!',
+                                      style: TextStyle(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                      ),
+                                    ),
+                                    duration: const Duration(milliseconds: 4000),
+                                    backgroundColor:
+                                        FlutterFlowTheme.of(context).secondary,
+                                  ),
+                                );
+                                Navigator.pop(context);
+                              } else {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      'Something went wrong. Please try again later',
+                                      style: TextStyle(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                      ),
+                                    ),
+                                    duration: const Duration(milliseconds: 4000),
+                                    backgroundColor: const Color(0xFFF50833),
+                                  ),
+                                );
+                              }
+                            } else {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    'Something went wrong. Please try again later',
+                                    style: TextStyle(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                    ),
+                                  ),
+                                  duration: const Duration(milliseconds: 4000),
+                                  backgroundColor: const Color(0xFFF50833),
+                                ),
+                              );
+                            }
+
+                            setState(() {});
+                          },
+                          child: Container(
+                            height: 56.0,
+                            constraints: BoxConstraints(
+                              maxWidth: MediaQuery.sizeOf(context).width * 0.9,
+                            ),
+                            decoration: BoxDecoration(
+                              gradient: const LinearGradient(
+                                colors: [Color(0xFF7DEFA2), Color(0xFF0CCA4A)],
+                                stops: [0.0, 1.0],
+                                begin: AlignmentDirectional(0.0, -1.0),
+                                end: AlignmentDirectional(0, 1.0),
+                              ),
+                              borderRadius: BorderRadius.circular(18.0),
+                              border: Border.all(
+                                color: FlutterFlowTheme.of(context).tertiary,
+                              ),
+                            ),
+                            child: Align(
+                              alignment: const AlignmentDirectional(0.0, 0.0),
+                              child: Text(
+                                'Confirm',
+                                style: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: 'Yantramanav',
+                                      color: Colors.white,
+                                      letterSpacing: 0.0,
+                                    ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ].divide(const SizedBox(width: 15.0)),
                   ),
-                ].divide(const SizedBox(height: 32.0)),
+                ),
               ),
-            );
-          },
+            ),
+          ].divide(const SizedBox(height: 32.0)),
         ),
       ),
     );

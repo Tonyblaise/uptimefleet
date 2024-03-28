@@ -81,6 +81,7 @@ class _VehicleConfirmationWidgetState extends State<VehicleConfirmationWidget> {
                         fontFamily: 'Yantramanav',
                         color: const Color(0xFF1E293B),
                         fontSize: 30.0,
+                        letterSpacing: 0.0,
                         fontWeight: FontWeight.bold,
                       ),
                 ),
@@ -140,6 +141,7 @@ class _VehicleConfirmationWidgetState extends State<VehicleConfirmationWidget> {
                                         fontFamily: 'Yantramanav',
                                         color: Colors.black,
                                         fontSize: 24.0,
+                                        letterSpacing: 0.0,
                                         fontWeight: FontWeight.w300,
                                       ),
                                 ),
@@ -152,7 +154,12 @@ class _VehicleConfirmationWidgetState extends State<VehicleConfirmationWidget> {
                                   ),
                                 )
                               ],
-                              style: FlutterFlowTheme.of(context).bodyMedium,
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Yantramanav',
+                                    letterSpacing: 0.0,
+                                  ),
                             ),
                             textAlign: TextAlign.center,
                           ),
@@ -192,6 +199,7 @@ class _VehicleConfirmationWidgetState extends State<VehicleConfirmationWidget> {
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .primaryText,
+                                              letterSpacing: 0.0,
                                             ),
                                       ),
                                     ),
@@ -221,6 +229,7 @@ class _VehicleConfirmationWidgetState extends State<VehicleConfirmationWidget> {
                                                       .override(
                                                         fontFamily:
                                                             'Yantramanav',
+                                                        letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,
                                                       ),
@@ -274,8 +283,10 @@ class _VehicleConfirmationWidgetState extends State<VehicleConfirmationWidget> {
                                                 .labelLarge
                                                 .override(
                                                   fontFamily: 'Yantramanav',
+                                                  letterSpacing: 0.0,
                                                   fontWeight: FontWeight.normal,
                                                 ),
+                                            minLines: null,
                                             validator: _model
                                                 .textController1Validator
                                                 .asValidator(context),
@@ -403,6 +414,7 @@ class _VehicleConfirmationWidgetState extends State<VehicleConfirmationWidget> {
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .primaryText,
+                                                letterSpacing: 0.0,
                                                 fontWeight: FontWeight.normal,
                                               ),
                                         ),
@@ -438,6 +450,7 @@ class _VehicleConfirmationWidgetState extends State<VehicleConfirmationWidget> {
                                                           FlutterFlowTheme.of(
                                                                   context)
                                                               .primaryText,
+                                                      letterSpacing: 0.0,
                                                     ),
                                               ),
                                               Container(
@@ -467,6 +480,8 @@ class _VehicleConfirmationWidgetState extends State<VehicleConfirmationWidget> {
                                                               .override(
                                                                 fontFamily:
                                                                     'Yantramanav',
+                                                                letterSpacing:
+                                                                    0.0,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .normal,
@@ -534,9 +549,11 @@ class _VehicleConfirmationWidgetState extends State<VehicleConfirmationWidget> {
                                                         .override(
                                                           fontFamily:
                                                               'Yantramanav',
+                                                          letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.normal,
                                                         ),
+                                                    minLines: null,
                                                     validator: _model
                                                         .textController2Validator
                                                         .asValidator(context),
@@ -564,6 +581,7 @@ class _VehicleConfirmationWidgetState extends State<VehicleConfirmationWidget> {
                                                           FlutterFlowTheme.of(
                                                                   context)
                                                               .primaryText,
+                                                      letterSpacing: 0.0,
                                                     ),
                                               ),
                                               Container(
@@ -662,6 +680,7 @@ class _VehicleConfirmationWidgetState extends State<VehicleConfirmationWidget> {
                                                         color:
                                                             const Color(0xFF64748B),
                                                         fontSize: 16.0,
+                                                        letterSpacing: 0.0,
                                                       ),
                                                   hintText:
                                                       'Your state of registration',
@@ -714,6 +733,7 @@ class _VehicleConfirmationWidgetState extends State<VehicleConfirmationWidget> {
                                                           FlutterFlowTheme.of(
                                                                   context)
                                                               .primaryText,
+                                                      letterSpacing: 0.0,
                                                     ),
                                               ),
                                               Container(
@@ -962,8 +982,12 @@ class _VehicleConfirmationWidgetState extends State<VehicleConfirmationWidget> {
                                   alignment: const AlignmentDirectional(0.0, 0.0),
                                   child: Text(
                                     'Confirm',
-                                    style:
-                                        FlutterFlowTheme.of(context).titleSmall,
+                                    style: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .override(
+                                          fontFamily: 'Yantramanav',
+                                          letterSpacing: 0.0,
+                                        ),
                                   ),
                                 ),
                               ),

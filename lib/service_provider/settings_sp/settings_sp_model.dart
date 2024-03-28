@@ -13,8 +13,6 @@ class SettingsSpModel extends FlutterFlowModel<SettingsSpWidget> {
   // Model for bottom_bar component.
   late BottomBarModel bottomBarModel;
 
-  /// Initialization and disposal methods.
-
   @override
   void initState(BuildContext context) {
     settingsComponentModel =
@@ -28,8 +26,4 @@ class SettingsSpModel extends FlutterFlowModel<SettingsSpWidget> {
     settingsComponentModel.dispose();
     bottomBarModel.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

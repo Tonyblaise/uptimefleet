@@ -19,8 +19,6 @@ class TechStatusModel extends FlutterFlowModel<TechStatusWidget> {
   // Model for bottom_bar component.
   late BottomBarModel bottomBarModel;
 
-  /// Initialization and disposal methods.
-
   @override
   void initState(BuildContext context) {
     userDetailsModel = createModel(context, () => UserDetailsModel());
@@ -38,8 +36,4 @@ class TechStatusModel extends FlutterFlowModel<TechStatusWidget> {
     techStatusComponentModel.dispose();
     bottomBarModel.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

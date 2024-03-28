@@ -7,6 +7,8 @@ exports.sendNotification = functions.https.onRequest(async (req, res) => {
   const token = req.body.token;
   const title = req.body.title;
   const body = req.body.body;
+  const initialPageName = req.body.initialPageName;
+  const data = req.body.data;
 
   // Check if required parameters are present
   if (!token || !title || !body) {
@@ -20,6 +22,7 @@ exports.sendNotification = functions.https.onRequest(async (req, res) => {
       body: body,
     },
     token: token,
+    data: JSON.stringify(data),
   };
 
   // Send the notification

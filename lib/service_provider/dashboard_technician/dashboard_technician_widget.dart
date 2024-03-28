@@ -4,11 +4,13 @@ import '/components/tech_status_component_widget.dart';
 import '/components/user_details_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/instant_timer.dart';
 import '/pages/chat/empty_state_simple/empty_state_simple_widget.dart';
 import '/service_provider/bottom_bar/bottom_bar_widget.dart';
 import '/service_provider/service_summary_widget/service_summary_widget_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
 import 'dashboard_technician_model.dart';
 export 'dashboard_technician_model.dart';
@@ -25,11 +27,32 @@ class _DashboardTechnicianWidgetState extends State<DashboardTechnicianWidget> {
   late DashboardTechnicianModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  LatLng? currentUserLocationValue;
 
   @override
   void initState() {
     super.initState();
     _model = createModel(context, () => DashboardTechnicianModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      currentUserLocationValue =
+          await getCurrentUserLocation(defaultLocation: const LatLng(0.0, 0.0));
+      _model.instantTimer = InstantTimer.periodic(
+        duration: const Duration(milliseconds: 60000),
+        callback: (timer) async {
+          currentUserLocationValue =
+              await getCurrentUserLocation(defaultLocation: const LatLng(0.0, 0.0));
+          _model.apiResultayo = await UptimeFleetAppGroup
+              .updateTechnicianPositionUsingCurrentPostionCall
+              .call(
+            technicianId: valueOrDefault(currentUserDocument?.technicianId, ''),
+            position: currentUserLocationValue?.toString(),
+          );
+        },
+        startImmediately: true,
+      );
+    });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -65,6 +88,7 @@ class _DashboardTechnicianWidgetState extends State<DashboardTechnicianWidget> {
                       fontFamily: 'Yantramanav',
                       color: const Color(0xFF1E293B),
                       fontSize: 30.0,
+                      letterSpacing: 0.0,
                       fontWeight: FontWeight.bold,
                     ),
               ),
@@ -205,6 +229,8 @@ class _DashboardTechnicianWidgetState extends State<DashboardTechnicianWidget> {
                                                                 fontFamily:
                                                                     'Yantramanav',
                                                                 fontSize: 18.0,
+                                                                letterSpacing:
+                                                                    0.0,
                                                               ),
                                                         ),
                                                       ),
@@ -310,6 +336,7 @@ class _DashboardTechnicianWidgetState extends State<DashboardTechnicianWidget> {
                                                                               .override(
                                                                                 fontFamily: 'Yantramanav',
                                                                                 fontSize: 24.0,
+                                                                                letterSpacing: 0.0,
                                                                               ),
                                                                         ),
                                                                         Icon(
@@ -369,6 +396,7 @@ class _DashboardTechnicianWidgetState extends State<DashboardTechnicianWidget> {
                                                                                       fontFamily: 'Yantramanav',
                                                                                       color: Colors.black,
                                                                                       fontSize: 16.0,
+                                                                                      letterSpacing: 0.0,
                                                                                       fontWeight: FontWeight.bold,
                                                                                     ),
                                                                               ),
@@ -378,6 +406,7 @@ class _DashboardTechnicianWidgetState extends State<DashboardTechnicianWidget> {
                                                                                       fontFamily: 'Yantramanav',
                                                                                       color: const Color(0xFF64748B),
                                                                                       fontSize: 16.0,
+                                                                                      letterSpacing: 0.0,
                                                                                     ),
                                                                               ),
                                                                             ],
@@ -401,6 +430,7 @@ class _DashboardTechnicianWidgetState extends State<DashboardTechnicianWidget> {
                                                                                       fontFamily: 'Yantramanav',
                                                                                       color: Colors.black,
                                                                                       fontSize: 16.0,
+                                                                                      letterSpacing: 0.0,
                                                                                       fontWeight: FontWeight.bold,
                                                                                     ),
                                                                               ),
@@ -410,6 +440,7 @@ class _DashboardTechnicianWidgetState extends State<DashboardTechnicianWidget> {
                                                                                       fontFamily: 'Yantramanav',
                                                                                       color: const Color(0xFF64748B),
                                                                                       fontSize: 16.0,
+                                                                                      letterSpacing: 0.0,
                                                                                     ),
                                                                               ),
                                                                             ],

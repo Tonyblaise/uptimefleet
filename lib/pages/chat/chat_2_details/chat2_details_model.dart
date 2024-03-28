@@ -35,8 +35,6 @@ class Chat2DetailsModel extends FlutterFlowModel<Chat2DetailsWidget> {
   // Model for chat_ThreadComponent component.
   late ChatThreadComponentModel chatThreadComponentModel;
 
-  /// Initialization and disposal methods.
-
   @override
   void initState(BuildContext context) {
     chatThreadComponentModel =
@@ -48,8 +46,4 @@ class Chat2DetailsModel extends FlutterFlowModel<Chat2DetailsWidget> {
     unfocusNode.dispose();
     chatThreadComponentModel.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

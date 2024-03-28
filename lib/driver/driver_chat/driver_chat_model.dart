@@ -14,8 +14,6 @@ class DriverChatModel extends FlutterFlowModel<DriverChatWidget> {
   // Model for chat_ThreadComponent component.
   late ChatThreadComponentModel chatThreadComponentModel;
 
-  /// Initialization and disposal methods.
-
   @override
   void initState(BuildContext context) {
     chatThreadComponentModel =
@@ -27,8 +25,4 @@ class DriverChatModel extends FlutterFlowModel<DriverChatWidget> {
     unfocusNode.dispose();
     chatThreadComponentModel.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

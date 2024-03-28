@@ -66,6 +66,7 @@ class _EmptyStateSimpleWidgetState extends State<EmptyStateSimpleWidget> {
               style: FlutterFlowTheme.of(context).headlineSmall.override(
                     fontFamily: 'Yantramanav',
                     color: FlutterFlowTheme.of(context).primaryText,
+                    letterSpacing: 0.0,
                   ),
             ),
           ),
@@ -97,7 +98,10 @@ class _EmptyStateSimpleWidgetState extends State<EmptyStateSimpleWidget> {
               child: Text(
                 widget.body,
                 textAlign: TextAlign.center,
-                style: FlutterFlowTheme.of(context).labelMedium,
+                style: FlutterFlowTheme.of(context).labelMedium.override(
+                      fontFamily: 'Yantramanav',
+                      letterSpacing: 0.0,
+                    ),
               ),
             ),
           ),

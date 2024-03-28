@@ -75,6 +75,7 @@ class _VerifyWidgetState extends State<VerifyWidget> {
                       fontFamily: 'Yantramanav',
                       color: const Color(0xFF1E293B),
                       fontSize: 30.0,
+                      letterSpacing: 0.0,
                       fontWeight: FontWeight.bold,
                     ),
               ),
@@ -109,13 +110,18 @@ class _VerifyWidgetState extends State<VerifyWidget> {
                         style: FlutterFlowTheme.of(context).labelLarge.override(
                               fontFamily: 'Yantramanav',
                               color: FlutterFlowTheme.of(context).primaryText,
+                              letterSpacing: 0.0,
                             ),
                       ),
                       PinCodeTextField(
                         autoDisposeControllers: false,
                         appContext: context,
                         length: 6,
-                        textStyle: FlutterFlowTheme.of(context).bodyLarge,
+                        textStyle:
+                            FlutterFlowTheme.of(context).bodyLarge.override(
+                                  fontFamily: 'Yantramanav',
+                                  letterSpacing: 0.0,
+                                ),
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         enableActiveFill: false,
                         autoFocus: true,
@@ -328,7 +334,11 @@ class _VerifyWidgetState extends State<VerifyWidget> {
                         alignment: const AlignmentDirectional(0.0, 0.0),
                         child: Text(
                           'Confirm',
-                          style: FlutterFlowTheme.of(context).titleSmall,
+                          style:
+                              FlutterFlowTheme.of(context).titleSmall.override(
+                                    fontFamily: 'Yantramanav',
+                                    letterSpacing: 0.0,
+                                  ),
                         ),
                       ),
                     ),

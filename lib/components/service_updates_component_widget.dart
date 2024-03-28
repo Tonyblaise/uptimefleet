@@ -71,6 +71,7 @@ class _ServiceUpdatesComponentWidgetState
                       style: FlutterFlowTheme.of(context).labelLarge.override(
                             fontFamily: 'Yantramanav',
                             color: Colors.black,
+                            letterSpacing: 0.0,
                           ),
                     ),
                     Padding(
@@ -151,6 +152,7 @@ class _ServiceUpdatesComponentWidgetState
                                                   const Color(0xFFE5E7EE),
                                                 ),
                                                 fontSize: 24.0,
+                                                letterSpacing: 0.0,
                                               ),
                                         ),
                                       ),
@@ -209,6 +211,7 @@ class _ServiceUpdatesComponentWidgetState
                                                             const Color(0xFFE5E7EE),
                                                           ),
                                                           fontSize: 16.0,
+                                                          letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.bold,
                                                         ),
@@ -232,6 +235,7 @@ class _ServiceUpdatesComponentWidgetState
                                                             const Color(0xFFE5E7EE),
                                                           ),
                                                           fontSize: 16.0,
+                                                          letterSpacing: 0.0,
                                                         ),
                                                   ),
                                                 ],
@@ -342,6 +346,7 @@ class _ServiceUpdatesComponentWidgetState
                                                       const Color(0xFFE5E7EE),
                                                     ),
                                                     fontSize: 24.0,
+                                                    letterSpacing: 0.0,
                                                   ),
                                             ),
                                           ),
@@ -404,6 +409,7 @@ class _ServiceUpdatesComponentWidgetState
                                                               const Color(0xFFE5E7EE),
                                                             ),
                                                             fontSize: 16.0,
+                                                            letterSpacing: 0.0,
                                                             fontWeight:
                                                                 FontWeight.bold,
                                                           ),
@@ -428,6 +434,7 @@ class _ServiceUpdatesComponentWidgetState
                                                               const Color(0xFFE5E7EE),
                                                             ),
                                                             fontSize: 16.0,
+                                                            letterSpacing: 0.0,
                                                           ),
                                                     ),
                                                   ],
@@ -521,6 +528,7 @@ class _ServiceUpdatesComponentWidgetState
                                                   const Color(0xFFE5E7EE),
                                                 ),
                                                 fontSize: 24.0,
+                                                letterSpacing: 0.0,
                                               ),
                                         ),
                                       ),
@@ -581,6 +589,7 @@ class _ServiceUpdatesComponentWidgetState
                                                             const Color(0xFFE5E7EE),
                                                           ),
                                                           fontSize: 16.0,
+                                                          letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.bold,
                                                         ),
@@ -604,6 +613,7 @@ class _ServiceUpdatesComponentWidgetState
                                                             const Color(0xFFE5E7EE),
                                                           ),
                                                           fontSize: 16.0,
+                                                          letterSpacing: 0.0,
                                                         ),
                                                   ),
                                                 ],
@@ -659,6 +669,7 @@ class _ServiceUpdatesComponentWidgetState
                                         .override(
                                           fontFamily: 'Yantramanav',
                                           color: const Color(0xFFF50833),
+                                          letterSpacing: 0.0,
                                         ),
                                   ),
                                 ),

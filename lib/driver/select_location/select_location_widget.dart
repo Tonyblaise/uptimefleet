@@ -81,6 +81,7 @@ class _SelectLocationWidgetState extends State<SelectLocationWidget> {
                       fontFamily: 'Yantramanav',
                       color: const Color(0xFF1E293B),
                       fontSize: 30.0,
+                      letterSpacing: 0.0,
                       fontWeight: FontWeight.bold,
                     ),
               ),
@@ -204,6 +205,7 @@ class _SelectLocationWidgetState extends State<SelectLocationWidget> {
                                                     FlutterFlowTheme.of(context)
                                                         .primaryText,
                                                 fontSize: 20.0,
+                                                letterSpacing: 0.0,
                                                 fontWeight: FontWeight.bold,
                                               ),
                                         ),
@@ -214,13 +216,13 @@ class _SelectLocationWidgetState extends State<SelectLocationWidget> {
                                           ),
                                         ),
                                         TextSpan(
-                                          text: valueOrDefault<String>(
-                                            GetAddressFromLatLngCall.placeName(
-                                              columnGetAddressFromLatLngResponse
-                                                  .jsonBody,
-                                            )?.first,
-                                            '.',
-                                          ),
+                                          text: functions.combineTextNames(
+                                              GetAddressFromLatLngCall
+                                                      .placeName(
+                                            columnGetAddressFromLatLngResponse
+                                                .jsonBody,
+                                          )!
+                                                  .toList()),
                                           style: const TextStyle(),
                                         )
                                       ],
@@ -229,6 +231,7 @@ class _SelectLocationWidgetState extends State<SelectLocationWidget> {
                                           .override(
                                             fontFamily: 'Yantramanav',
                                             fontSize: 20.0,
+                                            letterSpacing: 0.0,
                                           ),
                                     ),
                                   ),
@@ -261,6 +264,7 @@ class _SelectLocationWidgetState extends State<SelectLocationWidget> {
                                         .override(
                                           fontFamily: 'Yantramanav',
                                           color: const Color(0xFF0F172A),
+                                          letterSpacing: 0.0,
                                         ),
                                     elevation: 2.0,
                                     borderSide: const BorderSide(
@@ -294,6 +298,7 @@ class _SelectLocationWidgetState extends State<SelectLocationWidget> {
                                           fontFamily: 'Yantramanav',
                                           color: FlutterFlowTheme.of(context)
                                               .primaryText,
+                                          letterSpacing: 0.0,
                                           fontWeight: FontWeight.normal,
                                         ),
                                   ),
@@ -357,7 +362,11 @@ class _SelectLocationWidgetState extends State<SelectLocationWidget> {
                                           ? 'Confirm Location'
                                           : 'Confirm Address',
                                       style: FlutterFlowTheme.of(context)
-                                          .titleSmall,
+                                          .titleSmall
+                                          .override(
+                                            fontFamily: 'Yantramanav',
+                                            letterSpacing: 0.0,
+                                          ),
                                     ),
                                   ),
                                 ),

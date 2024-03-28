@@ -26,8 +26,6 @@ class ChangePasswordModel extends FlutterFlowModel<ChangePasswordWidget> {
   // Stores action output result for [Backend Call - API (Change password)] action in Container widget.
   ApiCallResponse? apiResultjti;
 
-  /// Initialization and disposal methods.
-
   @override
   void initState(BuildContext context) {
     yourOldPasswordVisibility = false;
@@ -47,8 +45,4 @@ class ChangePasswordModel extends FlutterFlowModel<ChangePasswordWidget> {
     confirmNewPasswordFocusNode?.dispose();
     confirmNewPasswordController?.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

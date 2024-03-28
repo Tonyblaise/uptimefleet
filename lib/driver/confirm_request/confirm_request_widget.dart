@@ -78,6 +78,7 @@ class _ConfirmRequestWidgetState extends State<ConfirmRequestWidget> {
                             fontFamily: 'Yantramanav',
                             color: Colors.black,
                             fontSize: 24.0,
+                            letterSpacing: 0.0,
                           ),
                     ),
                   ),
@@ -108,6 +109,7 @@ class _ConfirmRequestWidgetState extends State<ConfirmRequestWidget> {
                               fontFamily: 'Yantramanav',
                               color: const Color(0xFF64748B),
                               fontSize: 20.0,
+                              letterSpacing: 0.0,
                               fontWeight: FontWeight.bold,
                             ),
                       ),
@@ -118,6 +120,7 @@ class _ConfirmRequestWidgetState extends State<ConfirmRequestWidget> {
                               fontFamily: 'Yantramanav',
                               color: const Color(0xFF64748B),
                               fontSize: 16.0,
+                              letterSpacing: 0.0,
                               fontWeight: FontWeight.w300,
                             ),
                       ),
@@ -160,7 +163,11 @@ class _ConfirmRequestWidgetState extends State<ConfirmRequestWidget> {
                         alignment: const AlignmentDirectional(0.0, 0.0),
                         child: Text(
                           'Continue',
-                          style: FlutterFlowTheme.of(context).titleSmall,
+                          style:
+                              FlutterFlowTheme.of(context).titleSmall.override(
+                                    fontFamily: 'Yantramanav',
+                                    letterSpacing: 0.0,
+                                  ),
                         ),
                       ),
                     ),

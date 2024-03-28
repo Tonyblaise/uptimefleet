@@ -214,6 +214,7 @@ class _ImageDetailsWidgetState extends State<ImageDetailsWidget>
                                       .bodyMedium
                                       .override(
                                         fontFamily: 'Yantramanav',
+                                        letterSpacing: 0.0,
                                         lineHeight: 1.5,
                                       ),
                                 )),
@@ -222,8 +223,12 @@ class _ImageDetailsWidgetState extends State<ImageDetailsWidget>
                                       0.0, 4.0, 0.0, 0.0),
                                   child: Text(
                                     'Just Now',
-                                    style:
-                                        FlutterFlowTheme.of(context).labelSmall,
+                                    style: FlutterFlowTheme.of(context)
+                                        .labelSmall
+                                        .override(
+                                          fontFamily: 'Yantramanav',
+                                          letterSpacing: 0.0,
+                                        ),
                                   ),
                                 ),
                               ].divide(const SizedBox(width: 4.0)),
@@ -239,6 +244,7 @@ class _ImageDetailsWidgetState extends State<ImageDetailsWidget>
                                     .labelLarge
                                     .override(
                                       fontFamily: 'Yantramanav',
+                                      letterSpacing: 0.0,
                                       lineHeight: 1.5,
                                     ),
                               )),

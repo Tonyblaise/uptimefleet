@@ -65,6 +65,7 @@ class _ServiceConfirmationWidgetState extends State<ServiceConfirmationWidget> {
                       fontFamily: 'Yantramanav',
                       color: const Color(0xFF1E293B),
                       fontSize: 30.0,
+                      letterSpacing: 0.0,
                       fontWeight: FontWeight.bold,
                     ),
               ),
@@ -142,6 +143,7 @@ class _ServiceConfirmationWidgetState extends State<ServiceConfirmationWidget> {
                                           fontFamily: 'Yantramanav',
                                           color: Colors.black,
                                           fontSize: 24.0,
+                                          letterSpacing: 0.0,
                                           fontWeight: FontWeight.w300,
                                         ),
                                   ),
@@ -154,7 +156,12 @@ class _ServiceConfirmationWidgetState extends State<ServiceConfirmationWidget> {
                                     ),
                                   )
                                 ],
-                                style: FlutterFlowTheme.of(context).bodyMedium,
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Yantramanav',
+                                      letterSpacing: 0.0,
+                                    ),
                               ),
                               textAlign: TextAlign.center,
                             ),
@@ -175,6 +182,7 @@ class _ServiceConfirmationWidgetState extends State<ServiceConfirmationWidget> {
                               FlutterFlowTheme.of(context).labelLarge.override(
                                     fontFamily: 'Yantramanav',
                                     color: Colors.black,
+                                    letterSpacing: 0.0,
                                   ),
                         ),
                         Container(
@@ -226,6 +234,7 @@ class _ServiceConfirmationWidgetState extends State<ServiceConfirmationWidget> {
                                             .override(
                                               fontFamily: 'Yantramanav',
                                               fontSize: 16.0,
+                                              letterSpacing: 0.0,
                                             ),
                                       ),
                                     ].divide(const SizedBox(width: 8.0)),
@@ -263,6 +272,7 @@ class _ServiceConfirmationWidgetState extends State<ServiceConfirmationWidget> {
                                             .override(
                                               fontFamily: 'Yantramanav',
                                               fontSize: 16.0,
+                                              letterSpacing: 0.0,
                                             ),
                                       ),
                                     ].divide(const SizedBox(width: 8.0)),
@@ -300,6 +310,7 @@ class _ServiceConfirmationWidgetState extends State<ServiceConfirmationWidget> {
                                             .override(
                                               fontFamily: 'Yantramanav',
                                               fontSize: 16.0,
+                                              letterSpacing: 0.0,
                                             ),
                                       ),
                                     ].divide(const SizedBox(width: 8.0)),
@@ -331,6 +342,7 @@ class _ServiceConfirmationWidgetState extends State<ServiceConfirmationWidget> {
                                     .override(
                                       fontFamily: 'Yantramanav',
                                       color: Colors.black,
+                                      letterSpacing: 0.0,
                                     ),
                               ),
                               Container(
@@ -350,6 +362,7 @@ class _ServiceConfirmationWidgetState extends State<ServiceConfirmationWidget> {
                                           .labelLarge
                                           .override(
                                             fontFamily: 'Yantramanav',
+                                            letterSpacing: 0.0,
                                             fontWeight: FontWeight.normal,
                                           ),
                                       enabledBorder: OutlineInputBorder(
@@ -397,8 +410,10 @@ class _ServiceConfirmationWidgetState extends State<ServiceConfirmationWidget> {
                                         .labelLarge
                                         .override(
                                           fontFamily: 'Yantramanav',
+                                          letterSpacing: 0.0,
                                           fontWeight: FontWeight.normal,
                                         ),
+                                    minLines: null,
                                     validator: _model.textController1Validator
                                         .asValidator(context),
                                   ),
@@ -424,6 +439,7 @@ class _ServiceConfirmationWidgetState extends State<ServiceConfirmationWidget> {
                                             .labelLarge
                                             .override(
                                               fontFamily: 'Yantramanav',
+                                              letterSpacing: 0.0,
                                               fontWeight: FontWeight.normal,
                                             ),
                                         enabledBorder: OutlineInputBorder(
@@ -471,8 +487,10 @@ class _ServiceConfirmationWidgetState extends State<ServiceConfirmationWidget> {
                                           .labelLarge
                                           .override(
                                             fontFamily: 'Yantramanav',
+                                            letterSpacing: 0.0,
                                             fontWeight: FontWeight.normal,
                                           ),
+                                      minLines: null,
                                       validator: _model.textController2Validator
                                           .asValidator(context),
                                     ),
@@ -495,6 +513,7 @@ class _ServiceConfirmationWidgetState extends State<ServiceConfirmationWidget> {
                                     .override(
                                       fontFamily: 'Yantramanav',
                                       color: Colors.black,
+                                      letterSpacing: 0.0,
                                     ),
                               ),
                               Container(
@@ -515,6 +534,7 @@ class _ServiceConfirmationWidgetState extends State<ServiceConfirmationWidget> {
                                           .labelLarge
                                           .override(
                                             fontFamily: 'Yantramanav',
+                                            letterSpacing: 0.0,
                                             fontWeight: FontWeight.normal,
                                           ),
                                       enabledBorder: OutlineInputBorder(
@@ -562,6 +582,7 @@ class _ServiceConfirmationWidgetState extends State<ServiceConfirmationWidget> {
                                         .labelLarge
                                         .override(
                                           fontFamily: 'Yantramanav',
+                                          letterSpacing: 0.0,
                                           fontWeight: FontWeight.normal,
                                         ),
                                     maxLines: 5,
@@ -620,6 +641,7 @@ class _ServiceConfirmationWidgetState extends State<ServiceConfirmationWidget> {
                                       .override(
                                         fontFamily: 'Yantramanav',
                                         color: Colors.white,
+                                        letterSpacing: 0.0,
                                       ),
                                 ),
                               ),
@@ -646,6 +668,7 @@ class _ServiceConfirmationWidgetState extends State<ServiceConfirmationWidget> {
                                           fontFamily: 'Yantramanav',
                                           color: FlutterFlowTheme.of(context)
                                               .tertiary,
+                                          letterSpacing: 0.0,
                                         ),
                                   ),
                                 ),

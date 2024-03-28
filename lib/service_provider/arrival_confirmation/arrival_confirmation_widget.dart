@@ -82,6 +82,7 @@ class _ArrivalConfirmationWidgetState extends State<ArrivalConfirmationWidget> {
                             fontFamily: 'Yantramanav',
                             color: Colors.black,
                             fontSize: 24.0,
+                            letterSpacing: 0.0,
                           ),
                     ),
                   ),
@@ -118,6 +119,7 @@ class _ArrivalConfirmationWidgetState extends State<ArrivalConfirmationWidget> {
                                       fontFamily: 'Yantramanav',
                                       color: const Color(0xFF64748B),
                                       fontSize: 16.0,
+                                      letterSpacing: 0.0,
                                       fontWeight: FontWeight.w300,
                                     ),
                               ),
@@ -138,6 +140,7 @@ class _ArrivalConfirmationWidgetState extends State<ArrivalConfirmationWidget> {
                                 .override(
                                   fontFamily: 'Yantramanav',
                                   color: const Color(0xFF64748B),
+                                  letterSpacing: 0.0,
                                   fontWeight: FontWeight.w300,
                                 ),
                           ),
@@ -151,6 +154,7 @@ class _ArrivalConfirmationWidgetState extends State<ArrivalConfirmationWidget> {
                                     fontFamily: 'Yantramanav',
                                     color: const Color(0xFF64748B),
                                     fontSize: 16.0,
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.w300,
                                   ),
                         ),
@@ -192,6 +196,7 @@ class _ArrivalConfirmationWidgetState extends State<ArrivalConfirmationWidget> {
                                   .override(
                                     fontFamily: 'Yantramanav',
                                     color: const Color(0xFF0CCA4A),
+                                    letterSpacing: 0.0,
                                   ),
                             ),
                           ),
@@ -228,6 +233,7 @@ class _ArrivalConfirmationWidgetState extends State<ArrivalConfirmationWidget> {
                                     .override(
                                       fontFamily: 'Yantramanav',
                                       color: Colors.white,
+                                      letterSpacing: 0.0,
                                     ),
                               ),
                             ),

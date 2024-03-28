@@ -95,6 +95,7 @@ class _UserDetailsWidgetState extends State<UserDetailsWidget> {
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Yantramanav',
                             color: const Color(0xFF0F172A),
+                            letterSpacing: 0.0,
                             fontWeight: FontWeight.bold,
                           ),
                     ),
@@ -105,6 +106,7 @@ class _UserDetailsWidgetState extends State<UserDetailsWidget> {
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Yantramanav',
                             color: const Color(0xFF0F172A),
+                            letterSpacing: 0.0,
                           ),
                     ),
                   ),

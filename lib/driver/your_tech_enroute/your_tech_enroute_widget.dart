@@ -72,6 +72,7 @@ class _YourTechEnrouteWidgetState extends State<YourTechEnrouteWidget> {
                         fontFamily: 'Yantramanav',
                         color: Colors.black,
                         fontSize: 24.0,
+                        letterSpacing: 0.0,
                       ),
                 ),
               ),
@@ -198,6 +199,7 @@ class _YourTechEnrouteWidgetState extends State<YourTechEnrouteWidget> {
                                                           color:
                                                               const Color(0xFF0F172A),
                                                           fontSize: 16.0,
+                                                          letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.bold,
                                                         ),
@@ -249,6 +251,8 @@ class _YourTechEnrouteWidgetState extends State<YourTechEnrouteWidget> {
                                                                               const Color(0xFF64748B),
                                                                           fontSize:
                                                                               12.0,
+                                                                          letterSpacing:
+                                                                              0.0,
                                                                         ),
                                                                   ),
                                                                   Text(
@@ -263,6 +267,8 @@ class _YourTechEnrouteWidgetState extends State<YourTechEnrouteWidget> {
                                                                               const Color(0xFF64748B),
                                                                           fontSize:
                                                                               12.0,
+                                                                          letterSpacing:
+                                                                              0.0,
                                                                         ),
                                                                   ),
                                                                 ],
@@ -296,6 +302,8 @@ class _YourTechEnrouteWidgetState extends State<YourTechEnrouteWidget> {
                                                                             0xFF64748B),
                                                                         fontSize:
                                                                             12.0,
+                                                                        letterSpacing:
+                                                                            0.0,
                                                                       ),
                                                                 ),
                                                                 Text(
@@ -310,6 +318,8 @@ class _YourTechEnrouteWidgetState extends State<YourTechEnrouteWidget> {
                                                                             0xFF64748B),
                                                                         fontSize:
                                                                             12.0,
+                                                                        letterSpacing:
+                                                                            0.0,
                                                                         fontWeight:
                                                                             FontWeight.bold,
                                                                       ),
@@ -359,8 +369,12 @@ class _YourTechEnrouteWidgetState extends State<YourTechEnrouteWidget> {
                                 alignment: const AlignmentDirectional(0.0, 0.0),
                                 child: Text(
                                   'Message',
-                                  style:
-                                      FlutterFlowTheme.of(context).titleSmall,
+                                  style: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .override(
+                                        fontFamily: 'Yantramanav',
+                                        letterSpacing: 0.0,
+                                      ),
                                 ),
                               ),
                             ),

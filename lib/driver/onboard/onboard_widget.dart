@@ -112,6 +112,7 @@ class _OnboardWidgetState extends State<OnboardWidget> {
                         style: FlutterFlowTheme.of(context).labelLarge.override(
                               fontFamily: 'Yantramanav',
                               color: FlutterFlowTheme.of(context).primaryText,
+                              letterSpacing: 0.0,
                             ),
                       ),
                       Expanded(
@@ -129,6 +130,7 @@ class _OnboardWidgetState extends State<OnboardWidget> {
                                   .labelLarge
                                   .override(
                                     fontFamily: 'Yantramanav',
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.normal,
                                   ),
                               enabledBorder: OutlineInputBorder(
@@ -168,8 +170,10 @@ class _OnboardWidgetState extends State<OnboardWidget> {
                                 .labelLarge
                                 .override(
                                   fontFamily: 'Yantramanav',
+                                  letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,
                                 ),
+                            minLines: null,
                             validator: _model.fullnameControllerValidator
                                 .asValidator(context),
                           ),
@@ -191,6 +195,7 @@ class _OnboardWidgetState extends State<OnboardWidget> {
                         style: FlutterFlowTheme.of(context).labelLarge.override(
                               fontFamily: 'Yantramanav',
                               color: FlutterFlowTheme.of(context).primaryText,
+                              letterSpacing: 0.0,
                             ),
                       ),
                       Flexible(
@@ -217,8 +222,12 @@ class _OnboardWidgetState extends State<OnboardWidget> {
                                       () => _model.dropDownValue = val),
                                   width: 62.0,
                                   height: 50.0,
-                                  textStyle:
-                                      FlutterFlowTheme.of(context).bodyMedium,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Yantramanav',
+                                        letterSpacing: 0.0,
+                                      ),
                                   hintText: '+1',
                                   icon: Icon(
                                     Icons.keyboard_arrow_down_rounded,
@@ -253,6 +262,7 @@ class _OnboardWidgetState extends State<OnboardWidget> {
                                             .labelLarge
                                             .override(
                                               fontFamily: 'Yantramanav',
+                                              letterSpacing: 0.0,
                                               fontWeight: FontWeight.normal,
                                             ),
                                         enabledBorder: InputBorder.none,
@@ -267,8 +277,10 @@ class _OnboardWidgetState extends State<OnboardWidget> {
                                           .labelLarge
                                           .override(
                                             fontFamily: 'Yantramanav',
+                                            letterSpacing: 0.0,
                                             fontWeight: FontWeight.normal,
                                           ),
+                                      minLines: null,
                                       keyboardType: TextInputType.phone,
                                       validator: _model.textController2Validator
                                           .asValidator(context),
@@ -405,7 +417,11 @@ class _OnboardWidgetState extends State<OnboardWidget> {
                         alignment: const AlignmentDirectional(0.0, 0.0),
                         child: Text(
                           'Proceed',
-                          style: FlutterFlowTheme.of(context).titleSmall,
+                          style:
+                              FlutterFlowTheme.of(context).titleSmall.override(
+                                    fontFamily: 'Yantramanav',
+                                    letterSpacing: 0.0,
+                                  ),
                         ),
                       ),
                     ),
@@ -438,6 +454,7 @@ class _OnboardWidgetState extends State<OnboardWidget> {
                                   .override(
                                     fontFamily: 'Yantramanav',
                                     color: const Color(0xFF0F172A),
+                                    letterSpacing: 0.0,
                                   ),
                             ),
                           ),
@@ -454,6 +471,7 @@ class _OnboardWidgetState extends State<OnboardWidget> {
                                   .override(
                                     fontFamily: 'Yantramanav',
                                     color: const Color(0xFF0CCA4A),
+                                    letterSpacing: 0.0,
                                   ),
                             ),
                           ),

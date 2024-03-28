@@ -75,6 +75,7 @@ class _DashboardDriverWidgetState extends State<DashboardDriverWidget> {
                       fontFamily: 'Yantramanav',
                       color: const Color(0xFF1E293B),
                       fontSize: 30.0,
+                      letterSpacing: 0.0,
                       fontWeight: FontWeight.bold,
                     ),
               ),
@@ -156,6 +157,7 @@ class _DashboardDriverWidgetState extends State<DashboardDriverWidget> {
                                               .override(
                                                 fontFamily: 'Yantramanav',
                                                 color: Colors.black,
+                                                letterSpacing: 0.0,
                                               ),
                                         ),
                                         StreamBuilder<List<ServicesRecord>>(
@@ -326,6 +328,7 @@ class _DashboardDriverWidgetState extends State<DashboardDriverWidget> {
                                                                               .override(
                                                                                 fontFamily: 'Yantramanav',
                                                                                 color: FlutterFlowTheme.of(context).primaryText,
+                                                                                letterSpacing: 0.0,
                                                                               ),
                                                                         ),
                                                                       ].divide(const SizedBox(
@@ -423,6 +426,7 @@ class _DashboardDriverWidgetState extends State<DashboardDriverWidget> {
                                                 .override(
                                                   fontFamily: 'Yantramanav',
                                                   color: Colors.black,
+                                                  letterSpacing: 0.0,
                                                 ),
                                           ),
                                           Container(
@@ -449,6 +453,7 @@ class _DashboardDriverWidgetState extends State<DashboardDriverWidget> {
                                                       .override(
                                                         fontFamily:
                                                             'Yantramanav',
+                                                        letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,
                                                       ),
@@ -514,6 +519,7 @@ class _DashboardDriverWidgetState extends State<DashboardDriverWidget> {
                                                         .override(
                                                           fontFamily:
                                                               'Yantramanav',
+                                                          letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.normal,
                                                         ),
@@ -617,7 +623,11 @@ class _DashboardDriverWidgetState extends State<DashboardDriverWidget> {
                                           child: Text(
                                             'Submit',
                                             style: FlutterFlowTheme.of(context)
-                                                .titleSmall,
+                                                .titleSmall
+                                                .override(
+                                                  fontFamily: 'Yantramanav',
+                                                  letterSpacing: 0.0,
+                                                ),
                                           ),
                                         ),
                                       ),

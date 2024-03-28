@@ -78,6 +78,7 @@ class _CheckYourEmailWidgetState extends State<CheckYourEmailWidget> {
                                     fontFamily: 'Yantramanav',
                                     color: const Color(0xFF0F172A),
                                     fontSize: 18.0,
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.bold,
                                   ),
                         ),
@@ -89,6 +90,7 @@ class _CheckYourEmailWidgetState extends State<CheckYourEmailWidget> {
                               .override(
                                 fontFamily: 'Yantramanav',
                                 color: FlutterFlowTheme.of(context).primaryText,
+                                letterSpacing: 0.0,
                               ),
                         ),
                       ].divide(const SizedBox(height: 8.0)),
@@ -105,6 +107,7 @@ class _CheckYourEmailWidgetState extends State<CheckYourEmailWidget> {
                           fontFamily: 'Yantramanav',
                           color: const Color(0xFF0CCA4A),
                           fontSize: 16.0,
+                          letterSpacing: 0.0,
                           fontWeight: FontWeight.normal,
                         ),
                   ),
@@ -122,6 +125,7 @@ class _CheckYourEmailWidgetState extends State<CheckYourEmailWidget> {
                               FlutterFlowTheme.of(context).labelLarge.override(
                                     fontFamily: 'Yantramanav',
                                     color: const Color(0xFF0F172A),
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.normal,
                                   ),
                         ),
@@ -131,11 +135,15 @@ class _CheckYourEmailWidgetState extends State<CheckYourEmailWidget> {
                               FlutterFlowTheme.of(context).labelLarge.override(
                                     fontFamily: 'Yantramanav',
                                     color: const Color(0xFF0CCA4A),
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.normal,
                                   ),
                         )
                       ],
-                      style: FlutterFlowTheme.of(context).bodyMedium,
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily: 'Yantramanav',
+                            letterSpacing: 0.0,
+                          ),
                     ),
                     textAlign: TextAlign.center,
                   ),

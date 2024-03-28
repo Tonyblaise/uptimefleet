@@ -47,6 +47,9 @@ class UptimeFleetAppGroup {
   static UpdateTechnicianCall updateTechnicianCall = UpdateTechnicianCall();
   static UpdateTechnicianPositionCall updateTechnicianPositionCall =
       UpdateTechnicianPositionCall();
+  static UpdateTechnicianPositionUsingCurrentPostionCall
+      updateTechnicianPositionUsingCurrentPostionCall =
+      UpdateTechnicianPositionUsingCurrentPostionCall();
 }
 
 class LogUserInCall {
@@ -444,16 +447,16 @@ class RejectRequestCall {
 
 class UpdateRequestPositionCall {
   Future<ApiCallResponse> call({
-    double? lat = -1.3266,
-    double? lng = 36.8420,
-    String? requestId = '1647908011754x563072280262082560',
+    String? lat = '-1.3266',
+    String? lng = '36.8420',
+    String? technician = '1647908011754x563072280262082560',
     String? accessToken = '1707139937267x678517623997244500',
   }) async {
     final ffApiRequestBody = '''
 {
-  "lat": $lat,
-  "lng": $lng,
-  "request_id": "$requestId"
+  "lat":"$lat",
+  "lng": "$lng",
+  "request_id": "<request_id>"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'Update request position',
@@ -1512,6 +1515,36 @@ class UpdateTechnicianPositionCall {
     return ApiManager.instance.makeApiCall(
       callName: 'Update technician position',
       apiUrl: '${UptimeFleetAppGroup.baseUrl}/update_position',
+      callType: ApiCallType.POST,
+      headers: {
+        'Authorization': 'Bearer $accessToken',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class UpdateTechnicianPositionUsingCurrentPostionCall {
+  Future<ApiCallResponse> call({
+    String? technicianId = '1711634888940x294197895639990000',
+    String? position = 'LatLng(lat: -1.1570327, lng: 36.8879157)',
+    String? accessToken = '1707139937267x678517623997244500',
+  }) async {
+    final ffApiRequestBody = '''
+{
+  "id": "$technicianId",
+  "position": "$position"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'Update technician position  using current postion',
+      apiUrl: '${UptimeFleetAppGroup.baseUrl}/update_position_current_position',
       callType: ApiCallType.POST,
       headers: {
         'Authorization': 'Bearer $accessToken',

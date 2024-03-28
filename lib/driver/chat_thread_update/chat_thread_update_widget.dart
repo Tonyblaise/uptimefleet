@@ -96,8 +96,12 @@ class _ChatThreadUpdateWidgetState extends State<ChatThreadUpdateWidget> {
                                       widget.timestamp,
                                       'just now',
                                     ),
-                                    style:
-                                        FlutterFlowTheme.of(context).labelSmall,
+                                    style: FlutterFlowTheme.of(context)
+                                        .labelSmall
+                                        .override(
+                                          fontFamily: 'Yantramanav',
+                                          letterSpacing: 0.0,
+                                        ),
                                   ),
                                 ].divide(const SizedBox(width: 4.0)),
                               ),
@@ -109,7 +113,10 @@ class _ChatThreadUpdateWidgetState extends State<ChatThreadUpdateWidget> {
                                   BoxShadow(
                                     blurRadius: 3.0,
                                     color: Color(0x33000000),
-                                    offset: Offset(0.0, 1.0),
+                                    offset: Offset(
+                                      0.0,
+                                      1.0,
+                                    ),
                                   )
                                 ],
                                 borderRadius: const BorderRadius.only(
@@ -141,6 +148,7 @@ class _ChatThreadUpdateWidgetState extends State<ChatThreadUpdateWidget> {
                                           .override(
                                             fontFamily: 'Yantramanav',
                                             color: const Color(0xFF111827),
+                                            letterSpacing: 0.0,
                                             lineHeight: 1.5,
                                           ),
                                     )),
@@ -223,7 +231,11 @@ class _ChatThreadUpdateWidgetState extends State<ChatThreadUpdateWidget> {
                             widget.timestamp,
                             'just now',
                           ),
-                          style: FlutterFlowTheme.of(context).labelSmall,
+                          style:
+                              FlutterFlowTheme.of(context).labelSmall.override(
+                                    fontFamily: 'Yantramanav',
+                                    letterSpacing: 0.0,
+                                  ),
                         ),
                       ),
                       Container(
@@ -233,7 +245,10 @@ class _ChatThreadUpdateWidgetState extends State<ChatThreadUpdateWidget> {
                             BoxShadow(
                               blurRadius: 3.0,
                               color: Color(0x33000000),
-                              offset: Offset(0.0, 1.0),
+                              offset: Offset(
+                                0.0,
+                                1.0,
+                              ),
                             )
                           ],
                           borderRadius: const BorderRadius.only(
@@ -258,7 +273,12 @@ class _ChatThreadUpdateWidgetState extends State<ChatThreadUpdateWidget> {
                                   widget.messageText,
                                   '.',
                                 ),
-                                style: FlutterFlowTheme.of(context).titleSmall,
+                                style: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: 'Yantramanav',
+                                      letterSpacing: 0.0,
+                                    ),
                               )),
                               if (functions
                                       .checkNullImage(widget.messageImage) ==

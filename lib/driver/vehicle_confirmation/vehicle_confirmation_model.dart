@@ -66,8 +66,6 @@ class VehicleConfirmationModel
   // Stores action output result for [Backend Call - API (Create a request)] action in Container widget.
   ApiCallResponse? apiResulty8v;
 
-  /// Initialization and disposal methods.
-
   @override
   void initState(BuildContext context) {
     textController1Validator = _textController1Validator;
@@ -83,8 +81,4 @@ class VehicleConfirmationModel
     textFieldFocusNode2?.dispose();
     textController2?.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

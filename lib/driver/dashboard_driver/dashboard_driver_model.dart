@@ -24,8 +24,6 @@ class DashboardDriverModel extends FlutterFlowModel<DashboardDriverWidget> {
   // Model for serviceUpdatesComponent component.
   late ServiceUpdatesComponentModel serviceUpdatesComponentModel;
 
-  /// Initialization and disposal methods.
-
   @override
   void initState(BuildContext context) {
     userDetailsModel = createModel(context, () => UserDetailsModel());
@@ -44,8 +42,4 @@ class DashboardDriverModel extends FlutterFlowModel<DashboardDriverWidget> {
 
     serviceUpdatesComponentModel.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

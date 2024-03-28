@@ -89,9 +89,9 @@ Future mainAction(
           accuracy: LocationAccuracy.high,
           activityType: ActivityType.fitness,
           distanceFilter: 100,
-          pauseLocationUpdatesAutomatically: true,
+          pauseLocationUpdatesAutomatically: false,
           // Only set to true if our app will be started up in the background.
-          showBackgroundLocationIndicator: false,
+          showBackgroundLocationIndicator: true,
         );
       } else {
         locationSettings = LocationSettings(

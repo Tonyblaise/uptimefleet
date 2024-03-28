@@ -66,3 +66,8 @@ LatLng converLatLngStringToLatLng(
   // convert lat and lng string to LatLng
   return LatLng(lat, lng);
 }
+
+String combineTextNames(List<String> text) {
+  // function to join a list of texts to a single string using ,
+  return text.join(',');
+}

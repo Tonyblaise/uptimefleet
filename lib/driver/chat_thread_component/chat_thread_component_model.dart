@@ -39,8 +39,6 @@ class ChatThreadComponentModel
   // Stores action output result for [Backend Call - API (Create message)] action in IconButton widget.
   ApiCallResponse? apiResult559;
 
-  /// Initialization and disposal methods.
-
   @override
   void initState(BuildContext context) {
     chatThreadUpdateModels =
@@ -55,10 +53,7 @@ class ChatThreadComponentModel
     textController?.dispose();
   }
 
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
-
+  /// Additional helper methods.
   Future waitForApiRequestCompleted({
     double minWait = 0,
     double maxWait = double.infinity,
