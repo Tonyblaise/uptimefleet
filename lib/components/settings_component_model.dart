@@ -9,8 +9,6 @@ class SettingsComponentModel extends FlutterFlowModel<SettingsComponentWidget> {
   // Model for userDetails component.
   late UserDetailsModel userDetailsModel;
 
-  /// Initialization and disposal methods.
-
   @override
   void initState(BuildContext context) {
     userDetailsModel = createModel(context, () => UserDetailsModel());
@@ -20,8 +18,4 @@ class SettingsComponentModel extends FlutterFlowModel<SettingsComponentWidget> {
   void dispose() {
     userDetailsModel.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

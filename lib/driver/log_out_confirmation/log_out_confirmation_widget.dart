@@ -3,7 +3,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:provider/provider.dart';
 import 'log_out_confirmation_model.dart';
 export 'log_out_confirmation_model.dart';
 
@@ -41,8 +40,6 @@ class _LogOutConfirmationWidgetState extends State<LogOutConfirmationWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Align(
       alignment: const AlignmentDirectional(0.0, 0.0),
       child: Padding(
@@ -92,6 +89,7 @@ class _LogOutConfirmationWidgetState extends State<LogOutConfirmationWidget> {
                                     fontFamily: 'Yantramanav',
                                     color: Colors.black,
                                     fontSize: 24.0,
+                                    letterSpacing: 0.0,
                                   ),
                         ),
                       ),
@@ -119,8 +117,7 @@ class _LogOutConfirmationWidgetState extends State<LogOutConfirmationWidget> {
                           children: [
                             Flexible(
                               child: RichText(
-                                textScaleFactor:
-                                    MediaQuery.of(context).textScaleFactor,
+                                textScaler: MediaQuery.of(context).textScaler,
                                 text: TextSpan(
                                   children: [
                                     TextSpan(
@@ -131,6 +128,7 @@ class _LogOutConfirmationWidgetState extends State<LogOutConfirmationWidget> {
                                             fontFamily: 'Yantramanav',
                                             color: const Color(0xFF64748B),
                                             fontSize: 16.0,
+                                            letterSpacing: 0.0,
                                             fontWeight: FontWeight.w300,
                                           ),
                                     ),
@@ -151,6 +149,7 @@ class _LogOutConfirmationWidgetState extends State<LogOutConfirmationWidget> {
                                       .override(
                                         fontFamily: 'Yantramanav',
                                         color: const Color(0xFF64748B),
+                                        letterSpacing: 0.0,
                                         fontWeight: FontWeight.w300,
                                       ),
                                 ),
@@ -166,6 +165,7 @@ class _LogOutConfirmationWidgetState extends State<LogOutConfirmationWidget> {
                                     fontFamily: 'Yantramanav',
                                     color: const Color(0xFF64748B),
                                     fontSize: 16.0,
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.w300,
                                   ),
                             ),
@@ -217,6 +217,7 @@ class _LogOutConfirmationWidgetState extends State<LogOutConfirmationWidget> {
                                         .override(
                                           fontFamily: 'Yantramanav',
                                           color: const Color(0xFF0CCA4A),
+                                          letterSpacing: 0.0,
                                         ),
                                   ),
                                 ),
@@ -234,15 +235,6 @@ class _LogOutConfirmationWidgetState extends State<LogOutConfirmationWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
-                                  setState(() {
-                                    FFAppState().deleteRequestId();
-                                    FFAppState().requestId = '';
-
-                                    FFAppState()
-                                        .deleteDriverTechnicianMessageThread();
-                                    FFAppState().driverTechnicianMessageThread =
-                                        '';
-                                  });
                                   GoRouter.of(context).prepareAuthEvent();
                                   await authManager.signOut();
                                   GoRouter.of(context).clearRedirectLocation();
@@ -277,6 +269,7 @@ class _LogOutConfirmationWidgetState extends State<LogOutConfirmationWidget> {
                                           .override(
                                             fontFamily: 'Yantramanav',
                                             color: Colors.white,
+                                            letterSpacing: 0.0,
                                           ),
                                     ),
                                   ),

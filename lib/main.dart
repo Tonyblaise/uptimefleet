@@ -16,6 +16,7 @@ import 'index.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  GoRouter.optionURLReflectsImperativeAPIs = true;
   usePathUrlStrategy();
   await initFirebase();
 
@@ -97,6 +98,7 @@ class _MyAppState extends State<MyApp> {
       ],
       theme: ThemeData(
         brightness: Brightness.light,
+        useMaterial3: false,
       ),
       themeMode: _themeMode,
       routerConfig: _router,
@@ -132,7 +134,6 @@ class _NavBarPageState extends State<NavBarPage> {
       'dashboardDriver': const DashboardDriverWidget(),
       'driverChat': const DriverChatWidget(),
       'settings': const SettingsWidget(),
-      'technicianChat': const TechnicianChatWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
@@ -173,14 +174,6 @@ class _NavBarPageState extends State<NavBarPage> {
               size: 24.0,
             ),
             label: 'Settings',
-            tooltip: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.chat_outlined,
-              size: 24.0,
-            ),
-            label: 'messages',
             tooltip: '',
           )
         ],

@@ -4,7 +4,6 @@ import '/flutter_flow/permissions_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'allow_location_model.dart';
 export 'allow_location_model.dart';
 
@@ -43,8 +42,6 @@ class _AllowLocationWidgetState extends State<AllowLocationWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Align(
       alignment: const AlignmentDirectional(0.0, 0.0),
       child: Padding(
@@ -84,6 +81,7 @@ class _AllowLocationWidgetState extends State<AllowLocationWidget> {
                             fontFamily: 'Yantramanav',
                             color: Colors.black,
                             fontSize: 24.0,
+                            letterSpacing: 0.0,
                           ),
                     ),
                   ),
@@ -108,7 +106,7 @@ class _AllowLocationWidgetState extends State<AllowLocationWidget> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       RichText(
-                        textScaleFactor: MediaQuery.of(context).textScaleFactor,
+                        textScaler: MediaQuery.of(context).textScaler,
                         text: TextSpan(
                           children: [
                             TextSpan(
@@ -119,11 +117,12 @@ class _AllowLocationWidgetState extends State<AllowLocationWidget> {
                                     fontFamily: 'Yantramanav',
                                     color: const Color(0xFF64748B),
                                     fontSize: 16.0,
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.w300,
                                   ),
                             ),
                             const TextSpan(
-                              text: '"UpTime"',
+                              text: '\"UpTime\"',
                               style: TextStyle(
                                 color: Color(0xFF64748B),
                                 fontWeight: FontWeight.bold,
@@ -141,7 +140,11 @@ class _AllowLocationWidgetState extends State<AllowLocationWidget> {
                               ),
                             )
                           ],
-                          style: FlutterFlowTheme.of(context).bodyMedium,
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Yantramanav',
+                                    letterSpacing: 0.0,
+                                  ),
                         ),
                       ),
                       Text(
@@ -151,6 +154,7 @@ class _AllowLocationWidgetState extends State<AllowLocationWidget> {
                               fontFamily: 'Yantramanav',
                               color: const Color(0xFF64748B),
                               fontSize: 16.0,
+                              letterSpacing: 0.0,
                               fontWeight: FontWeight.w300,
                             ),
                       ),
@@ -212,6 +216,7 @@ class _AllowLocationWidgetState extends State<AllowLocationWidget> {
                                           .override(
                                             fontFamily: 'Yantramanav',
                                             color: const Color(0xFF0CCA4A),
+                                            letterSpacing: 0.0,
                                             fontWeight: FontWeight.w500,
                                           ),
                                     ),
@@ -259,8 +264,12 @@ class _AllowLocationWidgetState extends State<AllowLocationWidget> {
                                   alignment: const AlignmentDirectional(0.0, 0.0),
                                   child: Text(
                                     'Always allow',
-                                    style:
-                                        FlutterFlowTheme.of(context).titleSmall,
+                                    style: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .override(
+                                          fontFamily: 'Yantramanav',
+                                          letterSpacing: 0.0,
+                                        ),
                                   ),
                                 ),
                               ),

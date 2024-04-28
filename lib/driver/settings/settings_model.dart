@@ -10,8 +10,6 @@ class SettingsModel extends FlutterFlowModel<SettingsWidget> {
   // Model for settingsComponent component.
   late SettingsComponentModel settingsComponentModel;
 
-  /// Initialization and disposal methods.
-
   @override
   void initState(BuildContext context) {
     settingsComponentModel =
@@ -23,8 +21,4 @@ class SettingsModel extends FlutterFlowModel<SettingsWidget> {
     unfocusNode.dispose();
     settingsComponentModel.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

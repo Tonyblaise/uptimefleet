@@ -3,7 +3,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/service_provider/select_vehicle/select_vehicle_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'empty_state_simple_model.dart';
 export 'empty_state_simple_model.dart';
 
@@ -52,8 +51,6 @@ class _EmptyStateSimpleWidgetState extends State<EmptyStateSimpleWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Align(
       alignment: const AlignmentDirectional(0.0, -1.0),
       child: Column(
@@ -69,6 +66,7 @@ class _EmptyStateSimpleWidgetState extends State<EmptyStateSimpleWidget> {
               style: FlutterFlowTheme.of(context).headlineSmall.override(
                     fontFamily: 'Yantramanav',
                     color: FlutterFlowTheme.of(context).primaryText,
+                    letterSpacing: 0.0,
                   ),
             ),
           ),
@@ -100,7 +98,10 @@ class _EmptyStateSimpleWidgetState extends State<EmptyStateSimpleWidget> {
               child: Text(
                 widget.body,
                 textAlign: TextAlign.center,
-                style: FlutterFlowTheme.of(context).labelMedium,
+                style: FlutterFlowTheme.of(context).labelMedium.override(
+                      fontFamily: 'Yantramanav',
+                      letterSpacing: 0.0,
+                    ),
               ),
             ),
           ),

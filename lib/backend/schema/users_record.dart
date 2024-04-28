@@ -60,20 +60,6 @@ class UsersRecord extends FirestoreRecord {
   String get fullName => _fullName ?? '';
   bool hasFullName() => _fullName != null;
 
-  // "technicianServiceProviderMessageThreadId" field.
-  String? _technicianServiceProviderMessageThreadId;
-  String get technicianServiceProviderMessageThreadId =>
-      _technicianServiceProviderMessageThreadId ?? '';
-  bool hasTechnicianServiceProviderMessageThreadId() =>
-      _technicianServiceProviderMessageThreadId != null;
-
-  // "technicianSupportMessageThreadId" field.
-  String? _technicianSupportMessageThreadId;
-  String get technicianSupportMessageThreadId =>
-      _technicianSupportMessageThreadId ?? '';
-  bool hasTechnicianSupportMessageThreadId() =>
-      _technicianSupportMessageThreadId != null;
-
   // "driverFleetManagerMessageThreadId" field.
   String? _driverFleetManagerMessageThreadId;
   String get driverFleetManagerMessageThreadId =>
@@ -113,6 +99,61 @@ class UsersRecord extends FirestoreRecord {
   String get activeVehicle => _activeVehicle ?? '';
   bool hasActiveVehicle() => _activeVehicle != null;
 
+  // "fcmToken" field.
+  String? _fcmToken;
+  String get fcmToken => _fcmToken ?? '';
+  bool hasFcmToken() => _fcmToken != null;
+
+  // "shortDescription" field.
+  String? _shortDescription;
+  String get shortDescription => _shortDescription ?? '';
+  bool hasShortDescription() => _shortDescription != null;
+
+  // "last_active_time" field.
+  DateTime? _lastActiveTime;
+  DateTime? get lastActiveTime => _lastActiveTime;
+  bool hasLastActiveTime() => _lastActiveTime != null;
+
+  // "role" field.
+  String? _role;
+  String get role => _role ?? '';
+  bool hasRole() => _role != null;
+
+  // "title" field.
+  String? _title;
+  String get title => _title ?? '';
+  bool hasTitle() => _title != null;
+
+  // "activeRequest" field.
+  DocumentReference? _activeRequest;
+  DocumentReference? get activeRequest => _activeRequest;
+  bool hasActiveRequest() => _activeRequest != null;
+
+  // "technicianLastUpdatedLocation" field.
+  LatLng? _technicianLastUpdatedLocation;
+  LatLng? get technicianLastUpdatedLocation => _technicianLastUpdatedLocation;
+  bool hasTechnicianLastUpdatedLocation() =>
+      _technicianLastUpdatedLocation != null;
+
+  // "activeRequestBubble" field.
+  String? _activeRequestBubble;
+  String get activeRequestBubble => _activeRequestBubble ?? '';
+  bool hasActiveRequestBubble() => _activeRequestBubble != null;
+
+  // "driverSupportMessageThreadIdFirebase" field.
+  DocumentReference? _driverSupportMessageThreadIdFirebase;
+  DocumentReference? get driverSupportMessageThreadIdFirebase =>
+      _driverSupportMessageThreadIdFirebase;
+  bool hasDriverSupportMessageThreadIdFirebase() =>
+      _driverSupportMessageThreadIdFirebase != null;
+
+  // "driverFleetManagerMessageThreadIdFirebaseId" field.
+  DocumentReference? _driverFleetManagerMessageThreadIdFirebaseId;
+  DocumentReference? get driverFleetManagerMessageThreadIdFirebaseId =>
+      _driverFleetManagerMessageThreadIdFirebaseId;
+  bool hasDriverFleetManagerMessageThreadIdFirebaseId() =>
+      _driverFleetManagerMessageThreadIdFirebaseId != null;
+
   void _initializeFields() {
     _companyId = snapshotData['companyId'] as String?;
     _companyName = snapshotData['companyName'] as String?;
@@ -123,10 +164,6 @@ class UsersRecord extends FirestoreRecord {
     _photoUrl = snapshotData['photo_url'] as String?;
     _uid = snapshotData['uid'] as String?;
     _fullName = snapshotData['fullName'] as String?;
-    _technicianServiceProviderMessageThreadId =
-        snapshotData['technicianServiceProviderMessageThreadId'] as String?;
-    _technicianSupportMessageThreadId =
-        snapshotData['technicianSupportMessageThreadId'] as String?;
     _driverFleetManagerMessageThreadId =
         snapshotData['driverFleetManagerMessageThreadId'] as String?;
     _driverSupportMessageThreadId =
@@ -136,6 +173,21 @@ class UsersRecord extends FirestoreRecord {
     _phoneNumber = snapshotData['phone_number'] as String?;
     _onDuty = snapshotData['onDuty'] as bool?;
     _activeVehicle = snapshotData['activeVehicle'] as String?;
+    _fcmToken = snapshotData['fcmToken'] as String?;
+    _shortDescription = snapshotData['shortDescription'] as String?;
+    _lastActiveTime = snapshotData['last_active_time'] as DateTime?;
+    _role = snapshotData['role'] as String?;
+    _title = snapshotData['title'] as String?;
+    _activeRequest = snapshotData['activeRequest'] as DocumentReference?;
+    _technicianLastUpdatedLocation =
+        snapshotData['technicianLastUpdatedLocation'] as LatLng?;
+    _activeRequestBubble = snapshotData['activeRequestBubble'] as String?;
+    _driverSupportMessageThreadIdFirebase =
+        snapshotData['driverSupportMessageThreadIdFirebase']
+            as DocumentReference?;
+    _driverFleetManagerMessageThreadIdFirebaseId =
+        snapshotData['driverFleetManagerMessageThreadIdFirebaseId']
+            as DocumentReference?;
   }
 
   static CollectionReference get collection =>
@@ -181,8 +233,6 @@ Map<String, dynamic> createUsersRecordData({
   String? photoUrl,
   String? uid,
   String? fullName,
-  String? technicianServiceProviderMessageThreadId,
-  String? technicianSupportMessageThreadId,
   String? driverFleetManagerMessageThreadId,
   String? driverSupportMessageThreadId,
   DateTime? createdTime,
@@ -190,6 +240,16 @@ Map<String, dynamic> createUsersRecordData({
   String? phoneNumber,
   bool? onDuty,
   String? activeVehicle,
+  String? fcmToken,
+  String? shortDescription,
+  DateTime? lastActiveTime,
+  String? role,
+  String? title,
+  DocumentReference? activeRequest,
+  LatLng? technicianLastUpdatedLocation,
+  String? activeRequestBubble,
+  DocumentReference? driverSupportMessageThreadIdFirebase,
+  DocumentReference? driverFleetManagerMessageThreadIdFirebaseId,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -202,9 +262,6 @@ Map<String, dynamic> createUsersRecordData({
       'photo_url': photoUrl,
       'uid': uid,
       'fullName': fullName,
-      'technicianServiceProviderMessageThreadId':
-          technicianServiceProviderMessageThreadId,
-      'technicianSupportMessageThreadId': technicianSupportMessageThreadId,
       'driverFleetManagerMessageThreadId': driverFleetManagerMessageThreadId,
       'driverSupportMessageThreadId': driverSupportMessageThreadId,
       'created_time': createdTime,
@@ -212,6 +269,18 @@ Map<String, dynamic> createUsersRecordData({
       'phone_number': phoneNumber,
       'onDuty': onDuty,
       'activeVehicle': activeVehicle,
+      'fcmToken': fcmToken,
+      'shortDescription': shortDescription,
+      'last_active_time': lastActiveTime,
+      'role': role,
+      'title': title,
+      'activeRequest': activeRequest,
+      'technicianLastUpdatedLocation': technicianLastUpdatedLocation,
+      'activeRequestBubble': activeRequestBubble,
+      'driverSupportMessageThreadIdFirebase':
+          driverSupportMessageThreadIdFirebase,
+      'driverFleetManagerMessageThreadIdFirebaseId':
+          driverFleetManagerMessageThreadIdFirebaseId,
     }.withoutNulls,
   );
 
@@ -232,10 +301,6 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e1?.photoUrl == e2?.photoUrl &&
         e1?.uid == e2?.uid &&
         e1?.fullName == e2?.fullName &&
-        e1?.technicianServiceProviderMessageThreadId ==
-            e2?.technicianServiceProviderMessageThreadId &&
-        e1?.technicianSupportMessageThreadId ==
-            e2?.technicianSupportMessageThreadId &&
         e1?.driverFleetManagerMessageThreadId ==
             e2?.driverFleetManagerMessageThreadId &&
         e1?.driverSupportMessageThreadId == e2?.driverSupportMessageThreadId &&
@@ -243,7 +308,20 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e1?.displayName == e2?.displayName &&
         e1?.phoneNumber == e2?.phoneNumber &&
         e1?.onDuty == e2?.onDuty &&
-        e1?.activeVehicle == e2?.activeVehicle;
+        e1?.activeVehicle == e2?.activeVehicle &&
+        e1?.fcmToken == e2?.fcmToken &&
+        e1?.shortDescription == e2?.shortDescription &&
+        e1?.lastActiveTime == e2?.lastActiveTime &&
+        e1?.role == e2?.role &&
+        e1?.title == e2?.title &&
+        e1?.activeRequest == e2?.activeRequest &&
+        e1?.technicianLastUpdatedLocation ==
+            e2?.technicianLastUpdatedLocation &&
+        e1?.activeRequestBubble == e2?.activeRequestBubble &&
+        e1?.driverSupportMessageThreadIdFirebase ==
+            e2?.driverSupportMessageThreadIdFirebase &&
+        e1?.driverFleetManagerMessageThreadIdFirebaseId ==
+            e2?.driverFleetManagerMessageThreadIdFirebaseId;
   }
 
   @override
@@ -257,15 +335,23 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.photoUrl,
         e?.uid,
         e?.fullName,
-        e?.technicianServiceProviderMessageThreadId,
-        e?.technicianSupportMessageThreadId,
         e?.driverFleetManagerMessageThreadId,
         e?.driverSupportMessageThreadId,
         e?.createdTime,
         e?.displayName,
         e?.phoneNumber,
         e?.onDuty,
-        e?.activeVehicle
+        e?.activeVehicle,
+        e?.fcmToken,
+        e?.shortDescription,
+        e?.lastActiveTime,
+        e?.role,
+        e?.title,
+        e?.activeRequest,
+        e?.technicianLastUpdatedLocation,
+        e?.activeRequestBubble,
+        e?.driverSupportMessageThreadIdFirebase,
+        e?.driverFleetManagerMessageThreadIdFirebaseId
       ]);
 
   @override

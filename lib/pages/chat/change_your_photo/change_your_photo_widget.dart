@@ -2,7 +2,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:provider/provider.dart';
 import 'change_your_photo_model.dart';
 export 'change_your_photo_model.dart';
 
@@ -35,8 +34,6 @@ class _ChangeYourPhotoWidgetState extends State<ChangeYourPhotoWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -91,6 +88,7 @@ class _ChangeYourPhotoWidgetState extends State<ChangeYourPhotoWidget> {
                                   fontFamily: 'Yantramanav',
                                   color: Colors.black,
                                   fontSize: 24.0,
+                                  letterSpacing: 0.0,
                                 ),
                           ),
                         ),
@@ -113,6 +111,7 @@ class _ChangeYourPhotoWidgetState extends State<ChangeYourPhotoWidget> {
                                     fontFamily: 'Yantramanav',
                                     color: FlutterFlowTheme.of(context)
                                         .primaryText,
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.bold,
                                   ),
                             ),
@@ -161,6 +160,7 @@ class _ChangeYourPhotoWidgetState extends State<ChangeYourPhotoWidget> {
                                                     fontFamily: 'Yantramanav',
                                                     color: const Color(0xFF64748B),
                                                     fontSize: 20.0,
+                                                    letterSpacing: 0.0,
                                                     fontWeight: FontWeight.bold,
                                                   ),
                                             ),
@@ -174,6 +174,7 @@ class _ChangeYourPhotoWidgetState extends State<ChangeYourPhotoWidget> {
                                                     fontFamily: 'Yantramanav',
                                                     color: const Color(0xFF64748B),
                                                     fontSize: 16.0,
+                                                    letterSpacing: 0.0,
                                                     fontWeight: FontWeight.w300,
                                                   ),
                                             ),
@@ -226,6 +227,7 @@ class _ChangeYourPhotoWidgetState extends State<ChangeYourPhotoWidget> {
                                             .override(
                                               fontFamily: 'Yantramanav',
                                               color: Colors.white,
+                                              letterSpacing: 0.0,
                                             ),
                                       ),
                                     ),
@@ -253,6 +255,7 @@ class _ChangeYourPhotoWidgetState extends State<ChangeYourPhotoWidget> {
                                           .override(
                                             fontFamily: 'Yantramanav',
                                             color: const Color(0xFF0CCA4A),
+                                            letterSpacing: 0.0,
                                           ),
                                     ),
                                   ),

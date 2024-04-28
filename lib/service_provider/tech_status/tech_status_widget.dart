@@ -5,7 +5,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/service_provider/bottom_bar/bottom_bar_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'tech_status_model.dart';
 export 'tech_status_model.dart';
 
@@ -38,8 +37,6 @@ class _TechStatusWidgetState extends State<TechStatusWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -62,6 +59,7 @@ class _TechStatusWidgetState extends State<TechStatusWidget> {
                         fontFamily: 'Yantramanav',
                         color: const Color(0xFF1E293B),
                         fontSize: 30.0,
+                        letterSpacing: 0.0,
                         fontWeight: FontWeight.bold,
                       ),
                 ),
@@ -90,8 +88,8 @@ class _TechStatusWidgetState extends State<TechStatusWidget> {
                       Container(
                         width: double.infinity,
                         height: 100.0,
-                        decoration: const BoxDecoration(
-                          color: Color(0xFFE2E8F0),
+                        decoration: BoxDecoration(
+                          color: FlutterFlowTheme.of(context).primaryBackground,
                         ),
                         child: Align(
                           alignment: const AlignmentDirectional(0.0, 0.0),
@@ -117,11 +115,12 @@ class _TechStatusWidgetState extends State<TechStatusWidget> {
                     ],
                   ),
                 ),
-                wrapWithModel(
-                  model: _model.techStatusComponentModel,
-                  updateCallback: () => setState(() {}),
-                  child: const TechStatusComponentWidget(
-                    hideHeader: true,
+                Container(
+                  decoration: const BoxDecoration(),
+                  child: wrapWithModel(
+                    model: _model.techStatusComponentModel,
+                    updateCallback: () => setState(() {}),
+                    child: const TechStatusComponentWidget(),
                   ),
                 ),
                 wrapWithModel(

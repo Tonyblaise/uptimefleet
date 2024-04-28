@@ -7,6 +7,8 @@ exports.sendNotification = functions.https.onRequest(async (req, res) => {
   const token = req.body.token;
   const title = req.body.title;
   const body = req.body.body;
+  const initialPageName = req.body.initialPageName;
+  const data = req.body.data;
 
   // Check if required parameters are present
   if (!token || !title || !body) {
@@ -20,6 +22,7 @@ exports.sendNotification = functions.https.onRequest(async (req, res) => {
       body: body,
     },
     token: token,
+    data,
   };
 
   // Send the notification
@@ -28,6 +31,6 @@ exports.sendNotification = functions.https.onRequest(async (req, res) => {
     return res.status(200).send("Notification sent successfully");
   } catch (error) {
     console.error("Error sending notification:", error);
-    return res.status(500).send("Error sending notification");
+    return res.status(500).send(`Error sending this notification ${error} `);
   }
 });

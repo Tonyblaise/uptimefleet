@@ -1,10 +1,7 @@
 import '/auth/firebase_auth/auth_util.dart';
-import '/components/edit_your_information_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:provider/provider.dart';
 import 'user_details_model.dart';
 export 'user_details_model.dart';
 
@@ -29,22 +26,6 @@ class _UserDetailsWidgetState extends State<UserDetailsWidget> {
     super.initState();
     _model = createModel(context, () => UserDetailsModel());
 
-    // On component load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      await showModalBottomSheet(
-        isScrollControlled: true,
-        backgroundColor: Colors.transparent,
-        enableDrag: false,
-        context: context,
-        builder: (context) {
-          return Padding(
-            padding: MediaQuery.viewInsetsOf(context),
-            child: const EditYourInformationWidget(),
-          );
-        },
-      ).then((value) => safeSetState(() {}));
-    });
-
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -57,15 +38,13 @@ class _UserDetailsWidgetState extends State<UserDetailsWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Align(
       alignment: const AlignmentDirectional(0.0, 0.0),
       child: Container(
         width: double.infinity,
         decoration: const BoxDecoration(),
         child: Row(
-          mainAxisSize: MainAxisSize.min,
+          mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             AuthUserStreamWidget(
@@ -102,34 +81,38 @@ class _UserDetailsWidgetState extends State<UserDetailsWidget> {
                 ),
               ),
             ),
-            Container(
-              width: 100.0,
-              decoration: const BoxDecoration(),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  AuthUserStreamWidget(
-                    builder: (context) => Text(
-                      valueOrDefault(currentUserDocument?.fullName, ''),
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Yantramanav',
-                            color: const Color(0xFF0F172A),
-                            fontWeight: FontWeight.bold,
-                          ),
+            Expanded(
+              child: Container(
+                width: 100.0,
+                decoration: const BoxDecoration(),
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    AuthUserStreamWidget(
+                      builder: (context) => Text(
+                        valueOrDefault(currentUserDocument?.fullName, ''),
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Yantramanav',
+                              color: const Color(0xFF0F172A),
+                              letterSpacing: 0.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                      ),
                     ),
-                  ),
-                  AuthUserStreamWidget(
-                    builder: (context) => Text(
-                      valueOrDefault(currentUserDocument?.companyName, ''),
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Yantramanav',
-                            color: const Color(0xFF0F172A),
-                          ),
+                    AuthUserStreamWidget(
+                      builder: (context) => Text(
+                        valueOrDefault(currentUserDocument?.companyName, ''),
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Yantramanav',
+                              color: const Color(0xFF0F172A),
+                              letterSpacing: 0.0,
+                            ),
+                      ),
                     ),
-                  ),
-                ].divide(const SizedBox(height: 6.0)),
+                  ].divide(const SizedBox(height: 6.0)),
+                ),
               ),
             ),
           ].divide(const SizedBox(width: 16.0)),

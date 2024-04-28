@@ -15,8 +15,8 @@ class OnboardModel extends FlutterFlowModel<OnboardWidget> {
   final unfocusNode = FocusNode();
   // State field(s) for fullname widget.
   FocusNode? fullnameFocusNode;
-  TextEditingController? fullnameController;
-  String? Function(BuildContext, String?)? fullnameControllerValidator;
+  TextEditingController? fullnameTextController;
+  String? Function(BuildContext, String?)? fullnameTextControllerValidator;
   // State field(s) for DropDown widget.
   String? dropDownValue;
   FormFieldController<String>? dropDownValueController;
@@ -25,10 +25,8 @@ class OnboardModel extends FlutterFlowModel<OnboardWidget> {
   TextEditingController? textController2;
   final textFieldMask = MaskTextInputFormatter(mask: '(###) ###-####');
   String? Function(BuildContext, String?)? textController2Validator;
-  // Stores action output result for [Backend Call - API (Check user)] action in Container widget.
+  // Stores action output result for [Backend Call - API (Check user)] action in Button widget.
   ApiCallResponse? check;
-
-  /// Initialization and disposal methods.
 
   @override
   void initState(BuildContext context) {}
@@ -37,13 +35,9 @@ class OnboardModel extends FlutterFlowModel<OnboardWidget> {
   void dispose() {
     unfocusNode.dispose();
     fullnameFocusNode?.dispose();
-    fullnameController?.dispose();
+    fullnameTextController?.dispose();
 
     textFieldFocusNode?.dispose();
     textController2?.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

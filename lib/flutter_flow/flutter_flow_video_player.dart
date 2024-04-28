@@ -5,6 +5,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:video_player/video_player.dart';
 
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart' show routeObserver;
 
 const kDefaultAspectRatio = 16 / 9;
@@ -118,7 +119,7 @@ class _FlutterFlowVideoPlayerState extends State<FlutterFlowVideoPlayer>
 
   Future _initializePlayer() async {
     _videoPlayerController = widget.videoType == VideoType.network
-        ? VideoPlayerController.network(widget.path)
+        ? VideoPlayerController.networkUrl(Uri.parse(widget.path))
         : VideoPlayerController.asset(widget.path);
     if (kIsWeb && widget.autoPlay) {
       // Browsers generally don't allow autoplay unless it's muted.
@@ -197,12 +198,20 @@ class _FlutterFlowVideoPlayerState extends State<FlutterFlowVideoPlayer>
               : (_chewieController != null &&
                       _chewieController!.videoPlayerController.value.hasError)
                   ? const Text('Error playing video')
-                  : const Column(
+                  : Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        CircularProgressIndicator(),
-                        SizedBox(height: 20),
-                        Text('Loading'),
+                        SizedBox(
+                          width: 50.0,
+                          height: 50.0,
+                          child: CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                              FlutterFlowTheme.of(context).primary,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        const Text('Loading'),
                       ],
                     ),
         ),

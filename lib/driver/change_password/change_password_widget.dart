@@ -3,7 +3,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:provider/provider.dart';
 import 'change_password_model.dart';
 export 'change_password_model.dart';
 
@@ -29,13 +28,13 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
     super.initState();
     _model = createModel(context, () => ChangePasswordModel());
 
-    _model.yourOldPasswordController ??= TextEditingController();
+    _model.yourOldPasswordTextController ??= TextEditingController();
     _model.yourOldPasswordFocusNode ??= FocusNode();
 
-    _model.yourNewPasswordController ??= TextEditingController();
+    _model.yourNewPasswordTextController ??= TextEditingController();
     _model.yourNewPasswordFocusNode ??= FocusNode();
 
-    _model.confirmNewPasswordController ??= TextEditingController();
+    _model.confirmNewPasswordTextController ??= TextEditingController();
     _model.confirmNewPasswordFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
@@ -50,8 +49,6 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -74,6 +71,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                       fontFamily: 'Yantramanav',
                       color: const Color(0xFF1E293B),
                       fontSize: 30.0,
+                      letterSpacing: 0.0,
                       fontWeight: FontWeight.bold,
                     ),
               ),
@@ -117,6 +115,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                       fontFamily: 'Yantramanav',
                                       color: const Color(0xFF0F172A),
                                       fontSize: 18.0,
+                                      letterSpacing: 0.0,
                                       fontWeight: FontWeight.bold,
                                     ),
                               ),
@@ -128,6 +127,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                       fontFamily: 'Yantramanav',
                                       color: FlutterFlowTheme.of(context)
                                           .primaryText,
+                                      letterSpacing: 0.0,
                                     ),
                               ),
                             ].divide(const SizedBox(height: 8.0)),
@@ -157,6 +157,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .primaryText,
+                                                letterSpacing: 0.0,
                                               ),
                                         ),
                                         Container(
@@ -170,7 +171,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                                     0.0, 4.0, 0.0, 4.0),
                                             child: TextFormField(
                                               controller: _model
-                                                  .yourOldPasswordController,
+                                                  .yourOldPasswordTextController,
                                               focusNode: _model
                                                   .yourOldPasswordFocusNode,
                                               autofocus: true,
@@ -184,6 +185,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                                         .override(
                                                           fontFamily:
                                                               'Yantramanav',
+                                                          letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.normal,
                                                         ),
@@ -264,11 +266,12 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                                       .override(
                                                         fontFamily:
                                                             'Yantramanav',
+                                                        letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,
                                                       ),
                                               validator: _model
-                                                  .yourOldPasswordControllerValidator
+                                                  .yourOldPasswordTextControllerValidator
                                                   .asValidator(context),
                                             ),
                                           ),
@@ -295,6 +298,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .primaryText,
+                                                letterSpacing: 0.0,
                                               ),
                                         ),
                                         Expanded(
@@ -304,7 +308,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                                     0.0, 4.0, 0.0, 4.0),
                                             child: TextFormField(
                                               controller: _model
-                                                  .yourNewPasswordController,
+                                                  .yourNewPasswordTextController,
                                               focusNode: _model
                                                   .yourNewPasswordFocusNode,
                                               autofocus: true,
@@ -318,6 +322,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                                         .override(
                                                           fontFamily:
                                                               'Yantramanav',
+                                                          letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.normal,
                                                         ),
@@ -397,11 +402,12 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                                       .override(
                                                         fontFamily:
                                                             'Yantramanav',
+                                                        letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,
                                                       ),
                                               validator: _model
-                                                  .yourNewPasswordControllerValidator
+                                                  .yourNewPasswordTextControllerValidator
                                                   .asValidator(context),
                                             ),
                                           ),
@@ -425,6 +431,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .primaryText,
+                                                letterSpacing: 0.0,
                                               ),
                                         ),
                                         Container(
@@ -438,7 +445,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                                     0.0, 4.0, 0.0, 4.0),
                                             child: TextFormField(
                                               controller: _model
-                                                  .confirmNewPasswordController,
+                                                  .confirmNewPasswordTextController,
                                               focusNode: _model
                                                   .confirmNewPasswordFocusNode,
                                               autofocus: true,
@@ -453,6 +460,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                                         .override(
                                                           fontFamily:
                                                               'Yantramanav',
+                                                          letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.normal,
                                                         ),
@@ -533,11 +541,12 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                                       .override(
                                                         fontFamily:
                                                             'Yantramanav',
+                                                        letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,
                                                       ),
                                               validator: _model
-                                                  .confirmNewPasswordControllerValidator
+                                                  .confirmNewPasswordTextControllerValidator
                                                   .asValidator(context),
                                             ),
                                           ),
@@ -563,6 +572,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                           fontFamily: 'Yantramanav',
                                           color: const Color(0xFF0F172A),
                                           fontSize: 16.0,
+                                          letterSpacing: 0.0,
                                           fontWeight: FontWeight.normal,
                                         ),
                                   ),
@@ -594,6 +604,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                                             'Yantramanav',
                                                         color: Colors.black,
                                                         fontSize: 12.0,
+                                                        letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,
                                                       ),
@@ -626,6 +637,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                                             'Yantramanav',
                                                         color: Colors.black,
                                                         fontSize: 12.0,
+                                                        letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,
                                                       ),
@@ -658,6 +670,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                                             'Yantramanav',
                                                         color: Colors.black,
                                                         fontSize: 12.0,
+                                                        letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,
                                                       ),
@@ -690,6 +703,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                                             'Yantramanav',
                                                         color: Colors.black,
                                                         fontSize: 12.0,
+                                                        letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,
                                                       ),
@@ -716,9 +730,9 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                   .changePasswordCall
                                   .call(
                                 currentPassword:
-                                    _model.yourOldPasswordController.text,
+                                    _model.yourOldPasswordTextController.text,
                                 newPassword:
-                                    _model.yourNewPasswordController.text,
+                                    _model.yourNewPasswordTextController.text,
                               );
                               if ((_model.apiResultjti?.succeeded ?? true)) {
                                 ScaffoldMessenger.of(context).showSnackBar(
@@ -774,8 +788,12 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                 alignment: const AlignmentDirectional(0.0, 0.0),
                                 child: Text(
                                   'Set New Password',
-                                  style:
-                                      FlutterFlowTheme.of(context).titleSmall,
+                                  style: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .override(
+                                        fontFamily: 'Yantramanav',
+                                        letterSpacing: 0.0,
+                                      ),
                                 ),
                               ),
                             ),

@@ -1,6 +1,6 @@
+import '/chat/service_summary_widget/service_summary_widget_widget.dart';
 import '/components/user_details_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/service_provider/service_summary_widget/service_summary_widget_widget.dart';
 import 'start_request_widget.dart' show StartRequestWidget;
 import 'package:flutter/material.dart';
 
@@ -23,8 +23,6 @@ class StartRequestModel extends FlutterFlowModel<StartRequestWidget> {
   // Model for serviceSummaryWidget component.
   late ServiceSummaryWidgetModel serviceSummaryWidgetModel;
 
-  /// Initialization and disposal methods.
-
   @override
   void initState(BuildContext context) {
     userDetailsModel = createModel(context, () => UserDetailsModel());
@@ -38,8 +36,4 @@ class StartRequestModel extends FlutterFlowModel<StartRequestWidget> {
     userDetailsModel.dispose();
     serviceSummaryWidgetModel.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

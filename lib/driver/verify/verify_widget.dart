@@ -3,9 +3,10 @@ import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import '/custom_code/actions/index.dart' as actions;
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'verify_model.dart';
 export 'verify_model.dart';
 
@@ -53,8 +54,6 @@ class _VerifyWidgetState extends State<VerifyWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -77,6 +76,7 @@ class _VerifyWidgetState extends State<VerifyWidget> {
                       fontFamily: 'Yantramanav',
                       color: const Color(0xFF1E293B),
                       fontSize: 30.0,
+                      letterSpacing: 0.0,
                       fontWeight: FontWeight.bold,
                     ),
               ),
@@ -111,13 +111,18 @@ class _VerifyWidgetState extends State<VerifyWidget> {
                         style: FlutterFlowTheme.of(context).labelLarge.override(
                               fontFamily: 'Yantramanav',
                               color: FlutterFlowTheme.of(context).primaryText,
+                              letterSpacing: 0.0,
                             ),
                       ),
                       PinCodeTextField(
                         autoDisposeControllers: false,
                         appContext: context,
                         length: 6,
-                        textStyle: FlutterFlowTheme.of(context).bodyLarge,
+                        textStyle:
+                            FlutterFlowTheme.of(context).bodyLarge.override(
+                                  fontFamily: 'Yantramanav',
+                                  letterSpacing: 0.0,
+                                ),
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         enableActiveFill: false,
                         autoFocus: true,
@@ -159,14 +164,10 @@ class _VerifyWidgetState extends State<VerifyWidget> {
                   ),
                 ),
               ),
-              Align(
-                alignment: const AlignmentDirectional(0.0, 0.0),
-                child: InkWell(
-                  splashColor: Colors.transparent,
-                  focusColor: Colors.transparent,
-                  hoverColor: Colors.transparent,
-                  highlightColor: Colors.transparent,
-                  onTap: () async {
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                child: FFButtonWidget(
+                  onPressed: () async {
                     GoRouter.of(context).prepareAuthEvent();
                     final smsCodeVal = _model.pinCodeController!.text;
                     if (smsCodeVal.isEmpty) {
@@ -185,14 +186,65 @@ class _VerifyWidgetState extends State<VerifyWidget> {
                       return;
                     }
 
+                    _model.token = await actions.getFcmToken();
                     if (widget.signUp) {
                       if (widget.signUpType == 'fleet') {
+                        var chatsRecordReference1 =
+                            ChatsRecord.collection.doc();
+                        await chatsRecordReference1.set({
+                          ...createChatsRecordData(
+                            userA: currentUserReference,
+                          ),
+                          ...mapToFirestore(
+                            {
+                              'users': [currentUserReference],
+                            },
+                          ),
+                        });
+                        _model.supportchat = ChatsRecord.getDocumentFromData({
+                          ...createChatsRecordData(
+                            userA: currentUserReference,
+                          ),
+                          ...mapToFirestore(
+                            {
+                              'users': [currentUserReference],
+                            },
+                          ),
+                        }, chatsRecordReference1);
+
+                        var chatsRecordReference2 =
+                            ChatsRecord.collection.doc();
+                        await chatsRecordReference2.set({
+                          ...createChatsRecordData(
+                            userA: currentUserReference,
+                          ),
+                          ...mapToFirestore(
+                            {
+                              'users': [currentUserReference],
+                            },
+                          ),
+                        });
+                        _model.technicianChat =
+                            ChatsRecord.getDocumentFromData({
+                          ...createChatsRecordData(
+                            userA: currentUserReference,
+                          ),
+                          ...mapToFirestore(
+                            {
+                              'users': [currentUserReference],
+                            },
+                          ),
+                        }, chatsRecordReference2);
                         _model.driver =
                             await UptimeFleetAppGroup.createDriverCall.call(
                           fleetManagerId: widget.fleetManagerId,
                           fullName: widget.fullName,
                           phoneNumber: widget.phoneNumber,
-                          token: currentJwtToken,
+                          token: _model.token,
+                          driverTechnicianMessageThreadIdFirebase:
+                              _model.technicianChat?.reference.id,
+                          driverSupportMessageThreadIdFirebase:
+                              _model.supportchat?.reference.id,
                         );
 
                         await currentUserReference!
@@ -221,16 +273,70 @@ class _VerifyWidgetState extends State<VerifyWidget> {
                           ),
                           profilePicture: '',
                           phoneNumber: widget.phoneNumber,
+                          driverSupportMessageThreadIdFirebase:
+                              _model.supportchat?.reference,
+                          driverFleetManagerMessageThreadIdFirebaseId:
+                              _model.technicianChat?.reference,
                         ));
 
                         context.goNamedAuth('dashboardDriver', context.mounted);
                       } else if (widget.signUpType == 'technician') {
+                        var chatsRecordReference3 =
+                            ChatsRecord.collection.doc();
+                        await chatsRecordReference3.set({
+                          ...createChatsRecordData(
+                            userA: currentUserReference,
+                          ),
+                          ...mapToFirestore(
+                            {
+                              'users': [currentUserReference],
+                            },
+                          ),
+                        });
+                        _model.supportchat2 = ChatsRecord.getDocumentFromData({
+                          ...createChatsRecordData(
+                            userA: currentUserReference,
+                          ),
+                          ...mapToFirestore(
+                            {
+                              'users': [currentUserReference],
+                            },
+                          ),
+                        }, chatsRecordReference3);
+
+                        var chatsRecordReference4 =
+                            ChatsRecord.collection.doc();
+                        await chatsRecordReference4.set({
+                          ...createChatsRecordData(
+                            userA: currentUserReference,
+                          ),
+                          ...mapToFirestore(
+                            {
+                              'users': [currentUserReference],
+                            },
+                          ),
+                        });
+                        _model.technicianChat2 =
+                            ChatsRecord.getDocumentFromData({
+                          ...createChatsRecordData(
+                            userA: currentUserReference,
+                          ),
+                          ...mapToFirestore(
+                            {
+                              'users': [currentUserReference],
+                            },
+                          ),
+                        }, chatsRecordReference4);
                         _model.technician =
                             await UptimeFleetAppGroup.createTechnicianCall.call(
                           serviceProviderId: widget.serviceProviderId,
                           fullName: widget.fullName,
                           phoneNumber: widget.phoneNumber,
-                          token: currentJwtToken,
+                          token: _model.token,
+                          driverTechnicianMessageThreadIdFirebase:
+                              _model.technicianChat2?.reference.id,
+                          driverSupportMessageThreadIdFirebase:
+                              _model.supportchat2?.reference.id,
                         );
 
                         await currentUserReference!
@@ -248,18 +354,22 @@ class _VerifyWidgetState extends State<VerifyWidget> {
                             (_model.technician?.jsonBody ?? ''),
                           ),
                           fullName: widget.fullName,
-                          technicianServiceProviderMessageThreadId:
-                              UptimeFleetAppGroup.createTechnicianCall
-                                  .technicianServiceProviderMessageThreadId(
+                          phoneNumber: widget.phoneNumber,
+                          onDuty: false,
+                          driverFleetManagerMessageThreadId: UptimeFleetAppGroup
+                              .createTechnicianCall
+                              .technicianServiceProviderMessageThreadId(
                             (_model.technician?.jsonBody ?? ''),
                           ),
-                          technicianSupportMessageThreadId: UptimeFleetAppGroup
+                          driverSupportMessageThreadId: UptimeFleetAppGroup
                               .createTechnicianCall
                               .technicianSupportMessageThreadId(
                             (_model.technician?.jsonBody ?? ''),
                           ),
-                          phoneNumber: widget.phoneNumber,
-                          onDuty: false,
+                          driverSupportMessageThreadIdFirebase:
+                              _model.supportchat2?.reference,
+                          driverFleetManagerMessageThreadIdFirebaseId:
+                              _model.technicianChat2?.reference,
                         ));
 
                         context.goNamedAuth(
@@ -284,7 +394,7 @@ class _VerifyWidgetState extends State<VerifyWidget> {
                         await UptimeFleetAppGroup.updateDriverTokenCall.call(
                           driverId:
                               valueOrDefault(currentUserDocument?.driverId, ''),
-                          token: currentJwtToken,
+                          token: _model.token,
                         );
 
                         context.goNamedAuth('dashboardDriver', context.mounted);
@@ -292,7 +402,7 @@ class _VerifyWidgetState extends State<VerifyWidget> {
                         await UptimeFleetAppGroup.updateTechnicianCall.call(
                           technicianId: valueOrDefault(
                               currentUserDocument?.technicianId, ''),
-                          token: currentJwtToken,
+                          token: _model.token,
                         );
 
                         context.goNamedAuth(
@@ -302,28 +412,26 @@ class _VerifyWidgetState extends State<VerifyWidget> {
 
                     setState(() {});
                   },
-                  child: Container(
+                  text: 'Confirm',
+                  options: FFButtonOptions(
                     width: MediaQuery.sizeOf(context).width * 0.9,
-                    height: 56.0,
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [
-                          FlutterFlowTheme.of(context).secondary,
-                          FlutterFlowTheme.of(context).tertiary
-                        ],
-                        stops: const [0.0, 1.0],
-                        begin: const AlignmentDirectional(0.0, -1.0),
-                        end: const AlignmentDirectional(0, 1.0),
-                      ),
-                      borderRadius: BorderRadius.circular(18.0),
+                    height: 50.0,
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                    iconPadding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                    color: FlutterFlowTheme.of(context).tertiary,
+                    textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                          fontFamily: 'Yantramanav',
+                          color: FlutterFlowTheme.of(context).primary,
+                          letterSpacing: 0.0,
+                        ),
+                    elevation: 3.0,
+                    borderSide: const BorderSide(
+                      color: Colors.transparent,
+                      width: 1.0,
                     ),
-                    child: Align(
-                      alignment: const AlignmentDirectional(0.0, 0.0),
-                      child: Text(
-                        'Confirm',
-                        style: FlutterFlowTheme.of(context).titleSmall,
-                      ),
-                    ),
+                    borderRadius: BorderRadius.circular(18.0),
                   ),
                 ),
               ),

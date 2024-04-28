@@ -12,11 +12,9 @@ export '/driver/dashboard_driver/dashboard_driver_widget.dart'
     show DashboardDriverWidget;
 export '/driver/vehicle_confirmation/vehicle_confirmation_widget.dart'
     show VehicleConfirmationWidget;
-export '/driver/service_confirmation/service_confirmation_widget.dart'
+export '/service_provider/service_confirmation/service_confirmation_widget.dart'
     show ServiceConfirmationWidget;
 export '/driver/driver_chat/driver_chat_widget.dart' show DriverChatWidget;
-export '/pages/chat/chat_2_details/chat2_details_widget.dart'
-    show Chat2DetailsWidget;
 export '/pages/chat/image_details/image_details_widget.dart'
     show ImageDetailsWidget;
 export '/service_provider/dashboard_technician/dashboard_technician_widget.dart'
@@ -34,10 +32,14 @@ export '/driver/onboard/onboard_widget.dart' show OnboardWidget;
 export '/service_provider/start_request/start_request_widget.dart'
     show StartRequestWidget;
 export '/driver/verify/verify_widget.dart' show VerifyWidget;
-export '/driver/testy/testy_widget.dart' show TestyWidget;
 export '/service_provider/tech_status/tech_status_widget.dart'
     show TechStatusWidget;
 export '/service_provider/technician_chat/technician_chat_widget.dart'
     show TechnicianChatWidget;
-export '/service_provider/navigation/navigation_widget.dart'
-    show NavigationWidget;
+export '/chat/chat_2_details_1/chat2_details1_widget.dart'
+    show Chat2Details1Widget;
+export '/chat/image_details_1/image_details1_widget.dart'
+    show ImageDetails1Widget;
+export '/previous_jobs/previous_jobs_widget.dart' show PreviousJobsWidget;
+export '/success/success_widget.dart' show SuccessWidget;
+export '/navigate/navigate_widget.dart' show NavigateWidget;

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '/backend/backend.dart';
 
 import '/auth/base_auth_user_provider.dart';
 
@@ -82,173 +83,285 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: '/',
           builder: (context, _) =>
               appStateNotifier.loggedIn ? const NavBarPage() : const LoginWidget(),
-        ),
-        FFRoute(
-          name: 'login',
-          path: '/login',
-          builder: (context, params) => const LoginWidget(),
-        ),
-        FFRoute(
-          name: 'forgotPassword',
-          path: '/forgotPassword',
-          builder: (context, params) => const ForgotPasswordWidget(),
-        ),
-        FFRoute(
-          name: 'checkYourEmail',
-          path: '/check_your_email',
-          builder: (context, params) => const CheckYourEmailWidget(),
-        ),
-        FFRoute(
-          name: 'changePassword',
-          path: '/change_password',
-          builder: (context, params) => ChangePasswordWidget(
-            dfdfg: params.getParam('dfdfg', ParamType.double),
-          ),
-        ),
-        FFRoute(
-          name: 'connectionProblem',
-          path: '/connection_problem',
-          builder: (context, params) => const ConnectionProblemWidget(),
-        ),
-        FFRoute(
-          name: 'dashboardDriver',
-          path: '/dashboard_driver',
-          builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'dashboardDriver')
-              : const DashboardDriverWidget(),
-        ),
-        FFRoute(
-          name: 'vehicle_confirmation',
-          path: '/vehicle_confirmation',
-          builder: (context, params) => VehicleConfirmationWidget(
-            service: params.getParam('service', ParamType.String),
-            latLng: params.getParam('latLng', ParamType.LatLng),
-            additionalInfo: params.getParam('additionalInfo', ParamType.String),
-          ),
-        ),
-        FFRoute(
-          name: 'serviceConfirmation',
-          path: '/service_confirmation',
-          builder: (context, params) => const ServiceConfirmationWidget(),
-        ),
-        FFRoute(
-          name: 'driverChat',
-          path: '/driver_chat',
-          requireAuth: true,
-          builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'driverChat')
-              : DriverChatWidget(
-                  state: params.getParam('state', ParamType.int),
+          routes: [
+            FFRoute(
+              name: 'login',
+              path: 'login',
+              builder: (context, params) => const LoginWidget(),
+            ),
+            FFRoute(
+              name: 'forgotPassword',
+              path: 'forgotPassword',
+              builder: (context, params) => const ForgotPasswordWidget(),
+            ),
+            FFRoute(
+              name: 'checkYourEmail',
+              path: 'check_your_email',
+              builder: (context, params) => const CheckYourEmailWidget(),
+            ),
+            FFRoute(
+              name: 'changePassword',
+              path: 'change_password',
+              builder: (context, params) => ChangePasswordWidget(
+                dfdfg: params.getParam(
+                  'dfdfg',
+                  ParamType.double,
                 ),
-        ),
-        FFRoute(
-          name: 'chat_2_Details',
-          path: '/chat2Details',
-          builder: (context, params) => Chat2DetailsWidget(
-            chatRef: params.getParam('chatRef', ParamType.String),
-          ),
-        ),
-        FFRoute(
-          name: 'image_Details',
-          path: '/imageDetails',
-          builder: (context, params) => ImageDetailsWidget(
-            chatRef: params.getParam('chatRef', ParamType.String),
-          ),
-        ),
-        FFRoute(
-          name: 'dashboardTechnician',
-          path: '/dashboard_technician',
-          builder: (context, params) => const DashboardTechnicianWidget(),
-        ),
-        FFRoute(
-          name: 'service_summary',
-          path: '/service_summary',
-          builder: (context, params) => const ServiceSummaryWidget(),
-        ),
-        FFRoute(
-          name: 'changeYourPhoto',
-          path: '/change_your_photo',
-          builder: (context, params) => const ChangeYourPhotoWidget(),
-        ),
-        FFRoute(
-          name: 'settings',
-          path: '/settings',
-          builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'settings')
-              : const SettingsWidget(),
-        ),
-        FFRoute(
-          name: 'settingsSp',
-          path: '/settings_sp',
-          builder: (context, params) => const SettingsSpWidget(),
-        ),
-        FFRoute(
-          name: 'selectLocation',
-          path: '/select_location',
-          builder: (context, params) => SelectLocationWidget(
-            service: params.getParam('service', ParamType.String),
-            additionalInfo: params.getParam('additionalInfo', ParamType.String),
-          ),
-        ),
-        FFRoute(
-          name: 'onboard',
-          path: '/onboard',
-          builder: (context, params) => OnboardWidget(
-            fleetManagerId: params.getParam('fleetManagerId', ParamType.String),
-            servviceProviderId:
-                params.getParam('servviceProviderId', ParamType.String),
-          ),
-        ),
-        FFRoute(
-          name: 'start_request',
-          path: '/start_request',
-          builder: (context, params) => StartRequestWidget(
-            request: params.getParam('request', ParamType.String),
-          ),
-        ),
-        FFRoute(
-          name: 'verify',
-          path: '/verify',
-          builder: (context, params) => VerifyWidget(
-            phoneNumber: params.getParam('phoneNumber', ParamType.String),
-            serviceProviderId:
-                params.getParam('serviceProviderId', ParamType.String),
-            fleetManagerId: params.getParam('fleetManagerId', ParamType.String),
-            signUpType: params.getParam('signUpType', ParamType.String),
-            fullName: params.getParam('fullName', ParamType.String),
-            signUp: params.getParam('signUp', ParamType.bool),
-          ),
-        ),
-        FFRoute(
-          name: 'testy',
-          path: '/testy',
-          builder: (context, params) => const TestyWidget(),
-        ),
-        FFRoute(
-          name: 'tech_status',
-          path: '/techStatus',
-          builder: (context, params) => const TechStatusWidget(),
-        ),
-        FFRoute(
-          name: 'technicianChat',
-          path: '/technician_chat',
-          requireAuth: true,
-          builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'technicianChat')
-              : TechnicianChatWidget(
-                  state: params.getParam('state', ParamType.int),
+              ),
+            ),
+            FFRoute(
+              name: 'connectionProblem',
+              path: 'connection_problem',
+              builder: (context, params) => const ConnectionProblemWidget(),
+            ),
+            FFRoute(
+              name: 'dashboardDriver',
+              path: 'dashboard_driver',
+              builder: (context, params) => params.isEmpty
+                  ? const NavBarPage(initialPage: 'dashboardDriver')
+                  : const DashboardDriverWidget(),
+            ),
+            FFRoute(
+              name: 'vehicle_confirmation',
+              path: 'vehicle_confirmation',
+              builder: (context, params) => VehicleConfirmationWidget(
+                service: params.getParam(
+                  'service',
+                  ParamType.String,
                 ),
+                latLng: params.getParam(
+                  'latLng',
+                  ParamType.LatLng,
+                ),
+                additionalInfo: params.getParam(
+                  'additionalInfo',
+                  ParamType.String,
+                ),
+              ),
+            ),
+            FFRoute(
+              name: 'serviceConfirmation',
+              path: 'service_confirmation',
+              builder: (context, params) => ServiceConfirmationWidget(
+                request: params.getParam(
+                  'request',
+                  ParamType.String,
+                ),
+              ),
+            ),
+            FFRoute(
+              name: 'driverChat',
+              path: 'driver_chat',
+              requireAuth: true,
+              builder: (context, params) => params.isEmpty
+                  ? const NavBarPage(initialPage: 'driverChat')
+                  : DriverChatWidget(
+                      state: params.getParam(
+                        'state',
+                        ParamType.int,
+                      ),
+                    ),
+            ),
+            FFRoute(
+              name: 'image_Details',
+              path: 'imageDetails',
+              builder: (context, params) => ImageDetailsWidget(
+                chatRef: params.getParam(
+                  'chatRef',
+                  ParamType.String,
+                ),
+              ),
+            ),
+            FFRoute(
+              name: 'dashboardTechnician',
+              path: 'dashboard_technician',
+              builder: (context, params) => const DashboardTechnicianWidget(),
+            ),
+            FFRoute(
+              name: 'service_summary',
+              path: 'service_summary',
+              builder: (context, params) => ServiceSummaryWidget(
+                requestId: params.getParam(
+                  'requestId',
+                  ParamType.String,
+                ),
+              ),
+            ),
+            FFRoute(
+              name: 'changeYourPhoto',
+              path: 'change_your_photo',
+              builder: (context, params) => const ChangeYourPhotoWidget(),
+            ),
+            FFRoute(
+              name: 'settings',
+              path: 'settings',
+              builder: (context, params) => params.isEmpty
+                  ? const NavBarPage(initialPage: 'settings')
+                  : const SettingsWidget(),
+            ),
+            FFRoute(
+              name: 'settingsSp',
+              path: 'settings_sp',
+              builder: (context, params) => const SettingsSpWidget(),
+            ),
+            FFRoute(
+              name: 'selectLocation',
+              path: 'select_location',
+              builder: (context, params) => SelectLocationWidget(
+                service: params.getParam(
+                  'service',
+                  ParamType.String,
+                ),
+                additionalInfo: params.getParam(
+                  'additionalInfo',
+                  ParamType.String,
+                ),
+                address: params.getParam(
+                  'address',
+                  ParamType.String,
+                ),
+              ),
+            ),
+            FFRoute(
+              name: 'onboard',
+              path: 'onboard',
+              builder: (context, params) => OnboardWidget(
+                fleetManagerId: params.getParam(
+                  'fleetManagerId',
+                  ParamType.String,
+                ),
+                serviceProviderId: params.getParam(
+                  'serviceProviderId',
+                  ParamType.String,
+                ),
+              ),
+            ),
+            FFRoute(
+              name: 'start_request',
+              path: 'start_request',
+              builder: (context, params) => StartRequestWidget(
+                request: params.getParam(
+                  'request',
+                  ParamType.String,
+                ),
+              ),
+            ),
+            FFRoute(
+              name: 'verify',
+              path: 'verify',
+              builder: (context, params) => VerifyWidget(
+                phoneNumber: params.getParam(
+                  'phoneNumber',
+                  ParamType.String,
+                ),
+                serviceProviderId: params.getParam(
+                  'serviceProviderId',
+                  ParamType.String,
+                ),
+                fleetManagerId: params.getParam(
+                  'fleetManagerId',
+                  ParamType.String,
+                ),
+                signUpType: params.getParam(
+                  'signUpType',
+                  ParamType.String,
+                ),
+                fullName: params.getParam(
+                  'fullName',
+                  ParamType.String,
+                ),
+                signUp: params.getParam(
+                  'signUp',
+                  ParamType.bool,
+                ),
+              ),
+            ),
+            FFRoute(
+              name: 'tech_status',
+              path: 'techStatus',
+              builder: (context, params) => const TechStatusWidget(),
+            ),
+            FFRoute(
+              name: 'technicianChat',
+              path: 'technician_chat',
+              requireAuth: true,
+              builder: (context, params) => TechnicianChatWidget(
+                state: params.getParam(
+                  'state',
+                  ParamType.int,
+                ),
+              ),
+            ),
+            FFRoute(
+              name: 'chat_2_Details_1',
+              path: 'chat2Details1',
+              asyncParams: {
+                'chatRef': getDoc(['chats'], ChatsRecord.fromSnapshot),
+              },
+              builder: (context, params) => Chat2Details1Widget(
+                chatRef: params.getParam(
+                  'chatRef',
+                  ParamType.Document,
+                ),
+                driver: params.getParam(
+                  'driver',
+                  ParamType.bool,
+                ),
+              ),
+            ),
+            FFRoute(
+              name: 'image_Details_1',
+              path: 'imageDetails1',
+              asyncParams: {
+                'chatMessage':
+                    getDoc(['chat_messages'], ChatMessagesRecord.fromSnapshot),
+              },
+              builder: (context, params) => ImageDetails1Widget(
+                chatMessage: params.getParam(
+                  'chatMessage',
+                  ParamType.Document,
+                ),
+              ),
+            ),
+            FFRoute(
+              name: 'previousJobs',
+              path: 'previousJobs',
+              builder: (context, params) => const PreviousJobsWidget(),
+            ),
+            FFRoute(
+              name: 'success',
+              path: 'success',
+              builder: (context, params) => SuccessWidget(
+                driver: params.getParam(
+                  'driver',
+                  ParamType.bool,
+                ),
+              ),
+            ),
+            FFRoute(
+              name: 'navigate',
+              path: 'navigate',
+              builder: (context, params) => NavigateWidget(
+                originLat: params.getParam(
+                  'originLat',
+                  ParamType.double,
+                ),
+                originLng: params.getParam(
+                  'originLng',
+                  ParamType.double,
+                ),
+                destinationLat: params.getParam(
+                  'destinationLat',
+                  ParamType.double,
+                ),
+                destinationLng: params.getParam(
+                  'destinationLng',
+                  ParamType.double,
+                ),
+              ),
+            )
+          ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ),
-        FFRoute(
-          name: 'navigation',
-          path: '/navigation',
-          builder: (context, params) => NavigationWidget(
-            locationLat: params.getParam('locationLat', ParamType.double),
-            loocationLng: params.getParam('loocationLng', ParamType.double),
-            destLat: params.getParam('destLat', ParamType.double),
-            destLng: params.getParam('destLng', ParamType.double),
-          ),
-        )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       observers: [routeObserver],
     );
@@ -325,7 +438,7 @@ extension _GoRouterStateExtensions on GoRouterState {
       extra != null ? extra as Map<String, dynamic> : {};
   Map<String, dynamic> get allParams => <String, dynamic>{}
     ..addAll(pathParameters)
-    ..addAll(queryParameters)
+    ..addAll(uri.queryParameters)
     ..addAll(extraMap);
   TransitionInfo get transitionInfo => extraMap.containsKey(kTransitionInfoKey)
       ? extraMap[kTransitionInfoKey] as TransitionInfo
@@ -344,7 +457,7 @@ class FFParameters {
   // present is the special extra parameter reserved for the transition info.
   bool get isEmpty =>
       state.allParams.isEmpty ||
-      (state.extraMap.length == 1 &&
+      (state.allParams.length == 1 &&
           state.extraMap.containsKey(kTransitionInfoKey));
   bool isAsyncParam(MapEntry<String, dynamic> param) =>
       asyncParams.containsKey(param.key) && param.value is String;
@@ -365,10 +478,10 @@ class FFParameters {
 
   dynamic getParam<T>(
     String paramName,
-    ParamType type, [
+    ParamType type, {
     bool isList = false,
     List<String>? collectionNamePath,
-  ]) {
+  }) {
     if (futureParamValues.containsKey(paramName)) {
       return futureParamValues[paramName];
     }
@@ -381,8 +494,12 @@ class FFParameters {
       return param;
     }
     // Return serialized value.
-    return deserializeParam<T>(param, type, isList,
-        collectionNamePath: collectionNamePath);
+    return deserializeParam<T>(
+      param,
+      type,
+      isList,
+      collectionNamePath: collectionNamePath,
+    );
   }
 }
 
@@ -414,7 +531,7 @@ class FFRoute {
           }
 
           if (requireAuth && !appStateNotifier.loggedIn) {
-            appStateNotifier.setRedirectLocationIfUnset(state.location);
+            appStateNotifier.setRedirectLocationIfUnset(state.uri.toString());
             return '/login';
           }
           return null;
@@ -493,7 +610,7 @@ class RootPageContext {
   static bool isInactiveRootPage(BuildContext context) {
     final rootPageContext = context.read<RootPageContext?>();
     final isRootPage = rootPageContext?.isRootPage ?? false;
-    final location = GoRouter.of(context).location;
+    final location = GoRouterState.of(context).uri.toString();
     return isRootPage &&
         location != '/' &&
         location != rootPageContext?.errorRoute;

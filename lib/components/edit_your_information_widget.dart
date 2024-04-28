@@ -6,7 +6,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/upload_data.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'edit_your_information_model.dart';
 export 'edit_your_information_model.dart';
 
@@ -44,8 +43,6 @@ class _EditYourInformationWidgetState extends State<EditYourInformationWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Container(
       decoration: const BoxDecoration(
         shape: BoxShape.rectangle,
@@ -88,6 +85,7 @@ class _EditYourInformationWidgetState extends State<EditYourInformationWidget> {
                             fontFamily: 'Yantramanav',
                             color: Colors.black,
                             fontSize: 24.0,
+                            letterSpacing: 0.0,
                           ),
                     ),
                   ),
@@ -191,6 +189,7 @@ class _EditYourInformationWidgetState extends State<EditYourInformationWidget> {
                         style: FlutterFlowTheme.of(context).labelLarge.override(
                               fontFamily: 'Yantramanav',
                               color: const Color(0xFF64748B),
+                              letterSpacing: 0.0,
                               fontWeight: FontWeight.bold,
                             ),
                       ),
@@ -200,6 +199,7 @@ class _EditYourInformationWidgetState extends State<EditYourInformationWidget> {
                               fontFamily: 'Yantramanav',
                               color: const Color(0xFFCBD5E1),
                               fontSize: 12.0,
+                              letterSpacing: 0.0,
                               fontWeight: FontWeight.normal,
                             ),
                       ),
@@ -250,6 +250,7 @@ class _EditYourInformationWidgetState extends State<EditYourInformationWidget> {
                                         .override(
                                           fontFamily: 'Yantramanav',
                                           color: Colors.white,
+                                          letterSpacing: 0.0,
                                         ),
                                   ),
                                 ),
@@ -285,6 +286,7 @@ class _EditYourInformationWidgetState extends State<EditYourInformationWidget> {
                                       .override(
                                         fontFamily: 'Yantramanav',
                                         color: const Color(0xFF0CCA4A),
+                                        letterSpacing: 0.0,
                                       ),
                                 ),
                               ),

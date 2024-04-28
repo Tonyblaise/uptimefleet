@@ -1,6 +1,5 @@
 // Automatic FlutterFlow imports
 import '/backend/backend.dart';
-import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'index.dart'; // Imports other custom actions
@@ -8,6 +7,10 @@ import '/flutter_flow/custom_functions.dart'; // Imports custom functions
 import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
+
+import 'dart:io';
+
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 import 'package:provider/provider.dart';
 import 'package:flutter/foundation.dart';
@@ -41,112 +44,154 @@ Future mainAction(
   WidgetsFlutterBinding.ensureInitialized();
 
   Future<void> initializeService() async {
-    if (isAndroid) {
-      const AndroidNotificationChannel channel = AndroidNotificationChannel(
-        'my_foreground', // id
-        'Running in Background', // title
-        importance: Importance.high,
-      );
-
-      final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-          FlutterLocalNotificationsPlugin();
-
-      // Initialise the plugin. app_icon needs to be a added as a drawable resource to the Android head project
-      await flutterLocalNotificationsPlugin
-          .resolvePlatformSpecificImplementation<
-              AndroidFlutterLocalNotificationsPlugin>()
-          ?.createNotificationChannel(channel);
-    }
-
-    // Request permission before starting the service
-
-    await initializeService();
-
-    Future streamLocation() async {
-      // Add your function code here!
-
-      late LocationSettings locationSettings;
-
-      if (defaultTargetPlatform == TargetPlatform.android) {
-        locationSettings = AndroidSettings(
-            accuracy: LocationAccuracy.high,
-            distanceFilter: 100,
-            forceLocationManager: true,
-            intervalDuration: const Duration(seconds: 10),
-            //(Optional) Set foreground notification config to keep the app alive
-            //when going to the background
-            foregroundNotificationConfig: const ForegroundNotificationConfig(
-              notificationText:
-                  "Example app will continue to receive your location even when you aren't using it",
-              notificationTitle: "Running in Background",
-              enableWakeLock: true,
-            ));
-      } else if (defaultTargetPlatform == TargetPlatform.iOS ||
-          defaultTargetPlatform == TargetPlatform.macOS) {
-        locationSettings = AppleSettings(
-          accuracy: LocationAccuracy.high,
-          activityType: ActivityType.fitness,
-          distanceFilter: 100,
-          pauseLocationUpdatesAutomatically: true,
-          // Only set to true if our app will be started up in the background.
-          showBackgroundLocationIndicator: false,
-        );
-      } else {
-        locationSettings = LocationSettings(
-          accuracy: LocationAccuracy.high,
-          distanceFilter: 100,
-        );
-      }
-
-      StreamSubscription<Position> positionStream =
-          Geolocator.getPositionStream(locationSettings: locationSettings)
-              .listen((Position? position) async {
-        await updatePosition(
-          position?.latitude.toString(),
-          position?.longitude.toString(),
-        );
-      });
-    }
-
-    Future<void> onStart(ServiceInstance service) async {
-      ReceivePort receivePort = ReceivePort();
-      IsolateNameServer.removePortNameMapping('ServiceRunningPort');
-      IsolateNameServer.registerPortWithName(
-          receivePort.sendPort, 'ServiceRunningPort');
-      receivePort.listen((message) {
-        if (message == 'STOP') {
-          service.stopSelf();
-          IsolateNameServer.removePortNameMapping('ServiceRunningPort');
-        }
-      });
-
-      while (true) {
-        await streamLocation();
-
-        await Future.delayed(Duration(minutes: 1));
-      }
-    }
-
     final service = FlutterBackgroundService();
 
-    // Configure the service as necessary
-    await service.configure(
-      iosConfiguration: IosConfiguration(),
-      androidConfiguration: AndroidConfiguration(
-        // This will be executed when the app is in foreground or background in a separate isolate
-        onStart: onStart,
-
-        // Auto start service
-        autoStart: true,
-        isForegroundMode: true,
-
-        // Add necessary notification details
-        notificationChannelId: 'my_foreground',
-        initialNotificationTitle: 'Running in Background',
-        initialNotificationContent:
-            "App will continue to receive your location even when you aren't using it",
-        foregroundServiceNotificationId: 1,
-      ),
+    /// OPTIONAL, using custom notification channel id
+    const AndroidNotificationChannel channel = AndroidNotificationChannel(
+      'my_foreground', // id
+      'Running in Background', // title
+      description: 'This channel is used location updates', // description
+      importance: Importance.high, // importance must be at low or higher level
     );
+
+    final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+        FlutterLocalNotificationsPlugin();
+
+    if (Platform.isIOS || Platform.isAndroid) {
+      await flutterLocalNotificationsPlugin.initialize(
+        const InitializationSettings(
+          iOS: DarwinInitializationSettings(),
+          android: AndroidInitializationSettings('ic_bg_service_small'),
+        ),
+      );
+    }
+
+    await flutterLocalNotificationsPlugin
+        .resolvePlatformSpecificImplementation<
+            AndroidFlutterLocalNotificationsPlugin>()
+        ?.createNotificationChannel(channel);
   }
+
+  // Request permission before starting the service
+
+  await initializeService();
+
+  Future streamLocation() async {
+    // Add your function code here!
+
+    late LocationSettings locationSettings;
+
+    if (defaultTargetPlatform == TargetPlatform.android) {
+      locationSettings = AndroidSettings(
+          accuracy: LocationAccuracy.high,
+          distanceFilter: 100,
+          forceLocationManager: true,
+          intervalDuration: const Duration(seconds: 10),
+          //(Optional) Set foreground notification config to keep the app alive
+          //when going to the background
+          foregroundNotificationConfig: const ForegroundNotificationConfig(
+            notificationText:
+                "Example app will continue to receive your location even when you aren't using it",
+            notificationTitle: "Running in Background",
+            enableWakeLock: true,
+          ));
+    } else if (defaultTargetPlatform == TargetPlatform.iOS ||
+        defaultTargetPlatform == TargetPlatform.macOS) {
+      locationSettings = AppleSettings(
+        accuracy: LocationAccuracy.high,
+        activityType: ActivityType.fitness,
+        distanceFilter: 100,
+        pauseLocationUpdatesAutomatically: false,
+        // Only set to true if our app will be started up in the background.
+        showBackgroundLocationIndicator: true,
+      );
+    } else {
+      locationSettings = LocationSettings(
+        accuracy: LocationAccuracy.high,
+        distanceFilter: 100,
+      );
+    }
+
+    StreamSubscription<Position> positionStream =
+        Geolocator.getPositionStream(locationSettings: locationSettings)
+            .listen((Position? position) async {
+      await updatePosition(
+        position?.latitude.toString(),
+        position?.longitude.toString(),
+      );
+    });
+  }
+
+  Future<void> onStart(ServiceInstance service) async {
+    ReceivePort receivePort = ReceivePort();
+    IsolateNameServer.removePortNameMapping('ServiceRunningPort');
+    IsolateNameServer.registerPortWithName(
+        receivePort.sendPort, 'ServiceRunningPort');
+    receivePort.listen((message) {
+      if (message == 'STOP') {
+        service.stopSelf();
+        IsolateNameServer.removePortNameMapping('ServiceRunningPort');
+      }
+    });
+
+    while (true) {
+      await streamLocation();
+
+      await Future.delayed(Duration(minutes: 2));
+    }
+  }
+
+  final service = FlutterBackgroundService();
+
+  // Configure the service as necessary
+  @pragma('vm:entry-point')
+  Future<bool> onIosBackground(ServiceInstance service) async {
+    WidgetsFlutterBinding.ensureInitialized();
+    DartPluginRegistrant.ensureInitialized();
+
+    ReceivePort receivePort = ReceivePort();
+    IsolateNameServer.removePortNameMapping('ServiceRunningPort');
+    IsolateNameServer.registerPortWithName(
+        receivePort.sendPort, 'ServiceRunningPort');
+    receivePort.listen((message) {
+      if (message == 'STOP') {
+        service.stopSelf();
+        IsolateNameServer.removePortNameMapping('ServiceRunningPort');
+      }
+    });
+
+    while (true) {
+      await streamLocation();
+
+      await Future.delayed(Duration(minutes: 2));
+      return true;
+    }
+  }
+
+  await service.configure(
+    androidConfiguration: AndroidConfiguration(
+      // this will be executed when app is in foreground or background in separated isolate
+      onStart: onStart,
+
+      // auto start service
+      autoStart: true,
+      isForegroundMode: true,
+
+      notificationChannelId: 'my_foreground',
+      initialNotificationTitle: 'Running in Background',
+      initialNotificationContent:
+          'App will continue to receive your location even when you aren\'t using it',
+      foregroundServiceNotificationId: 888,
+    ),
+    iosConfiguration: IosConfiguration(
+      // auto start service
+      autoStart: true,
+
+      // this will be executed when app is in foreground in separated isolate
+      onForeground: onStart,
+
+      // you have to enable background fetch capability on xcode project
+      onBackground: onIosBackground,
+    ),
+  );
 }

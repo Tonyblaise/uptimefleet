@@ -1,1 +1,1 @@
-export 'navigation_with_mapbox.dart' show NavigationWithMapbox;
+export 'mapbox_navigation_widget.dart' show MapboxNavigationWidget;

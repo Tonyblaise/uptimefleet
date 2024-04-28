@@ -1,9 +1,9 @@
 import '/components/user_details_widget.dart';
+import '/driver/delete_account/delete_account_widget.dart';
 import '/driver/log_out_confirmation/log_out_confirmation_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'settings_component_model.dart';
 export 'settings_component_model.dart';
 
@@ -41,8 +41,6 @@ class _SettingsComponentWidgetState extends State<SettingsComponentWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Container(
       decoration: const BoxDecoration(),
       child: Column(
@@ -64,6 +62,102 @@ class _SettingsComponentWidgetState extends State<SettingsComponentWidget> {
                       child: const UserDetailsWidget(),
                     ),
                   ),
+                ].divide(const SizedBox(width: 15.0)),
+              ),
+            ),
+          ),
+          const Divider(
+            thickness: 1.0,
+            color: Color(0xFFE5E7EE),
+          ),
+          InkWell(
+            splashColor: Colors.transparent,
+            focusColor: Colors.transparent,
+            hoverColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+            onTap: () async {
+              context.pushNamed('previousJobs');
+            },
+            child: Container(
+              width: double.infinity,
+              decoration: const BoxDecoration(),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: Container(
+                      width: 100.0,
+                      decoration: const BoxDecoration(),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Icon(
+                            Icons.list_outlined,
+                            color: FlutterFlowTheme.of(context).secondaryText,
+                            size: 24.0,
+                          ),
+                          Text(
+                            'Previous Jobs',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Yantramanav',
+                                  letterSpacing: 0.0,
+                                ),
+                          ),
+                        ].divide(const SizedBox(width: 10.0)),
+                      ),
+                    ),
+                  ),
+                ].divide(const SizedBox(width: 15.0)),
+              ),
+            ),
+          ),
+          const Divider(
+            thickness: 1.0,
+            color: Color(0xFFE5E7EE),
+          ),
+          InkWell(
+            splashColor: Colors.transparent,
+            focusColor: Colors.transparent,
+            hoverColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+            onTap: () async {
+              await launchURL('https://uptimefleetrescue.com/terms');
+            },
+            child: Container(
+              width: double.infinity,
+              decoration: const BoxDecoration(),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: Container(
+                      width: 100.0,
+                      decoration: const BoxDecoration(),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Icon(
+                            Icons.text_snippet,
+                            color: FlutterFlowTheme.of(context).secondaryText,
+                            size: 24.0,
+                          ),
+                          Text(
+                            'Terms and conditions',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Yantramanav',
+                                  letterSpacing: 0.0,
+                                ),
+                          ),
+                        ].divide(const SizedBox(width: 10.0)),
+                      ),
+                    ),
+                  ),
                   const Icon(
                     Icons.open_in_new_rounded,
                     color: Color(0xFF64748B),
@@ -77,39 +171,62 @@ class _SettingsComponentWidgetState extends State<SettingsComponentWidget> {
             thickness: 1.0,
             color: Color(0xFFE5E7EE),
           ),
-          Container(
-            width: double.infinity,
-            decoration: const BoxDecoration(),
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  child: Container(
-                    width: 100.0,
-                    decoration: const BoxDecoration(),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Icon(
-                          Icons.text_snippet,
-                          color: FlutterFlowTheme.of(context).secondaryText,
-                          size: 24.0,
-                        ),
-                        Text(
-                          'Terms and conditions',
-                          style: FlutterFlowTheme.of(context).bodyMedium,
-                        ),
-                      ].divide(const SizedBox(width: 10.0)),
+          InkWell(
+            splashColor: Colors.transparent,
+            focusColor: Colors.transparent,
+            hoverColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+            onTap: () async {
+              await showModalBottomSheet(
+                isScrollControlled: true,
+                backgroundColor: Colors.transparent,
+                enableDrag: false,
+                context: context,
+                builder: (context) {
+                  return Padding(
+                    padding: MediaQuery.viewInsetsOf(context),
+                    child: const DeleteAccountWidget(),
+                  );
+                },
+              ).then((value) => safeSetState(() {}));
+
+              context.pushNamed('login');
+            },
+            child: Container(
+              width: double.infinity,
+              decoration: const BoxDecoration(),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: Container(
+                      width: 100.0,
+                      decoration: const BoxDecoration(),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Icon(
+                            Icons.delete_sweep_outlined,
+                            color: FlutterFlowTheme.of(context).error,
+                            size: 24.0,
+                          ),
+                          Text(
+                            'Delete Account',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Yantramanav',
+                                  color: FlutterFlowTheme.of(context).error,
+                                  letterSpacing: 0.0,
+                                ),
+                          ),
+                        ].divide(const SizedBox(width: 10.0)),
+                      ),
                     ),
                   ),
-                ),
-                const Icon(
-                  Icons.open_in_new_rounded,
-                  color: Color(0xFF64748B),
-                  size: 24.0,
-                ),
-              ].divide(const SizedBox(width: 15.0)),
+                ].divide(const SizedBox(width: 15.0)),
+              ),
             ),
           ),
           const Divider(
@@ -156,7 +273,12 @@ class _SettingsComponentWidgetState extends State<SettingsComponentWidget> {
                           ),
                           Text(
                             'Log out',
-                            style: FlutterFlowTheme.of(context).bodyMedium,
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Yantramanav',
+                                  letterSpacing: 0.0,
+                                ),
                           ),
                         ].divide(const SizedBox(width: 10.0)),
                       ),

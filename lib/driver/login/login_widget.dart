@@ -5,7 +5,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'login_model.dart';
 export 'login_model.dart';
 
@@ -42,8 +41,6 @@ class _LoginWidgetState extends State<LoginWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -87,6 +84,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                               fontFamily: 'Yantramanav',
                               color: FlutterFlowTheme.of(context).primaryText,
                               fontSize: 24.0,
+                              letterSpacing: 0.0,
                             ),
                       ),
                       Flexible(
@@ -113,8 +111,12 @@ class _LoginWidgetState extends State<LoginWidget> {
                                       () => _model.dropDownValue = val),
                                   width: 62.0,
                                   height: 50.0,
-                                  textStyle:
-                                      FlutterFlowTheme.of(context).bodyMedium,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Yantramanav',
+                                        letterSpacing: 0.0,
+                                      ),
                                   hintText: '+1',
                                   icon: Icon(
                                     Icons.keyboard_arrow_down_rounded,
@@ -149,6 +151,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                             .labelLarge
                                             .override(
                                               fontFamily: 'Yantramanav',
+                                              letterSpacing: 0.0,
                                               fontWeight: FontWeight.normal,
                                             ),
                                         enabledBorder: InputBorder.none,
@@ -163,6 +166,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                           .labelLarge
                                           .override(
                                             fontFamily: 'Yantramanav',
+                                            letterSpacing: 0.0,
                                             fontWeight: FontWeight.normal,
                                           ),
                                       keyboardType: TextInputType.phone,
@@ -292,7 +296,11 @@ class _LoginWidgetState extends State<LoginWidget> {
                         alignment: const AlignmentDirectional(0.0, 0.0),
                         child: Text(
                           'Send OTP',
-                          style: FlutterFlowTheme.of(context).titleSmall,
+                          style:
+                              FlutterFlowTheme.of(context).titleSmall.override(
+                                    fontFamily: 'Yantramanav',
+                                    letterSpacing: 0.0,
+                                  ),
                         ),
                       ),
                     ),

@@ -1,6 +1,6 @@
 import '/components/page_title_widget.dart';
-import '/components/service_updates_component_widget.dart';
 import '/components/user_details_widget.dart';
+import '/driver/service_updates_component/service_updates_component_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'dashboard_driver_widget.dart' show DashboardDriverWidget;
 import 'package:flutter/material.dart';
@@ -24,8 +24,6 @@ class DashboardDriverModel extends FlutterFlowModel<DashboardDriverWidget> {
   // Model for serviceUpdatesComponent component.
   late ServiceUpdatesComponentModel serviceUpdatesComponentModel;
 
-  /// Initialization and disposal methods.
-
   @override
   void initState(BuildContext context) {
     userDetailsModel = createModel(context, () => UserDetailsModel());
@@ -44,8 +42,4 @@ class DashboardDriverModel extends FlutterFlowModel<DashboardDriverWidget> {
 
     serviceUpdatesComponentModel.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

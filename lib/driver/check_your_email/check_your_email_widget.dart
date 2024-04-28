@@ -1,7 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'check_your_email_model.dart';
 export 'check_your_email_model.dart';
 
@@ -34,8 +33,6 @@ class _CheckYourEmailWidgetState extends State<CheckYourEmailWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -81,6 +78,7 @@ class _CheckYourEmailWidgetState extends State<CheckYourEmailWidget> {
                                     fontFamily: 'Yantramanav',
                                     color: const Color(0xFF0F172A),
                                     fontSize: 18.0,
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.bold,
                                   ),
                         ),
@@ -92,6 +90,7 @@ class _CheckYourEmailWidgetState extends State<CheckYourEmailWidget> {
                               .override(
                                 fontFamily: 'Yantramanav',
                                 color: FlutterFlowTheme.of(context).primaryText,
+                                letterSpacing: 0.0,
                               ),
                         ),
                       ].divide(const SizedBox(height: 8.0)),
@@ -108,6 +107,7 @@ class _CheckYourEmailWidgetState extends State<CheckYourEmailWidget> {
                           fontFamily: 'Yantramanav',
                           color: const Color(0xFF0CCA4A),
                           fontSize: 16.0,
+                          letterSpacing: 0.0,
                           fontWeight: FontWeight.normal,
                         ),
                   ),
@@ -116,7 +116,7 @@ class _CheckYourEmailWidgetState extends State<CheckYourEmailWidget> {
                   width: MediaQuery.sizeOf(context).width * 0.9,
                   decoration: const BoxDecoration(),
                   child: RichText(
-                    textScaleFactor: MediaQuery.of(context).textScaleFactor,
+                    textScaler: MediaQuery.of(context).textScaler,
                     text: TextSpan(
                       children: [
                         TextSpan(
@@ -125,6 +125,7 @@ class _CheckYourEmailWidgetState extends State<CheckYourEmailWidget> {
                               FlutterFlowTheme.of(context).labelLarge.override(
                                     fontFamily: 'Yantramanav',
                                     color: const Color(0xFF0F172A),
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.normal,
                                   ),
                         ),
@@ -134,11 +135,15 @@ class _CheckYourEmailWidgetState extends State<CheckYourEmailWidget> {
                               FlutterFlowTheme.of(context).labelLarge.override(
                                     fontFamily: 'Yantramanav',
                                     color: const Color(0xFF0CCA4A),
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.normal,
                                   ),
                         )
                       ],
-                      style: FlutterFlowTheme.of(context).bodyMedium,
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily: 'Yantramanav',
+                            letterSpacing: 0.0,
+                          ),
                     ),
                     textAlign: TextAlign.center,
                   ),

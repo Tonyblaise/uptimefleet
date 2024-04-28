@@ -2,7 +2,6 @@ import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'forgot_password_model.dart';
 export 'forgot_password_model.dart';
 
@@ -38,8 +37,6 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -81,6 +78,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                               fontFamily: 'Yantramanav',
                               color: const Color(0xFF0F172A),
                               fontSize: 18.0,
+                              letterSpacing: 0.0,
                               fontWeight: FontWeight.bold,
                             ),
                       ),
@@ -89,6 +87,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                         style: FlutterFlowTheme.of(context).labelLarge.override(
                               fontFamily: 'Yantramanav',
                               color: FlutterFlowTheme.of(context).primaryText,
+                              letterSpacing: 0.0,
                             ),
                       ),
                     ].divide(const SizedBox(height: 8.0)),
@@ -111,6 +110,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                               .override(
                                 fontFamily: 'Yantramanav',
                                 color: FlutterFlowTheme.of(context).primaryText,
+                                letterSpacing: 0.0,
                               ),
                         ),
                         Container(
@@ -130,6 +130,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                                     .labelLarge
                                     .override(
                                       fontFamily: 'Yantramanav',
+                                      letterSpacing: 0.0,
                                       fontWeight: FontWeight.normal,
                                     ),
                                 enabledBorder: OutlineInputBorder(
@@ -169,6 +170,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                                   .labelLarge
                                   .override(
                                     fontFamily: 'Yantramanav',
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.normal,
                                   ),
                               validator: _model.textControllerValidator
@@ -246,7 +248,11 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                         alignment: const AlignmentDirectional(0.0, 0.0),
                         child: Text(
                           'Send a recovery link',
-                          style: FlutterFlowTheme.of(context).titleSmall,
+                          style:
+                              FlutterFlowTheme.of(context).titleSmall.override(
+                                    fontFamily: 'Yantramanav',
+                                    letterSpacing: 0.0,
+                                  ),
                         ),
                       ),
                     ),
@@ -279,6 +285,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                                   .override(
                                     fontFamily: 'Yantramanav',
                                     color: const Color(0xFF0F172A),
+                                    letterSpacing: 0.0,
                                   ),
                             ),
                           ),
@@ -295,6 +302,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                                   .override(
                                     fontFamily: 'Yantramanav',
                                     color: const Color(0xFF0CCA4A),
+                                    letterSpacing: 0.0,
                                   ),
                             ),
                           ),
