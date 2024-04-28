@@ -28,13 +28,13 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
     super.initState();
     _model = createModel(context, () => ChangePasswordModel());
 
-    _model.yourOldPasswordController ??= TextEditingController();
+    _model.yourOldPasswordTextController ??= TextEditingController();
     _model.yourOldPasswordFocusNode ??= FocusNode();
 
-    _model.yourNewPasswordController ??= TextEditingController();
+    _model.yourNewPasswordTextController ??= TextEditingController();
     _model.yourNewPasswordFocusNode ??= FocusNode();
 
-    _model.confirmNewPasswordController ??= TextEditingController();
+    _model.confirmNewPasswordTextController ??= TextEditingController();
     _model.confirmNewPasswordFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
@@ -171,7 +171,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                                     0.0, 4.0, 0.0, 4.0),
                                             child: TextFormField(
                                               controller: _model
-                                                  .yourOldPasswordController,
+                                                  .yourOldPasswordTextController,
                                               focusNode: _model
                                                   .yourOldPasswordFocusNode,
                                               autofocus: true,
@@ -270,9 +270,8 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                                         fontWeight:
                                                             FontWeight.normal,
                                                       ),
-                                              minLines: null,
                                               validator: _model
-                                                  .yourOldPasswordControllerValidator
+                                                  .yourOldPasswordTextControllerValidator
                                                   .asValidator(context),
                                             ),
                                           ),
@@ -309,7 +308,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                                     0.0, 4.0, 0.0, 4.0),
                                             child: TextFormField(
                                               controller: _model
-                                                  .yourNewPasswordController,
+                                                  .yourNewPasswordTextController,
                                               focusNode: _model
                                                   .yourNewPasswordFocusNode,
                                               autofocus: true,
@@ -407,9 +406,8 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                                         fontWeight:
                                                             FontWeight.normal,
                                                       ),
-                                              minLines: null,
                                               validator: _model
-                                                  .yourNewPasswordControllerValidator
+                                                  .yourNewPasswordTextControllerValidator
                                                   .asValidator(context),
                                             ),
                                           ),
@@ -447,7 +445,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                                     0.0, 4.0, 0.0, 4.0),
                                             child: TextFormField(
                                               controller: _model
-                                                  .confirmNewPasswordController,
+                                                  .confirmNewPasswordTextController,
                                               focusNode: _model
                                                   .confirmNewPasswordFocusNode,
                                               autofocus: true,
@@ -547,9 +545,8 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                                         fontWeight:
                                                             FontWeight.normal,
                                                       ),
-                                              minLines: null,
                                               validator: _model
-                                                  .confirmNewPasswordControllerValidator
+                                                  .confirmNewPasswordTextControllerValidator
                                                   .asValidator(context),
                                             ),
                                           ),
@@ -733,9 +730,9 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                   .changePasswordCall
                                   .call(
                                 currentPassword:
-                                    _model.yourOldPasswordController.text,
+                                    _model.yourOldPasswordTextController.text,
                                 newPassword:
-                                    _model.yourNewPasswordController.text,
+                                    _model.yourNewPasswordTextController.text,
                               );
                               if ((_model.apiResultjti?.succeeded ?? true)) {
                                 ScaffoldMessenger.of(context).showSnackBar(

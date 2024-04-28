@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '/backend/backend.dart';
 
 import '/auth/base_auth_user_provider.dart';
 
@@ -141,7 +142,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             FFRoute(
               name: 'serviceConfirmation',
               path: 'service_confirmation',
-              builder: (context, params) => const ServiceConfirmationWidget(),
+              builder: (context, params) => ServiceConfirmationWidget(
+                request: params.getParam(
+                  'request',
+                  ParamType.String,
+                ),
+              ),
             ),
             FFRoute(
               name: 'driverChat',
@@ -155,16 +161,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                         ParamType.int,
                       ),
                     ),
-            ),
-            FFRoute(
-              name: 'chat_2_Details',
-              path: 'chat2Details',
-              builder: (context, params) => Chat2DetailsWidget(
-                chatRef: params.getParam(
-                  'chatRef',
-                  ParamType.String,
-                ),
-              ),
             ),
             FFRoute(
               name: 'image_Details',
@@ -184,7 +180,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             FFRoute(
               name: 'service_summary',
               path: 'service_summary',
-              builder: (context, params) => const ServiceSummaryWidget(),
+              builder: (context, params) => ServiceSummaryWidget(
+                requestId: params.getParam(
+                  'requestId',
+                  ParamType.String,
+                ),
+              ),
             ),
             FFRoute(
               name: 'changeYourPhoto',
@@ -276,11 +277,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ),
             ),
             FFRoute(
-              name: 'testy',
-              path: 'testy',
-              builder: (context, params) => const TestyWidget(),
-            ),
-            FFRoute(
               name: 'tech_status',
               path: 'techStatus',
               builder: (context, params) => const TechStatusWidget(),
@@ -297,23 +293,69 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ),
             ),
             FFRoute(
-              name: 'navigation',
-              path: 'navigation',
-              builder: (context, params) => NavigationWidget(
-                locationLat: params.getParam(
-                  'locationLat',
+              name: 'chat_2_Details_1',
+              path: 'chat2Details1',
+              asyncParams: {
+                'chatRef': getDoc(['chats'], ChatsRecord.fromSnapshot),
+              },
+              builder: (context, params) => Chat2Details1Widget(
+                chatRef: params.getParam(
+                  'chatRef',
+                  ParamType.Document,
+                ),
+                driver: params.getParam(
+                  'driver',
+                  ParamType.bool,
+                ),
+              ),
+            ),
+            FFRoute(
+              name: 'image_Details_1',
+              path: 'imageDetails1',
+              asyncParams: {
+                'chatMessage':
+                    getDoc(['chat_messages'], ChatMessagesRecord.fromSnapshot),
+              },
+              builder: (context, params) => ImageDetails1Widget(
+                chatMessage: params.getParam(
+                  'chatMessage',
+                  ParamType.Document,
+                ),
+              ),
+            ),
+            FFRoute(
+              name: 'previousJobs',
+              path: 'previousJobs',
+              builder: (context, params) => const PreviousJobsWidget(),
+            ),
+            FFRoute(
+              name: 'success',
+              path: 'success',
+              builder: (context, params) => SuccessWidget(
+                driver: params.getParam(
+                  'driver',
+                  ParamType.bool,
+                ),
+              ),
+            ),
+            FFRoute(
+              name: 'navigate',
+              path: 'navigate',
+              builder: (context, params) => NavigateWidget(
+                originLat: params.getParam(
+                  'originLat',
                   ParamType.double,
                 ),
-                loocationLng: params.getParam(
-                  'loocationLng',
+                originLng: params.getParam(
+                  'originLng',
                   ParamType.double,
                 ),
-                destLat: params.getParam(
-                  'destLat',
+                destinationLat: params.getParam(
+                  'destinationLat',
                   ParamType.double,
                 ),
-                destLng: params.getParam(
-                  'destLng',
+                destinationLng: params.getParam(
+                  'destinationLng',
                   ParamType.double,
                 ),
               ),
@@ -396,7 +438,7 @@ extension _GoRouterStateExtensions on GoRouterState {
       extra != null ? extra as Map<String, dynamic> : {};
   Map<String, dynamic> get allParams => <String, dynamic>{}
     ..addAll(pathParameters)
-    ..addAll(queryParameters)
+    ..addAll(uri.queryParameters)
     ..addAll(extraMap);
   TransitionInfo get transitionInfo => extraMap.containsKey(kTransitionInfoKey)
       ? extraMap[kTransitionInfoKey] as TransitionInfo
@@ -415,7 +457,7 @@ class FFParameters {
   // present is the special extra parameter reserved for the transition info.
   bool get isEmpty =>
       state.allParams.isEmpty ||
-      (state.extraMap.length == 1 &&
+      (state.allParams.length == 1 &&
           state.extraMap.containsKey(kTransitionInfoKey));
   bool isAsyncParam(MapEntry<String, dynamic> param) =>
       asyncParams.containsKey(param.key) && param.value is String;
@@ -436,10 +478,10 @@ class FFParameters {
 
   dynamic getParam<T>(
     String paramName,
-    ParamType type, [
+    ParamType type, {
     bool isList = false,
     List<String>? collectionNamePath,
-  ]) {
+  }) {
     if (futureParamValues.containsKey(paramName)) {
       return futureParamValues[paramName];
     }
@@ -489,7 +531,7 @@ class FFRoute {
           }
 
           if (requireAuth && !appStateNotifier.loggedIn) {
-            appStateNotifier.setRedirectLocationIfUnset(state.location);
+            appStateNotifier.setRedirectLocationIfUnset(state.uri.toString());
             return '/login';
           }
           return null;
@@ -568,7 +610,7 @@ class RootPageContext {
   static bool isInactiveRootPage(BuildContext context) {
     final rootPageContext = context.read<RootPageContext?>();
     final isRootPage = rootPageContext?.isRootPage ?? false;
-    final location = GoRouter.of(context).location;
+    final location = GoRouterState.of(context).uri.toString();
     return isRootPage &&
         location != '/' &&
         location != rootPageContext?.errorRoute;

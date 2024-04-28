@@ -1,6 +1,9 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'cancel_request_model.dart';
@@ -10,9 +13,11 @@ class CancelRequestWidget extends StatefulWidget {
   const CancelRequestWidget({
     super.key,
     required this.id,
+    required this.driver,
   });
 
   final String? id;
+  final bool? driver;
 
   @override
   State<CancelRequestWidget> createState() => _CancelRequestWidgetState();
@@ -140,79 +145,64 @@ class _CancelRequestWidgetState extends State<CancelRequestWidget> {
                 ),
                 Align(
                   alignment: const AlignmentDirectional(0.0, 0.0),
-                  child: Container(
-                    decoration: const BoxDecoration(),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              20.0, 0.0, 20.0, 0.0),
-                          child: InkWell(
-                            splashColor: Colors.transparent,
-                            focusColor: Colors.transparent,
-                            hoverColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                            onTap: () async {
-                              Navigator.pop(context);
-                            },
-                            child: Container(
-                              width: MediaQuery.sizeOf(context).width * 0.9,
-                              height: 56.0,
-                              constraints: BoxConstraints(
-                                maxWidth:
-                                    MediaQuery.sizeOf(context).width * 0.9,
-                              ),
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
+                  child: Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 15.0, 0.0),
+                    child: Container(
+                      decoration: const BoxDecoration(),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            child: FFButtonWidget(
+                              onPressed: () async {
+                                Navigator.pop(context);
+                              },
+                              text: 'Keep Request',
+                              options: FFButtonOptions(
+                                height: 40.0,
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    24.0, 0.0, 24.0, 0.0),
+                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: FlutterFlowTheme.of(context).tertiary,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: 'Yantramanav',
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                      letterSpacing: 0.0,
+                                    ),
+                                elevation: 3.0,
+                                borderSide: const BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1.0,
+                                ),
                                 borderRadius: BorderRadius.circular(18.0),
-                                border: Border.all(
-                                  color: FlutterFlowTheme.of(context).tertiary,
-                                ),
-                              ),
-                              child: Align(
-                                alignment: const AlignmentDirectional(0.0, 0.0),
-                                child: Text(
-                                  'Keep request',
-                                  style: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .override(
-                                        fontFamily: 'Yantramanav',
-                                        color: const Color(0xFF0CCA4A),
-                                        letterSpacing: 0.0,
-                                      ),
-                                ),
                               ),
                             ),
                           ),
-                        ),
-                        Align(
-                          alignment: const AlignmentDirectional(0.0, 0.0),
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                20.0, 0.0, 20.0, 0.0),
-                            child: InkWell(
-                              splashColor: Colors.transparent,
-                              focusColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () async {
+                          Expanded(
+                            child: FFButtonWidget(
+                              onPressed: () async {
                                 _model.apiResultj42 = await UptimeFleetAppGroup
                                     .cancelRequestDriverCall
                                     .call(
                                   id: widget.id,
+                                  driver: widget.driver,
                                 );
-                                setState(() {
-                                  FFAppState().deleteRequestId();
-                                  FFAppState().requestId = '';
-
-                                  FFAppState()
-                                      .deleteDriverTechnicianMessageThread();
-                                  FFAppState().driverTechnicianMessageThread =
-                                      '';
-                                });
                                 if ((_model.apiResultj42?.succeeded ?? true)) {
+                                  await currentUserReference!.update({
+                                    ...mapToFirestore(
+                                      {
+                                        'activeRequest': FieldValue.delete(),
+                                        'activeRequestBubble':
+                                            FieldValue.delete(),
+                                      },
+                                    ),
+                                  });
                                   Navigator.pop(context);
                                 } else {
                                   ScaffoldMessenger.of(context).showSnackBar(
@@ -234,37 +224,41 @@ class _CancelRequestWidgetState extends State<CancelRequestWidget> {
                                   );
                                 }
 
+                                if (widget.driver == true) {
+                                  context.pushNamed('dashboardDriver');
+                                } else {
+                                  context.pushNamed('dashboardTechnician');
+                                }
+
                                 setState(() {});
                               },
-                              child: Container(
-                                width: MediaQuery.sizeOf(context).width * 0.9,
-                                height: 56.0,
-                                constraints: BoxConstraints(
-                                  maxWidth:
-                                      MediaQuery.sizeOf(context).width * 0.9,
+                              text: 'Cancel',
+                              options: FFButtonOptions(
+                                height: 40.0,
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    24.0, 0.0, 24.0, 0.0),
+                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: FlutterFlowTheme.of(context).error,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: 'Yantramanav',
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                      letterSpacing: 0.0,
+                                    ),
+                                elevation: 3.0,
+                                borderSide: const BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1.0,
                                 ),
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context).error,
-                                  borderRadius: BorderRadius.circular(18.0),
-                                ),
-                                child: Align(
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
-                                  child: Text(
-                                    'Cancel request',
-                                    style: FlutterFlowTheme.of(context)
-                                        .titleSmall
-                                        .override(
-                                          fontFamily: 'Yantramanav',
-                                          color: Colors.white,
-                                          letterSpacing: 0.0,
-                                        ),
-                                  ),
-                                ),
+                                borderRadius: BorderRadius.circular(100.0),
                               ),
                             ),
                           ),
-                        ),
-                      ].divide(const SizedBox(height: 15.0)),
+                        ].divide(const SizedBox(width: 15.0)),
+                      ),
                     ),
                   ),
                 ),

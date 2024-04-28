@@ -32,7 +32,7 @@ bool checkNullImage(String? image) {
 
 String convertLatLngToString(LatLng position) {
   // convert latlng to string
-  return '${position.toString}';
+  return '${position.toString()}';
 }
 
 double getLat(LatLng latLng) {
@@ -47,16 +47,23 @@ double getLng(LatLng latLng) {
 }
 
 DateTime converUnixTimestamp(int timestamp) {
-  int timestampInMilliseconds = timestamp; // Example timestamp
-  DateTime convertedDate =
-      DateTime.fromMillisecondsSinceEpoch(timestampInMilliseconds);
-  return convertedDate;
+  // convert unix timestamp to date in 12 hour format
+  return DateTime.fromMillisecondsSinceEpoch(timestamp * 1000).toLocal();
 }
 
 double? convertStringToDouble(String? stringToConvert) {
   String? myString = stringToConvert;
   double? myDouble = num.tryParse(myString!)?.toDouble();
   return myDouble;
+}
+
+DocumentReference? convertStringToRequestDocRef(String? requestId) {
+  // convert string to chatdocRef
+  if (requestId == null) {
+    return null;
+  } else {
+    return FirebaseFirestore.instance.collection('request').doc(requestId);
+  }
 }
 
 LatLng converLatLngStringToLatLng(
@@ -67,7 +74,48 @@ LatLng converLatLngStringToLatLng(
   return LatLng(lat, lng);
 }
 
+DocumentReference? convertStringToTechnicianDocRef(String technicianId) {
+  // convert string to chatdocRef
+  if (technicianId == null) {
+    return null;
+  } else {
+    return FirebaseFirestore.instance.collection('users').doc(technicianId);
+  }
+}
+
 String combineTextNames(List<String> text) {
   // function to join a list of texts to a single string using ,
   return text.join(',');
+}
+
+DocumentReference? convertStringToChatDocRef(String? chatId) {
+  // convert string to chatdocRef
+  if (chatId == null) {
+    return null;
+  } else {
+    return FirebaseFirestore.instance.collection('chats').doc(chatId);
+  }
+}
+
+String? relativeTime(double? seconds) {
+  // convert seconds into hours minutes and seconds. Use min for minutes and secs for seconds
+  if (seconds == null) return null;
+
+  final duration = Duration(seconds: seconds.toInt());
+  final hours = duration.inHours;
+  final minutes = duration.inMinutes.remainder(60);
+  final secs = duration.inSeconds.remainder(60);
+
+  if (hours > 0) {
+    return '$hours hrs $minutes min $secs secs';
+  } else if (minutes > 0) {
+    return '$minutes min $secs secs';
+  } else {
+    return '$secs secs';
+  }
+}
+
+int? addOne(int? number) {
+  // add one to a number
+  return number != null ? number + 1 : null;
 }

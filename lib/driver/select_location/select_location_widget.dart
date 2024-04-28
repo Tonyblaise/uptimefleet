@@ -216,13 +216,13 @@ class _SelectLocationWidgetState extends State<SelectLocationWidget> {
                                           ),
                                         ),
                                         TextSpan(
-                                          text: functions.combineTextNames(
-                                              GetAddressFromLatLngCall
-                                                      .placeName(
-                                            columnGetAddressFromLatLngResponse
-                                                .jsonBody,
-                                          )!
-                                                  .toList()),
+                                          text: valueOrDefault<String>(
+                                            GetAddressFromLatLngCall.placename(
+                                              columnGetAddressFromLatLngResponse
+                                                  .jsonBody,
+                                            )?.first,
+                                            '.',
+                                          ),
                                           style: const TextStyle(),
                                         )
                                       ],
@@ -329,6 +329,14 @@ class _SelectLocationWidgetState extends State<SelectLocationWidget> {
                                       }.withoutNulls,
                                     );
                                   } else {
+                                    await _model.googleMapsController.future
+                                        .then(
+                                      (c) => c.animateCamera(
+                                        CameraUpdate.newLatLng(_model
+                                            .placePickerValue.latLng
+                                            .toGoogleMaps()),
+                                      ),
+                                    );
                                     setState(() {
                                       _model.addressView = true;
                                       _model.latLng =

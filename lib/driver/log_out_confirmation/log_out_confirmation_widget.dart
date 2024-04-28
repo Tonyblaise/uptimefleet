@@ -235,15 +235,6 @@ class _LogOutConfirmationWidgetState extends State<LogOutConfirmationWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
-                                  setState(() {
-                                    FFAppState().deleteRequestId();
-                                    FFAppState().requestId = '';
-
-                                    FFAppState()
-                                        .deleteDriverTechnicianMessageThread();
-                                    FFAppState().driverTechnicianMessageThread =
-                                        '';
-                                  });
                                   GoRouter.of(context).prepareAuthEvent();
                                   await authManager.signOut();
                                   GoRouter.of(context).clearRedirectLocation();

@@ -173,7 +173,6 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.normal,
                                   ),
-                              minLines: null,
                               validator: _model.textControllerValidator
                                   .asValidator(context),
                             ),

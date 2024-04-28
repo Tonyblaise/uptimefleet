@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'serialization_util.dart';
+import '../backend.dart';
 import '../../flutter_flow/flutter_flow_theme.dart';
 import '../../flutter_flow/flutter_flow_util.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -124,15 +125,14 @@ final parametersBuilderMap =
           'additionalInfo': getParameter<String>(data, 'additionalInfo'),
         },
       ),
-  'serviceConfirmation': ParameterData.none(),
+  'serviceConfirmation': (data) async => ParameterData(
+        allParams: {
+          'request': getParameter<String>(data, 'request'),
+        },
+      ),
   'driverChat': (data) async => ParameterData(
         allParams: {
           'state': getParameter<int>(data, 'state'),
-        },
-      ),
-  'chat_2_Details': (data) async => ParameterData(
-        allParams: {
-          'chatRef': getParameter<String>(data, 'chatRef'),
         },
       ),
   'image_Details': (data) async => ParameterData(
@@ -141,7 +141,11 @@ final parametersBuilderMap =
         },
       ),
   'dashboardTechnician': ParameterData.none(),
-  'service_summary': ParameterData.none(),
+  'service_summary': (data) async => ParameterData(
+        allParams: {
+          'requestId': getParameter<String>(data, 'requestId'),
+        },
+      ),
   'changeYourPhoto': ParameterData.none(),
   'settings': ParameterData.none(),
   'settingsSp': ParameterData.none(),
@@ -173,19 +177,37 @@ final parametersBuilderMap =
           'signUp': getParameter<bool>(data, 'signUp'),
         },
       ),
-  'testy': ParameterData.none(),
   'tech_status': ParameterData.none(),
   'technicianChat': (data) async => ParameterData(
         allParams: {
           'state': getParameter<int>(data, 'state'),
         },
       ),
-  'navigation': (data) async => ParameterData(
+  'chat_2_Details_1': (data) async => ParameterData(
         allParams: {
-          'locationLat': getParameter<double>(data, 'locationLat'),
-          'loocationLng': getParameter<double>(data, 'loocationLng'),
-          'destLat': getParameter<double>(data, 'destLat'),
-          'destLng': getParameter<double>(data, 'destLng'),
+          'chatRef': await getDocumentParameter<ChatsRecord>(
+              data, 'chatRef', ChatsRecord.fromSnapshot),
+          'driver': getParameter<bool>(data, 'driver'),
+        },
+      ),
+  'image_Details_1': (data) async => ParameterData(
+        allParams: {
+          'chatMessage': await getDocumentParameter<ChatMessagesRecord>(
+              data, 'chatMessage', ChatMessagesRecord.fromSnapshot),
+        },
+      ),
+  'previousJobs': ParameterData.none(),
+  'success': (data) async => ParameterData(
+        allParams: {
+          'driver': getParameter<bool>(data, 'driver'),
+        },
+      ),
+  'navigate': (data) async => ParameterData(
+        allParams: {
+          'originLat': getParameter<double>(data, 'originLat'),
+          'originLng': getParameter<double>(data, 'originLng'),
+          'destinationLat': getParameter<double>(data, 'destinationLat'),
+          'destinationLng': getParameter<double>(data, 'destinationLng'),
         },
       ),
 };

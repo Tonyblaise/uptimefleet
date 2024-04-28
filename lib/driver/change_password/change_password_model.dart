@@ -9,20 +9,22 @@ class ChangePasswordModel extends FlutterFlowModel<ChangePasswordWidget> {
   final unfocusNode = FocusNode();
   // State field(s) for yourOldPassword widget.
   FocusNode? yourOldPasswordFocusNode;
-  TextEditingController? yourOldPasswordController;
+  TextEditingController? yourOldPasswordTextController;
   late bool yourOldPasswordVisibility;
-  String? Function(BuildContext, String?)? yourOldPasswordControllerValidator;
+  String? Function(BuildContext, String?)?
+      yourOldPasswordTextControllerValidator;
   // State field(s) for yourNewPassword widget.
   FocusNode? yourNewPasswordFocusNode;
-  TextEditingController? yourNewPasswordController;
+  TextEditingController? yourNewPasswordTextController;
   late bool yourNewPasswordVisibility;
-  String? Function(BuildContext, String?)? yourNewPasswordControllerValidator;
+  String? Function(BuildContext, String?)?
+      yourNewPasswordTextControllerValidator;
   // State field(s) for confirmNewPassword widget.
   FocusNode? confirmNewPasswordFocusNode;
-  TextEditingController? confirmNewPasswordController;
+  TextEditingController? confirmNewPasswordTextController;
   late bool confirmNewPasswordVisibility;
   String? Function(BuildContext, String?)?
-      confirmNewPasswordControllerValidator;
+      confirmNewPasswordTextControllerValidator;
   // Stores action output result for [Backend Call - API (Change password)] action in Container widget.
   ApiCallResponse? apiResultjti;
 
@@ -37,12 +39,12 @@ class ChangePasswordModel extends FlutterFlowModel<ChangePasswordWidget> {
   void dispose() {
     unfocusNode.dispose();
     yourOldPasswordFocusNode?.dispose();
-    yourOldPasswordController?.dispose();
+    yourOldPasswordTextController?.dispose();
 
     yourNewPasswordFocusNode?.dispose();
-    yourNewPasswordController?.dispose();
+    yourNewPasswordTextController?.dispose();
 
     confirmNewPasswordFocusNode?.dispose();
-    confirmNewPasswordController?.dispose();
+    confirmNewPasswordTextController?.dispose();
   }
 }

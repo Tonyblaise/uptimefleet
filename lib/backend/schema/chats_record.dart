@@ -57,6 +57,21 @@ class ChatsRecord extends FirestoreRecord {
   int get groupChatId => _groupChatId ?? 0;
   bool hasGroupChatId() => _groupChatId != null;
 
+  // "last_message_chat" field.
+  DocumentReference? _lastMessageChat;
+  DocumentReference? get lastMessageChat => _lastMessageChat;
+  bool hasLastMessageChat() => _lastMessageChat != null;
+
+  // "last_message_read" field.
+  bool? _lastMessageRead;
+  bool get lastMessageRead => _lastMessageRead ?? false;
+  bool hasLastMessageRead() => _lastMessageRead != null;
+
+  // "last_message_user" field.
+  DocumentReference? _lastMessageUser;
+  DocumentReference? get lastMessageUser => _lastMessageUser;
+  bool hasLastMessageUser() => _lastMessageUser != null;
+
   void _initializeFields() {
     _users = getDataList(snapshotData['users']);
     _userA = snapshotData['user_a'] as DocumentReference?;
@@ -67,6 +82,9 @@ class ChatsRecord extends FirestoreRecord {
         snapshotData['last_message_sent_by'] as DocumentReference?;
     _lastMessageSeenBy = getDataList(snapshotData['last_message_seen_by']);
     _groupChatId = castToType<int>(snapshotData['group_chat_id']);
+    _lastMessageChat = snapshotData['last_message_chat'] as DocumentReference?;
+    _lastMessageRead = snapshotData['last_message_read'] as bool?;
+    _lastMessageUser = snapshotData['last_message_user'] as DocumentReference?;
   }
 
   static CollectionReference get collection =>
@@ -109,6 +127,9 @@ Map<String, dynamic> createChatsRecordData({
   DateTime? lastMessageTime,
   DocumentReference? lastMessageSentBy,
   int? groupChatId,
+  DocumentReference? lastMessageChat,
+  bool? lastMessageRead,
+  DocumentReference? lastMessageUser,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -118,6 +139,9 @@ Map<String, dynamic> createChatsRecordData({
       'last_message_time': lastMessageTime,
       'last_message_sent_by': lastMessageSentBy,
       'group_chat_id': groupChatId,
+      'last_message_chat': lastMessageChat,
+      'last_message_read': lastMessageRead,
+      'last_message_user': lastMessageUser,
     }.withoutNulls,
   );
 
@@ -137,7 +161,10 @@ class ChatsRecordDocumentEquality implements Equality<ChatsRecord> {
         e1?.lastMessageTime == e2?.lastMessageTime &&
         e1?.lastMessageSentBy == e2?.lastMessageSentBy &&
         listEquality.equals(e1?.lastMessageSeenBy, e2?.lastMessageSeenBy) &&
-        e1?.groupChatId == e2?.groupChatId;
+        e1?.groupChatId == e2?.groupChatId &&
+        e1?.lastMessageChat == e2?.lastMessageChat &&
+        e1?.lastMessageRead == e2?.lastMessageRead &&
+        e1?.lastMessageUser == e2?.lastMessageUser;
   }
 
   @override
@@ -149,7 +176,10 @@ class ChatsRecordDocumentEquality implements Equality<ChatsRecord> {
         e?.lastMessageTime,
         e?.lastMessageSentBy,
         e?.lastMessageSeenBy,
-        e?.groupChatId
+        e?.groupChatId,
+        e?.lastMessageChat,
+        e?.lastMessageRead,
+        e?.lastMessageUser
       ]);
 
   @override

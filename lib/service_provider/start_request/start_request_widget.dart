@@ -1,8 +1,8 @@
 import '/backend/api_requests/api_calls.dart';
+import '/chat/service_summary_widget/service_summary_widget_widget.dart';
 import '/components/user_details_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/service_provider/service_summary_widget/service_summary_widget_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'start_request_model.dart';
@@ -199,30 +199,60 @@ class _StartRequestWidgetState extends State<StartRequestWidget> {
                             model: _model.serviceSummaryWidgetModel,
                             updateCallback: () => setState(() {}),
                             child: ServiceSummaryWidgetWidget(
-                              fleetCompanyName: UptimeFleetAppGroup
-                                  .getRequestCall
-                                  .driverCompanyName(
-                                containerGetRequestResponse.jsonBody,
+                              fleetCompanyName: functions.checkNull(
+                                          UptimeFleetAppGroup.getRequestCall
+                                              .driverCompanyName(
+                                        containerGetRequestResponse.jsonBody,
+                                      )) ==
+                                      false
+                                  ? UptimeFleetAppGroup.getRequestCall
+                                      .driverCompanyName(
+                                      containerGetRequestResponse.jsonBody,
+                                    )
+                                  : 'N/A',
+                              driverName: functions.checkNull(
+                                          UptimeFleetAppGroup.getRequestCall
+                                              .driverFullName(
+                                        containerGetRequestResponse.jsonBody,
+                                      )) ==
+                                      false
+                                  ? UptimeFleetAppGroup.getRequestCall
+                                      .driverFullName(
+                                      containerGetRequestResponse.jsonBody,
+                                    )
+                                  : 'N/A',
+                              driverPhoneNumber: functions.checkNull(
+                                          UptimeFleetAppGroup.getRequestCall
+                                              .driverPhoneNumber(
+                                        containerGetRequestResponse.jsonBody,
+                                      )) ==
+                                      false
+                                  ? UptimeFleetAppGroup.getRequestCall
+                                      .driverPhoneNumber(
+                                      containerGetRequestResponse.jsonBody,
+                                    )
+                                  : 'N/A',
+                              serviceId: functions.checkNull(UptimeFleetAppGroup
+                                          .getRequestCall
+                                          .serviceId(
+                                        containerGetRequestResponse.jsonBody,
+                                      )) ==
+                                      false
+                                  ? UptimeFleetAppGroup.getRequestCall
+                                      .serviceId(
+                                      containerGetRequestResponse.jsonBody,
+                                    )
+                                  : 'N/A',
+                              timestamp: dateTimeFormat(
+                                'M/d h:mm a',
+                                functions.converUnixTimestamp(
+                                    UptimeFleetAppGroup.getRequestCall
+                                        .timestamp(
+                                  containerGetRequestResponse.jsonBody,
+                                )!),
+                                locale:
+                                    FFLocalizations.of(context).languageCode,
                               ),
-                              driverName: UptimeFleetAppGroup.getRequestCall
-                                  .driverFullName(
-                                containerGetRequestResponse.jsonBody,
-                              ),
-                              driverPhoneNumber: UptimeFleetAppGroup
-                                  .getRequestCall
-                                  .driverPhoneNumber(
-                                containerGetRequestResponse.jsonBody,
-                              ),
-                              serviceId: UptimeFleetAppGroup.getRequestCall.id(
-                                containerGetRequestResponse.jsonBody,
-                              ),
-                              timestamp: functions
-                                  .converUnixTimestamp(UptimeFleetAppGroup
-                                      .getRequestCall
-                                      .timestamp(
-                                    containerGetRequestResponse.jsonBody,
-                                  )!)
-                                  .toString(),
                               eventType:
                                   UptimeFleetAppGroup.getRequestCall.fault(
                                 containerGetRequestResponse.jsonBody,
@@ -231,27 +261,49 @@ class _StartRequestWidgetState extends State<StartRequestWidget> {
                                   UptimeFleetAppGroup.getRequestCall.location(
                                 containerGetRequestResponse.jsonBody,
                               ),
-                              dropOff: UptimeFleetAppGroup.getRequestCall
-                                  .dropOffLocation(
-                                    containerGetRequestResponse.jsonBody,
-                                  )
-                                  .toString(),
+                              dropOff: functions.checkNull(
+                                          UptimeFleetAppGroup.getRequestCall
+                                              .dropOffLocation(
+                                                containerGetRequestResponse
+                                                    .jsonBody,
+                                              )
+                                              .toString()) ==
+                                      false
+                                  ? UptimeFleetAppGroup.getRequestCall
+                                      .dropOffLocation(
+                                        containerGetRequestResponse.jsonBody,
+                                      )
+                                      .toString()
+                                  : 'N/A',
                               vehicleLicenseNumber: UptimeFleetAppGroup
                                   .getRequestCall
                                   .vehicleRegNo(
                                 containerGetRequestResponse.jsonBody,
                               ),
-                              vehicleInformation: UptimeFleetAppGroup
-                                  .getRequestCall
-                                  .vehicleColor(
+                              vehicleInformation: functions.checkNull(
+                                      UptimeFleetAppGroup.getRequestCall
+                                          .vehicleDetails(
                                 containerGetRequestResponse.jsonBody,
-                              ),
-                              vehicleVinNumber:
-                                  UptimeFleetAppGroup.getRequestCall
+                              ))
+                                  ? 'N/A'
+                                  : UptimeFleetAppGroup.getRequestCall
+                                      .vehicleDetails(
+                                      containerGetRequestResponse.jsonBody,
+                                    ),
+                              vehicleVinNumber: functions.checkNull(
+                                          UptimeFleetAppGroup.getRequestCall
+                                              .vehicleVinNumber(
+                                                containerGetRequestResponse
+                                                    .jsonBody,
+                                              )
+                                              .toString()) ==
+                                      false
+                                  ? UptimeFleetAppGroup.getRequestCall
                                       .vehicleVinNumber(
                                         containerGetRequestResponse.jsonBody,
                                       )
-                                      .toString(),
+                                      .toString()
+                                  : 'N/A',
                               locationLat: functions.convertStringToDouble(
                                   functions
                                       .convertStringToDouble(UptimeFleetAppGroup
@@ -268,6 +320,29 @@ class _StartRequestWidgetState extends State<StartRequestWidget> {
                                         containerGetRequestResponse.jsonBody,
                                       ))
                                       .toString())!,
+                              firebaseId:
+                                  functions.convertStringToRequestDocRef(
+                                      UptimeFleetAppGroup.getRequestCall
+                                          .firebaseId(
+                                containerGetRequestResponse.jsonBody,
+                              ))!,
+                              status: UptimeFleetAppGroup.getRequestCall.status(
+                                containerGetRequestResponse.jsonBody,
+                              )!,
+                              driverTechMessageId: UptimeFleetAppGroup
+                                  .getRequestCall
+                                  .driverTechnicianMessageThreadId(
+                                containerGetRequestResponse.jsonBody,
+                              )!,
+                              bubbleId: UptimeFleetAppGroup.getRequestCall
+                                  .uniqueBubbleId(
+                                containerGetRequestResponse.jsonBody,
+                              )!,
+                              driverImage: UptimeFleetAppGroup.getRequestCall
+                                  .driverImage(
+                                    containerGetRequestResponse.jsonBody,
+                                  )
+                                  .toString(),
                             ),
                           ),
                         ),

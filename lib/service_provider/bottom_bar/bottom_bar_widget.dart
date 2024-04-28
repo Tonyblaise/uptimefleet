@@ -1,9 +1,9 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/components/tech_status_component_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:provider/provider.dart';
 import 'bottom_bar_model.dart';
 export 'bottom_bar_model.dart';
 
@@ -40,8 +40,6 @@ class _BottomBarWidgetState extends State<BottomBarWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Align(
       alignment: const AlignmentDirectional(0.0, 0.0),
       child: Padding(
@@ -90,18 +88,20 @@ class _BottomBarWidgetState extends State<BottomBarWidget> {
                               fit: BoxFit.fill,
                             ),
                           ),
-                          Text(
-                            FFAppState().requestId != ''
-                                ? 'Service Updates'
-                                : 'Select vehicle',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Yantramanav',
-                                  color: const Color(0xFF64748B),
-                                  fontSize: 10.0,
-                                  letterSpacing: 0.0,
-                                ),
+                          AuthUserStreamWidget(
+                            builder: (context) => Text(
+                              currentUserDocument?.activeRequest != null
+                                  ? 'Service Updates'
+                                  : 'Select vehicle',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Yantramanav',
+                                    color: const Color(0xFF64748B),
+                                    fontSize: 10.0,
+                                    letterSpacing: 0.0,
+                                  ),
+                            ),
                           ),
                         ].divide(const SizedBox(height: 6.0)),
                       ),
@@ -113,7 +113,15 @@ class _BottomBarWidgetState extends State<BottomBarWidget> {
                     hoverColor: Colors.transparent,
                     highlightColor: Colors.transparent,
                     onTap: () async {
-                      context.goNamed('technicianChat');
+                      context.goNamed(
+                        'technicianChat',
+                        queryParameters: {
+                          'state': serializeParam(
+                            0,
+                            ParamType.int,
+                          ),
+                        }.withoutNulls,
+                      );
                     },
                     child: Container(
                       height: 100.0,

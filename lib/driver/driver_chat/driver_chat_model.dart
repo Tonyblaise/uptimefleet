@@ -1,4 +1,4 @@
-import '/driver/chat_thread_component/chat_thread_component_widget.dart';
+import '/chat/chat_thread_component_1/chat_thread_component1_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'driver_chat_widget.dart' show DriverChatWidget;
 import 'package:flutter/material.dart';
@@ -6,23 +6,23 @@ import 'package:flutter/material.dart';
 class DriverChatModel extends FlutterFlowModel<DriverChatWidget> {
   ///  Local state fields for this page.
 
-  int? pageState;
+  int? pageState = 2;
 
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // Model for chat_ThreadComponent component.
-  late ChatThreadComponentModel chatThreadComponentModel;
+  // Model for chat_ThreadComponent_1 component.
+  late ChatThreadComponent1Model chatThreadComponent1Model;
 
   @override
   void initState(BuildContext context) {
-    chatThreadComponentModel =
-        createModel(context, () => ChatThreadComponentModel());
+    chatThreadComponent1Model =
+        createModel(context, () => ChatThreadComponent1Model());
   }
 
   @override
   void dispose() {
     unfocusNode.dispose();
-    chatThreadComponentModel.dispose();
+    chatThreadComponent1Model.dispose();
   }
 }

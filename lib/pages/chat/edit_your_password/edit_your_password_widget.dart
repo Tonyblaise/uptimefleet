@@ -182,7 +182,6 @@ class _EditYourPasswordWidgetState extends State<EditYourPasswordWidget> {
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,
                                 ),
-                            minLines: null,
                             validator: _model.textController1Validator
                                 .asValidator(context),
                           ),
@@ -283,7 +282,6 @@ class _EditYourPasswordWidgetState extends State<EditYourPasswordWidget> {
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,
                                 ),
-                            minLines: null,
                             validator: _model.textController2Validator
                                 .asValidator(context),
                           ),

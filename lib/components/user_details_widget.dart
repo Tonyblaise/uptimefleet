@@ -44,7 +44,7 @@ class _UserDetailsWidgetState extends State<UserDetailsWidget> {
         width: double.infinity,
         decoration: const BoxDecoration(),
         child: Row(
-          mainAxisSize: MainAxisSize.min,
+          mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             AuthUserStreamWidget(
@@ -81,36 +81,38 @@ class _UserDetailsWidgetState extends State<UserDetailsWidget> {
                 ),
               ),
             ),
-            Container(
-              width: 100.0,
-              decoration: const BoxDecoration(),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  AuthUserStreamWidget(
-                    builder: (context) => Text(
-                      valueOrDefault(currentUserDocument?.fullName, ''),
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Yantramanav',
-                            color: const Color(0xFF0F172A),
-                            letterSpacing: 0.0,
-                            fontWeight: FontWeight.bold,
-                          ),
+            Expanded(
+              child: Container(
+                width: 100.0,
+                decoration: const BoxDecoration(),
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    AuthUserStreamWidget(
+                      builder: (context) => Text(
+                        valueOrDefault(currentUserDocument?.fullName, ''),
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Yantramanav',
+                              color: const Color(0xFF0F172A),
+                              letterSpacing: 0.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                      ),
                     ),
-                  ),
-                  AuthUserStreamWidget(
-                    builder: (context) => Text(
-                      valueOrDefault(currentUserDocument?.companyName, ''),
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Yantramanav',
-                            color: const Color(0xFF0F172A),
-                            letterSpacing: 0.0,
-                          ),
+                    AuthUserStreamWidget(
+                      builder: (context) => Text(
+                        valueOrDefault(currentUserDocument?.companyName, ''),
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Yantramanav',
+                              color: const Color(0xFF0F172A),
+                              letterSpacing: 0.0,
+                            ),
+                      ),
                     ),
-                  ),
-                ].divide(const SizedBox(height: 6.0)),
+                  ].divide(const SizedBox(height: 6.0)),
+                ),
               ),
             ),
           ].divide(const SizedBox(width: 16.0)),

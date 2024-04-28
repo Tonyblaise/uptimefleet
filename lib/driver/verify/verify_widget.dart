@@ -3,6 +3,7 @@ import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:flutter/material.dart';
@@ -163,185 +164,274 @@ class _VerifyWidgetState extends State<VerifyWidget> {
                   ),
                 ),
               ),
-              Align(
-                alignment: const AlignmentDirectional(0.0, 0.0),
-                child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
-                  child: InkWell(
-                    splashColor: Colors.transparent,
-                    focusColor: Colors.transparent,
-                    hoverColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                    onTap: () async {
-                      GoRouter.of(context).prepareAuthEvent();
-                      final smsCodeVal = _model.pinCodeController!.text;
-                      if (smsCodeVal.isEmpty) {
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                child: FFButtonWidget(
+                  onPressed: () async {
+                    GoRouter.of(context).prepareAuthEvent();
+                    final smsCodeVal = _model.pinCodeController!.text;
+                    if (smsCodeVal.isEmpty) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Enter SMS verification code.'),
+                        ),
+                      );
+                      return;
+                    }
+                    final phoneVerifiedUser = await authManager.verifySmsCode(
+                      context: context,
+                      smsCode: smsCodeVal,
+                    );
+                    if (phoneVerifiedUser == null) {
+                      return;
+                    }
+
+                    _model.token = await actions.getFcmToken();
+                    if (widget.signUp) {
+                      if (widget.signUpType == 'fleet') {
+                        var chatsRecordReference1 =
+                            ChatsRecord.collection.doc();
+                        await chatsRecordReference1.set({
+                          ...createChatsRecordData(
+                            userA: currentUserReference,
+                          ),
+                          ...mapToFirestore(
+                            {
+                              'users': [currentUserReference],
+                            },
+                          ),
+                        });
+                        _model.supportchat = ChatsRecord.getDocumentFromData({
+                          ...createChatsRecordData(
+                            userA: currentUserReference,
+                          ),
+                          ...mapToFirestore(
+                            {
+                              'users': [currentUserReference],
+                            },
+                          ),
+                        }, chatsRecordReference1);
+
+                        var chatsRecordReference2 =
+                            ChatsRecord.collection.doc();
+                        await chatsRecordReference2.set({
+                          ...createChatsRecordData(
+                            userA: currentUserReference,
+                          ),
+                          ...mapToFirestore(
+                            {
+                              'users': [currentUserReference],
+                            },
+                          ),
+                        });
+                        _model.technicianChat =
+                            ChatsRecord.getDocumentFromData({
+                          ...createChatsRecordData(
+                            userA: currentUserReference,
+                          ),
+                          ...mapToFirestore(
+                            {
+                              'users': [currentUserReference],
+                            },
+                          ),
+                        }, chatsRecordReference2);
+                        _model.driver =
+                            await UptimeFleetAppGroup.createDriverCall.call(
+                          fleetManagerId: widget.fleetManagerId,
+                          fullName: widget.fullName,
+                          phoneNumber: widget.phoneNumber,
+                          token: _model.token,
+                          driverTechnicianMessageThreadIdFirebase:
+                              _model.technicianChat?.reference.id,
+                          driverSupportMessageThreadIdFirebase:
+                              _model.supportchat?.reference.id,
+                        );
+
+                        await currentUserReference!
+                            .update(createUsersRecordData(
+                          companyId:
+                              UptimeFleetAppGroup.createDriverCall.companyId(
+                            (_model.driver?.jsonBody ?? ''),
+                          ),
+                          companyName:
+                              UptimeFleetAppGroup.createDriverCall.companyName(
+                            (_model.driver?.jsonBody ?? ''),
+                          ),
+                          driverId: UptimeFleetAppGroup.createDriverCall.id(
+                            (_model.driver?.jsonBody ?? ''),
+                          ),
+                          fullName: widget.fullName,
+                          driverFleetManagerMessageThreadId: UptimeFleetAppGroup
+                              .createDriverCall
+                              .driverFleetManagerMessageThreadId(
+                            (_model.driver?.jsonBody ?? ''),
+                          ),
+                          driverSupportMessageThreadId: UptimeFleetAppGroup
+                              .createDriverCall
+                              .driverSupportMessageThreadId(
+                            (_model.driver?.jsonBody ?? ''),
+                          ),
+                          profilePicture: '',
+                          phoneNumber: widget.phoneNumber,
+                          driverSupportMessageThreadIdFirebase:
+                              _model.supportchat?.reference,
+                          driverFleetManagerMessageThreadIdFirebaseId:
+                              _model.technicianChat?.reference,
+                        ));
+
+                        context.goNamedAuth('dashboardDriver', context.mounted);
+                      } else if (widget.signUpType == 'technician') {
+                        var chatsRecordReference3 =
+                            ChatsRecord.collection.doc();
+                        await chatsRecordReference3.set({
+                          ...createChatsRecordData(
+                            userA: currentUserReference,
+                          ),
+                          ...mapToFirestore(
+                            {
+                              'users': [currentUserReference],
+                            },
+                          ),
+                        });
+                        _model.supportchat2 = ChatsRecord.getDocumentFromData({
+                          ...createChatsRecordData(
+                            userA: currentUserReference,
+                          ),
+                          ...mapToFirestore(
+                            {
+                              'users': [currentUserReference],
+                            },
+                          ),
+                        }, chatsRecordReference3);
+
+                        var chatsRecordReference4 =
+                            ChatsRecord.collection.doc();
+                        await chatsRecordReference4.set({
+                          ...createChatsRecordData(
+                            userA: currentUserReference,
+                          ),
+                          ...mapToFirestore(
+                            {
+                              'users': [currentUserReference],
+                            },
+                          ),
+                        });
+                        _model.technicianChat2 =
+                            ChatsRecord.getDocumentFromData({
+                          ...createChatsRecordData(
+                            userA: currentUserReference,
+                          ),
+                          ...mapToFirestore(
+                            {
+                              'users': [currentUserReference],
+                            },
+                          ),
+                        }, chatsRecordReference4);
+                        _model.technician =
+                            await UptimeFleetAppGroup.createTechnicianCall.call(
+                          serviceProviderId: widget.serviceProviderId,
+                          fullName: widget.fullName,
+                          phoneNumber: widget.phoneNumber,
+                          token: _model.token,
+                          driverTechnicianMessageThreadIdFirebase:
+                              _model.technicianChat2?.reference.id,
+                          driverSupportMessageThreadIdFirebase:
+                              _model.supportchat2?.reference.id,
+                        );
+
+                        await currentUserReference!
+                            .update(createUsersRecordData(
+                          companyId: UptimeFleetAppGroup.createTechnicianCall
+                              .companyId(
+                            (_model.technician?.jsonBody ?? ''),
+                          ),
+                          companyName: UptimeFleetAppGroup.createTechnicianCall
+                              .companyName(
+                            (_model.technician?.jsonBody ?? ''),
+                          ),
+                          technicianId: UptimeFleetAppGroup.createTechnicianCall
+                              .technicianId(
+                            (_model.technician?.jsonBody ?? ''),
+                          ),
+                          fullName: widget.fullName,
+                          phoneNumber: widget.phoneNumber,
+                          onDuty: false,
+                          driverFleetManagerMessageThreadId: UptimeFleetAppGroup
+                              .createTechnicianCall
+                              .technicianServiceProviderMessageThreadId(
+                            (_model.technician?.jsonBody ?? ''),
+                          ),
+                          driverSupportMessageThreadId: UptimeFleetAppGroup
+                              .createTechnicianCall
+                              .technicianSupportMessageThreadId(
+                            (_model.technician?.jsonBody ?? ''),
+                          ),
+                          driverSupportMessageThreadIdFirebase:
+                              _model.supportchat2?.reference,
+                          driverFleetManagerMessageThreadIdFirebaseId:
+                              _model.technicianChat2?.reference,
+                        ));
+
+                        context.goNamedAuth(
+                            'dashboardTechnician', context.mounted);
+                      } else {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('Enter SMS verification code.'),
+                          SnackBar(
+                            content: Text(
+                              'Something went wrong. Please try again later.',
+                              style: TextStyle(
+                                color: FlutterFlowTheme.of(context).primaryText,
+                              ),
+                            ),
+                            duration: const Duration(milliseconds: 4000),
+                            backgroundColor:
+                                FlutterFlowTheme.of(context).secondary,
                           ),
                         );
-                        return;
                       }
-                      final phoneVerifiedUser = await authManager.verifySmsCode(
-                        context: context,
-                        smsCode: smsCodeVal,
-                      );
-                      if (phoneVerifiedUser == null) {
-                        return;
+                    } else {
+                      if (widget.signUpType == 'fleet') {
+                        await UptimeFleetAppGroup.updateDriverTokenCall.call(
+                          driverId:
+                              valueOrDefault(currentUserDocument?.driverId, ''),
+                          token: _model.token,
+                        );
+
+                        context.goNamedAuth('dashboardDriver', context.mounted);
+                      } else if (widget.signUpType == 'technician') {
+                        await UptimeFleetAppGroup.updateTechnicianCall.call(
+                          technicianId: valueOrDefault(
+                              currentUserDocument?.technicianId, ''),
+                          token: _model.token,
+                        );
+
+                        context.goNamedAuth(
+                            'dashboardTechnician', context.mounted);
                       }
+                    }
 
-                      _model.token = await actions.getFcmToken();
-                      if (widget.signUp) {
-                        if (widget.signUpType == 'fleet') {
-                          _model.driver =
-                              await UptimeFleetAppGroup.createDriverCall.call(
-                            fleetManagerId: widget.fleetManagerId,
-                            fullName: widget.fullName,
-                            phoneNumber: widget.phoneNumber,
-                            token: _model.token,
-                          );
-
-                          await currentUserReference!
-                              .update(createUsersRecordData(
-                            companyId:
-                                UptimeFleetAppGroup.createDriverCall.companyId(
-                              (_model.driver?.jsonBody ?? ''),
-                            ),
-                            companyName: UptimeFleetAppGroup.createDriverCall
-                                .companyName(
-                              (_model.driver?.jsonBody ?? ''),
-                            ),
-                            driverId: UptimeFleetAppGroup.createDriverCall.id(
-                              (_model.driver?.jsonBody ?? ''),
-                            ),
-                            fullName: widget.fullName,
-                            driverFleetManagerMessageThreadId:
-                                UptimeFleetAppGroup.createDriverCall
-                                    .driverFleetManagerMessageThreadId(
-                              (_model.driver?.jsonBody ?? ''),
-                            ),
-                            driverSupportMessageThreadId: UptimeFleetAppGroup
-                                .createDriverCall
-                                .driverSupportMessageThreadId(
-                              (_model.driver?.jsonBody ?? ''),
-                            ),
-                            profilePicture: '',
-                            phoneNumber: widget.phoneNumber,
-                          ));
-
-                          context.goNamedAuth(
-                              'dashboardDriver', context.mounted);
-                        } else if (widget.signUpType == 'technician') {
-                          _model.technician = await UptimeFleetAppGroup
-                              .createTechnicianCall
-                              .call(
-                            serviceProviderId: widget.serviceProviderId,
-                            fullName: widget.fullName,
-                            phoneNumber: widget.phoneNumber,
-                            token: _model.token,
-                          );
-
-                          await currentUserReference!
-                              .update(createUsersRecordData(
-                            companyId: UptimeFleetAppGroup.createTechnicianCall
-                                .companyId(
-                              (_model.technician?.jsonBody ?? ''),
-                            ),
-                            companyName: UptimeFleetAppGroup
-                                .createTechnicianCall
-                                .companyName(
-                              (_model.technician?.jsonBody ?? ''),
-                            ),
-                            technicianId: UptimeFleetAppGroup
-                                .createTechnicianCall
-                                .technicianId(
-                              (_model.technician?.jsonBody ?? ''),
-                            ),
-                            fullName: widget.fullName,
-                            technicianServiceProviderMessageThreadId:
-                                UptimeFleetAppGroup.createTechnicianCall
-                                    .technicianServiceProviderMessageThreadId(
-                              (_model.technician?.jsonBody ?? ''),
-                            ),
-                            technicianSupportMessageThreadId:
-                                UptimeFleetAppGroup.createTechnicianCall
-                                    .technicianSupportMessageThreadId(
-                              (_model.technician?.jsonBody ?? ''),
-                            ),
-                            phoneNumber: widget.phoneNumber,
-                            onDuty: false,
-                          ));
-
-                          context.goNamedAuth(
-                              'dashboardTechnician', context.mounted);
-                        } else {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(
-                                'Something went wrong. Please try again later.',
-                                style: TextStyle(
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                ),
-                              ),
-                              duration: const Duration(milliseconds: 4000),
-                              backgroundColor:
-                                  FlutterFlowTheme.of(context).secondary,
-                            ),
-                          );
-                        }
-                      } else {
-                        if (widget.signUpType == 'fleet') {
-                          await UptimeFleetAppGroup.updateDriverTokenCall.call(
-                            driverId: valueOrDefault(
-                                currentUserDocument?.driverId, ''),
-                            token: _model.token,
-                          );
-
-                          context.goNamedAuth(
-                              'dashboardDriver', context.mounted);
-                        } else if (widget.signUpType == 'technician') {
-                          await UptimeFleetAppGroup.updateTechnicianCall.call(
-                            technicianId: valueOrDefault(
-                                currentUserDocument?.technicianId, ''),
-                            token: _model.token,
-                          );
-
-                          context.goNamedAuth(
-                              'dashboardTechnician', context.mounted);
-                        }
-                      }
-
-                      setState(() {});
-                    },
-                    child: Container(
-                      width: MediaQuery.sizeOf(context).width * 0.9,
-                      height: 56.0,
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [
-                            FlutterFlowTheme.of(context).secondary,
-                            FlutterFlowTheme.of(context).tertiary
-                          ],
-                          stops: const [0.0, 1.0],
-                          begin: const AlignmentDirectional(0.0, -1.0),
-                          end: const AlignmentDirectional(0, 1.0),
+                    setState(() {});
+                  },
+                  text: 'Confirm',
+                  options: FFButtonOptions(
+                    width: MediaQuery.sizeOf(context).width * 0.9,
+                    height: 50.0,
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                    iconPadding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                    color: FlutterFlowTheme.of(context).tertiary,
+                    textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                          fontFamily: 'Yantramanav',
+                          color: FlutterFlowTheme.of(context).primary,
+                          letterSpacing: 0.0,
                         ),
-                        borderRadius: BorderRadius.circular(18.0),
-                      ),
-                      child: Align(
-                        alignment: const AlignmentDirectional(0.0, 0.0),
-                        child: Text(
-                          'Confirm',
-                          style:
-                              FlutterFlowTheme.of(context).titleSmall.override(
-                                    fontFamily: 'Yantramanav',
-                                    letterSpacing: 0.0,
-                                  ),
-                        ),
-                      ),
+                    elevation: 3.0,
+                    borderSide: const BorderSide(
+                      color: Colors.transparent,
+                      width: 1.0,
                     ),
+                    borderRadius: BorderRadius.circular(18.0),
                   ),
                 ),
               ),

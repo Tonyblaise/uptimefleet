@@ -1,11 +1,9 @@
 import '/auth/firebase_auth/auth_util.dart';
-import '/backend/api_requests/api_calls.dart';
-import '/driver/chat_thread_component/chat_thread_component_widget.dart';
+import '/backend/backend.dart';
+import '/chat/chat_thread_component_1/chat_thread_component1_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:provider/provider.dart';
 import 'driver_chat_model.dart';
 export 'driver_chat_model.dart';
 
@@ -31,19 +29,6 @@ class _DriverChatWidgetState extends State<DriverChatWidget> {
     super.initState();
     _model = createModel(context, () => DriverChatModel());
 
-    // On page load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      if (FFAppState().requestId != '') {
-        setState(() {
-          _model.pageState = 1;
-        });
-      } else {
-        setState(() {
-          _model.pageState = 3;
-        });
-      }
-    });
-
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -56,8 +41,6 @@ class _DriverChatWidgetState extends State<DriverChatWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -102,157 +85,127 @@ class _DriverChatWidgetState extends State<DriverChatWidget> {
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      if (FFAppState().requestId != '')
-                        Container(
-                          width: double.infinity,
-                          height: 48.0,
-                          decoration: const BoxDecoration(
-                            color: Color(0xFFE2E8F0),
-                          ),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              if (FFAppState().requestId != '')
-                                Expanded(
-                                  child: InkWell(
-                                    splashColor: Colors.transparent,
-                                    focusColor: Colors.transparent,
-                                    hoverColor: Colors.transparent,
-                                    highlightColor: Colors.transparent,
-                                    onTap: () async {
-                                      setState(() {});
-                                    },
-                                    child: Container(
-                                      width: 100.0,
-                                      height: 100.0,
-                                      decoration: BoxDecoration(
-                                        color: valueOrDefault<Color>(
-                                          _model.pageState == 1
-                                              ? const Color(0xFFE2E8F0)
-                                              : FlutterFlowTheme.of(context)
-                                                  .secondaryBackground,
-                                          FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                        ),
-                                      ),
-                                      alignment: const AlignmentDirectional(0.0, 0.0),
-                                      child: Text(
-                                        'Tech',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Yantramanav',
-                                              color: valueOrDefault<Color>(
-                                                _model.pageState == 1
-                                                    ? Colors.black
-                                                    : FlutterFlowTheme.of(
-                                                            context)
-                                                        .primaryText,
-                                                FlutterFlowTheme.of(context)
-                                                    .primaryText,
-                                              ),
-                                              fontSize: _model.pageState == 1
-                                                  ? 16.0
-                                                  : 14.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.normal,
-                                            ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              if (FFAppState().requestId != '')
-                                Expanded(
-                                  child: Container(
-                                    width: double.infinity,
-                                    height: 100.0,
-                                    decoration: BoxDecoration(
-                                      color: valueOrDefault<Color>(
-                                        _model.pageState == 2
-                                            ? const Color(0xFFE2E8F0)
-                                            : FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                        FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                      ),
-                                    ),
-                                    alignment: const AlignmentDirectional(0.0, 0.0),
-                                    child: Text(
-                                      'Manager',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Yantramanav',
-                                            color: valueOrDefault<Color>(
-                                              _model.pageState == 2
-                                                  ? Colors.black
-                                                  : FlutterFlowTheme.of(context)
-                                                      .primaryText,
-                                              FlutterFlowTheme.of(context)
-                                                  .primaryText,
-                                            ),
-                                            fontSize: _model.pageState == 2
-                                                ? 16.0
-                                                : 14.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.normal,
-                                          ),
-                                    ),
-                                  ),
-                                ),
-                              if (FFAppState().requestId != '')
-                                Expanded(
-                                  child: Container(
-                                    width: 100.0,
-                                    height: 100.0,
-                                    decoration: BoxDecoration(
-                                      color: valueOrDefault<Color>(
-                                        _model.pageState == 3
-                                            ? const Color(0xFFE2E8F0)
-                                            : FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                        FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                      ),
-                                      boxShadow: const [
-                                        BoxShadow(
-                                          blurRadius: 1.0,
-                                          color: Color(0x28000000),
-                                          offset: Offset(
-                                            0.0,
-                                            0.0,
-                                          ),
-                                          spreadRadius: 0.0,
-                                        )
-                                      ],
-                                    ),
-                                    alignment: const AlignmentDirectional(0.0, 0.0),
-                                    child: Text(
-                                      'Support',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Yantramanav',
-                                            color: valueOrDefault<Color>(
-                                              _model.pageState == 3
-                                                  ? Colors.black
-                                                  : FlutterFlowTheme.of(context)
-                                                      .primaryText,
-                                              FlutterFlowTheme.of(context)
-                                                  .primaryText,
-                                            ),
-                                            fontSize: _model.pageState == 3
-                                                ? 16.0
-                                                : 14.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.normal,
-                                          ),
-                                    ),
-                                  ),
-                                ),
-                            ],
-                          ),
+                      Container(
+                        width: double.infinity,
+                        height: 48.0,
+                        decoration: const BoxDecoration(
+                          color: Color(0xFFE2E8F0),
                         ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Expanded(
+                              child: InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  setState(() {
+                                    _model.pageState = 2;
+                                  });
+                                },
+                                child: Container(
+                                  width: double.infinity,
+                                  height: 100.0,
+                                  decoration: BoxDecoration(
+                                    color: valueOrDefault<Color>(
+                                      _model.pageState == 2
+                                          ? const Color(0xFFE2E8F0)
+                                          : FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                      FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                    ),
+                                  ),
+                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  child: Text(
+                                    'Manager',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Yantramanav',
+                                          color: valueOrDefault<Color>(
+                                            _model.pageState == 2
+                                                ? Colors.black
+                                                : FlutterFlowTheme.of(context)
+                                                    .primaryText,
+                                            FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                          ),
+                                          fontSize: _model.pageState == 2
+                                              ? 16.0
+                                              : 14.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.normal,
+                                        ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              child: InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  setState(() {
+                                    _model.pageState = 3;
+                                  });
+                                },
+                                child: Container(
+                                  width: 100.0,
+                                  height: 100.0,
+                                  decoration: BoxDecoration(
+                                    color: valueOrDefault<Color>(
+                                      _model.pageState == 3
+                                          ? const Color(0xFFE2E8F0)
+                                          : FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                      FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                    ),
+                                    boxShadow: const [
+                                      BoxShadow(
+                                        blurRadius: 1.0,
+                                        color: Color(0x28000000),
+                                        offset: Offset(
+                                          0.0,
+                                          0.0,
+                                        ),
+                                        spreadRadius: 0.0,
+                                      )
+                                    ],
+                                  ),
+                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  child: Text(
+                                    'Support',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Yantramanav',
+                                          color: valueOrDefault<Color>(
+                                            _model.pageState == 3
+                                                ? Colors.black
+                                                : FlutterFlowTheme.of(context)
+                                                    .primaryText,
+                                            FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                          ),
+                                          fontSize: _model.pageState == 3
+                                              ? 16.0
+                                              : 14.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.normal,
+                                        ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                       Container(
                         width: double.infinity,
                         height: 100.0,
@@ -316,75 +269,62 @@ class _DriverChatWidgetState extends State<DriverChatWidget> {
                 ),
                 Expanded(
                   child: AuthUserStreamWidget(
-                    builder: (context) => FutureBuilder<ApiCallResponse>(
-                      future: UptimeFleetAppGroup.getThreadMessagesCall.call(
-                        messageThreadId: valueOrDefault<String>(
-                          () {
-                            if (widget.state == 1) {
-                              return FFAppState().driverTechnicianMessageThread;
-                            } else if (widget.state == 2) {
-                              return valueOrDefault(
-                                  currentUserDocument
-                                      ?.driverFleetManagerMessageThreadId,
-                                  '');
-                            } else if (widget.state == 3) {
-                              return valueOrDefault(
-                                  currentUserDocument
-                                      ?.driverSupportMessageThreadId,
-                                  '');
-                            } else {
-                              return '3';
-                            }
-                          }(),
-                          '22',
-                        ),
-                      ),
+                    builder: (context) => StreamBuilder<ChatsRecord>(
+                      stream: ChatsRecord.getDocument(currentUserDocument!
+                          .driverFleetManagerMessageThreadIdFirebaseId!),
                       builder: (context, snapshot) {
                         // Customize what your widget looks like when it's loading.
                         if (!snapshot.hasData) {
                           return Center(
                             child: SizedBox(
-                              width: 40.0,
-                              height: 40.0,
+                              width: 50.0,
+                              height: 50.0,
                               child: CircularProgressIndicator(
                                 valueColor: AlwaysStoppedAnimation<Color>(
-                                  FlutterFlowTheme.of(context).tertiary,
+                                  FlutterFlowTheme.of(context).primary,
                                 ),
                               ),
                             ),
                           );
                         }
-                        final containerGetThreadMessagesResponse =
-                            snapshot.data!;
+                        final containermanagerChatsRecord = snapshot.data!;
                         return Container(
-                          height: 200.0,
                           decoration: const BoxDecoration(),
-                          child: wrapWithModel(
-                            model: _model.chatThreadComponentModel,
-                            updateCallback: () => setState(() {}),
-                            child: ChatThreadComponentWidget(
-                              chatRef: valueOrDefault<String>(
-                                () {
-                                  if (widget.state == 1) {
-                                    return FFAppState()
-                                        .driverTechnicianMessageThread;
-                                  } else if (widget.state == 2) {
-                                    return valueOrDefault(
-                                        currentUserDocument
-                                            ?.driverFleetManagerMessageThreadId,
-                                        '');
-                                  } else if (widget.state == 3) {
-                                    return valueOrDefault(
-                                        currentUserDocument
-                                            ?.driverSupportMessageThreadId,
-                                        '');
-                                  } else {
-                                    return '3';
-                                  }
-                                }(),
-                                '22',
-                              ),
-                            ),
+                          child: StreamBuilder<ChatsRecord>(
+                            stream: ChatsRecord.getDocument(currentUserDocument!
+                                .driverSupportMessageThreadIdFirebase!),
+                            builder: (context, snapshot) {
+                              // Customize what your widget looks like when it's loading.
+                              if (!snapshot.hasData) {
+                                return Center(
+                                  child: SizedBox(
+                                    width: 40.0,
+                                    height: 40.0,
+                                    child: CircularProgressIndicator(
+                                      valueColor: AlwaysStoppedAnimation<Color>(
+                                        FlutterFlowTheme.of(context).tertiary,
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              }
+                              final containersupportChatsRecord =
+                                  snapshot.data!;
+                              return Container(
+                                height: 200.0,
+                                decoration: const BoxDecoration(),
+                                child: wrapWithModel(
+                                  model: _model.chatThreadComponent1Model,
+                                  updateCallback: () => setState(() {}),
+                                  child: ChatThreadComponent1Widget(
+                                    chatRef: _model.pageState == 2
+                                        ? containermanagerChatsRecord
+                                        : containersupportChatsRecord,
+                                    state: _model.pageState!,
+                                  ),
+                                ),
+                              );
+                            },
                           ),
                         );
                       },

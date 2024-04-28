@@ -169,7 +169,6 @@ class _LoginWidgetState extends State<LoginWidget> {
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.normal,
                                           ),
-                                      minLines: null,
                                       keyboardType: TextInputType.phone,
                                       validator: _model.textControllerValidator
                                           .asValidator(context),
